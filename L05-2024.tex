@@ -1,0 +1,974 @@
+%\section{概率简介}
+\title[概率论]{第五讲：概率的公理化体系}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \ quad 数学学院 \\
+	\vspace{0.3cm}
+	%\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+	%\hspace{-1.7cm}  密 \ qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+
+
+{\setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+\subsection{概率论的公理化体系}
+%\subsection{事件 $\sigma$ 域或 $\sigma$- 代数}
+
+\begin{frame}{代数(algebra)或域(field)}
+\begin{defi}\textcolor{cyan}{(集合的代数 (algebra))}  设${\mathcal{A}}$ 是由 ${\Omega}$ 的某些子集所构成的集合类, 称${\mathcal{A}}$为集合 ${\Omega}$ 上的代数, 如果,
+	\begin{enumerate}[<+-|alert@+>]
+		\item ${\Omega \in \mathcal{A}, \varnothing \in \mathcal{A}}$;
+		\item 若 ${A \in \mathcal{A}}$, 则 $\overline{A}:=\Omega-A\in \mathcal{A}$;
+		\item 若${A, B \in \mathcal{A}}$, 则 $A \cup B \in \mathcal{A}.$
+	\end{enumerate}
+\end{defi}
+
+\pause
+
+\begin{exam}
+	设 ${\Omega=\{a, b, c, d\}}$, 则集族 ${\mathcal{A}=\{\varnothing, \Omega,\{a\},\{b, c, d\}\}}$ 是代数.
+\end{exam}
+
+\pause
+\begin{exam}
+	(有限集上的代数) 设 ${\Omega}$ 为有限集, 则集族 ${2^{\Omega}}$ (即 ${\Omega}$ 的所有子集构成的集合) 是代数. 例如, 当 ${\Omega=\{a, b, c\}}$ 时,
+	\[
+	\mathcal{A}=\{\varnothing, \Omega,\{a\},\{b\},\{c\},\{a, b\},\{b, c\},\{a, c\},\{a, b, c\}\}
+	\]
+	是代数.
+\end{exam}
+
+\pause
+\begin{rmk}
+	\begin{itemize}[<+-|alert@+>]
+		\item 代数是"集合的集合"，即其本身是集合, 其中的元素仍然是集合. %有时也称这种集合组成的集合为集族 (set class).
+		\item 代数对于集合的求补、有限交和有限并运算封闭。
+		\item 由于代数仅对集合的有限交并封闭，若样本空间 ${\Omega}$ 是无限集, 将会导致它将无法包含一些重要的集合 (特别是无限集合).
+		\item 有必要对代数定义进行延伸, 加强其表达能力.
+	\end{itemize}
+
+
+\end{rmk}
+
+
+
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+	\frametitle{事件 $\sigma$ 域定义及其性质}
+
+	\begin{defi}\textcolor{cyan}{(事件 $\sigma$ 域或 $\sigma$- 代数)} 设 $\mathcal{F}$ 为 $\Omega$ 的某些子集构成的集合类，称 $\mathcal{F}$ 为 $\Omega$ 上的事件 $\sigma$ 域或 $\sigma$- 代数，如果
+		\begin{enumerate}[<+-|alert@+>]
+			\item $\Omega\in \mathcal{F}$;
+			\item 若 $E\in \mathcal{F}$, 则 $\overline{E}:=\Omega-E\in \mathcal{F}$;
+			\item 若 $E_i\in \mathcal{F}, i=1, 2,\cdots,$ 则 $\cup_{i=1}^{\infty} E_i\in \mathcal{F}$.
+		\end{enumerate}
+	\end{defi}
+	\pause
+
+	\begin{thm} 若 $\mathcal{F}$ 为 $\Omega$ 上的 $\sigma$-代数，则
+		\begin{itemize}[<+-|alert@+>]
+			\item $\emptyset\in \mathcal{F}$;
+			\item 若 $E_k\in \mathcal{F}, k=1,2,\cdots,$ 则 $\cap_{k=1}^\infty E_k\in \mathcal{F}$;
+			\item 若 $E_1,\cdots, E_n\in \mathcal{F}$, 则 $\cap_{k=1}^nE_k\in \mathcal{F}$ 且 $\cup_{k=1}^nE_k\in \mathcal{F}$;
+
+			\item 若 $E_1,E_2\in\mathcal{F}$, 则 $E_1-E_2\in \mathcal{F}$.
+		\end{itemize}
+	\end{thm}
+\end{frame}
+
+\begin{frame}{几个例子}
+	\begin{exam}\textcolor{cyan}{(代数而非 ${\sigma}$-代数)} 设 ${\Omega}$ 是无限集合, 集族 ${\mathcal{A} \subset 2^{\Omega}}$ ，满足
+		\[
+		A \in \mathcal{A} \Longleftrightarrow \# A<\infty \text { 或  }  \# \overline{A}<\infty \text {, }
+		\]
+
+		即 ${\mathcal{A}}$ 中的集合或者自身是有限集，或者其补集是有限集.
+		容易验证, ${\mathcal{A}}$ 是代数, 但不是 ${\sigma}$-代数.
+	\end{exam}
+\pause
+\vspace{0.1cm}
+\begin{exam}
+	\textcolor{cyan}{(可数集上 ${\sigma}$-代数)} 设样本空间${\Omega}$为可数集, ${\mathcal{F}}$ 为其上的 ${\sigma}$-代数, 且 ${\forall a \in \Omega}$, 有 ${\{a\} \in \mathcal{F}}$, 则${\forall A \subset \Omega}$, 有${A \in \mathcal{F}}$.
+\end{exam}
+
+\begin{exam}设${\mathcal{F}}$为实数集${\mathbf{R}}$上的${\sigma}$-代数. 若对${\forall x\in\mathbf{R}}$,都有${(-\infty,x]\in\mathcal{F}}$, 则${\mathcal{F}}$包含${\mathbf{R}}$上的任意区间.
+\end{exam}
+\pause
+
+\vspace{0.1cm}
+
+\begin{proof}
+	仅以${[a,b)}$为例. 注意到:%由式${(2-12)}$,
+	\begin{align*}
+		(-\infty, a)&=\bigcup_{k=1}^{\infty}\left(-\infty, a-\frac{1}{k}\right] \in \mathcal{F},  \pause \quad (x, \infty)=\overline{(-\infty, x]} \in \mathcal{F},  \forall x \pause \\
+		[b, \infty)&=\bigcap_{k=1}^{\infty}\left(b-\frac{1}{k}, \infty\right) \in \mathcal{F}  \pause \quad	 	[a, b)=\overline{(-\infty, a) \cup [b, \infty)} \in \mathcal{F}
+	\end{align*}
+
+
+\end{proof}
+
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	\frametitle{$\sigma$-代数例子及如何构造}
+	\begin{itemize}[<+-|alert@+>]
+		\item $\mathcal{F}:=\{\emptyset, \Omega\}$;
+		\item $\mathcal{F}:=\{A:A\subset \Omega\}$;
+		\item $\mathcal{F}:=\{\emptyset, A, \bar{A}, \Omega\}$;
+		\item 如何由 $\{A,B\}$(假设 $A,B$ 为非平凡事件，互不包含且不互为对立事件) 扩充成事件 $\sigma$ 域？
+	\end{itemize}
+\end{frame}
+
+% \begin{frame}{{\rm Borel} 运算与生成 $\sigma$-代数}
+% 	% \begin{defi}\textcolor{cyan}{(事件或集合的{\rm Borel} 运算)}
+% 	% 	我们将对所给出的一些事件或集合所作的各种 (有限次或可列次) 取余、取交和取并运算以及它们的混合运算都称为 \textcolor{cyan}{事件或集合的{\rm Borel} 运算}。
+% 	% \end{defi}
+% 	%\pause
+% 	\vspace{0.5cm}
+% 	\begin{prop}\
+% 		$\sigma$ 域就是一切可能的 Borel 运算之下封闭的集合 ($\Omega$ 的子集) 类。
+% 	\end{prop}
+% 	\pause
+% 	\vspace{0.5cm}
+% 	\begin{defi}\
+% 		如果 $\mathcal{C}$ 是 $\Omega$ 的一个子集类，那么 $\mathcal{C}$ 中的集合做一切可能的 Borel 运算所得到的 $\sigma$ 域 $\mathcal{F}$ 称为由 $\mathcal{C}$ 生成的 $\sigma$ 域，记作 $\mathcal{F}=\sigma (\mathcal{C})$。
+% 	\end{defi}
+% 	%%	~\
+% 	%%	\begin{thm}
+% 	%%		实直线上的如下三种 $\sigma$ 域相同，都是一维 Borel 域 $\mathcal{B}^1$：
+% 	%%		\begin{enumerate}
+% 	%%			\item 由全体有界开区间构成的类所生成的 $\sigma$ 域；
+% 	%%			\item 由子集类 $\left\{(-\infty,x)|x\in\mathbb{R}\right\}$ 所生成的 $\sigma$ 域；
+% 	%%			\item 由全体开集和闭集构成的类所生成的 $\sigma$ 域。
+% 	%%		\end{enumerate}
+% 	%%	\end{thm}
+% \end{frame}
+
+\begin{frame}
+	\frametitle{最小(生成)$\sigma$-代数}
+	\begin{thm}
+		假设 $\mathcal{C}$ 为 $\Omega$ 的子集组成的非空集类，则存在唯一 $\sigma$-代数 $\mathcal{C}_0$ 使得：
+		\begin{enumerate}[<+-|alert@+>][(1)]
+			\item $\mathcal{C}\subset \mathcal{C}_0$;
+			\item 若 $\mathcal{G}$ 为任一 $\sigma$-代数，且 $\mathcal{C}\subset \mathcal{G}$, 则 $\mathcal{C}_0\subset \mathcal{G}$.
+		\end{enumerate}
+	\end{thm}
+
+	\pause
+	\zheng
+	\begin{itemize}[<+-|alert@+>]
+		\item 若 $\mathcal{F}_t, t\in T$ 为一族 $\sigma$-代数，则 $\cap_{t\in T}\mathcal{F}_t$ 仍为 $\sigma$-代数；
+		\item 令 $C^{\#}:=\{\mathcal{B}:\mathcal{B}\mbox{为}\sigma-\mbox{代数}, \mathcal{C}\subset \mathcal{B}\}$;
+
+		\item 令 $\mathcal{C}_0:=\cap_{\mathcal{B}\in C^{\#}}\mathcal{B}$, 则易证 $\mathcal{C}_0$ 即为定理所求之 $\sigma$-代数.
+	\end{itemize}
+
+	\pause
+	\begin{rmk}
+		\begin{itemize}[<+-|alert@+>]
+			\item $\mathcal{C}_0:=\cap_{\mathcal{B}\in C^{\#}}\mathcal{B}$ 是包含集类 $\mathcal{C}$ 的最小 $\sigma$-代数；
+			\item 一般也称 $\mathcal{C}_0$ 为集类 $\mathcal{C}$ 的生成 $\sigma$-代数，后面我们常用 $\sigma (\mathcal{C})$ 表示 $\mathcal{C}_0$.
+		\end{itemize}
+	\end{rmk}
+\end{frame}
+\begin{frame}
+	\frametitle{实直线上的 $\sigma$- 域}
+	\begin{exam}
+		令 $\Omega:=\mathbb{R}$, 考虑
+		\[\mathcal{A}_1=\{(-\infty, x)|x\in\mathbb{R}\}, \  \mathcal{A}_2=\{(a, b)|-\infty<a<b<\infty\},\]
+		则 $\sigma (\mathcal{A}_1)=\sigma (\mathcal{A}_2)$
+	\end{exam}
+
+	\pause
+	\jieda  注意到，对任意实数 $x$, 均有
+	\[(-\infty, x)=\cup_{n=1}^\infty(x-n,x).\]
+	\pause 因此 $(-\infty, x)\in\sigma (\mathcal{A}_2)$, \pause 从而 $\mathcal{A}_1\subset \sigma (\mathcal{A}_2)$, \pause 进而可得 $\sigma (\mathcal{A}_1)\subset\sigma (\mathcal{A}_2)$.
+
+	\pause 反之，注意到 $[a,b)=(-\infty, b)-(-\infty,a)\in\sigma (\mathcal{A}_1)$ 以及
+	\[\{a\}=\cap_{n=1}^\infty[a,a+\dfrac{1}{n})\in\sigma(\mathcal{A}_1),\]
+	\pause 因此，$(a,b)=[a,b)-\{a\}\in\sigma (\mathcal{A}_1)$, \pause 即 $\mathcal{A}_2\subset\sigma (\mathcal{A}_1)$, \pause 从而
+	\[\sigma(\mathcal{A}_2)\subset \sigma(\mathcal{A}_1).\]
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Borel 集}
+	\begin{exam}
+		设 $\Omega=\mathbb{R}$, 令
+		\begin{eqnarray*}
+			\mathcal{C}_1&=&\{(-\infty,x):-\infty<x<+\infty\}\\
+			\mathcal{C}_2&=&\{(a,b]:-\infty\leq a\leq b<+\infty\}\\
+			\mathcal{C}_3&=&\{[a,b]:-\infty< a\leq b<+\infty\}\\
+			\mathcal{C}_4&=&\{[a,b):-\infty< a\leq b\leq+\infty\}\\
+			\mathcal{C}_5&=&\{(a,b):-\infty\leq a\leq b\leq+\infty\}\\
+			\mathcal{C}_6&=&\{A\subset\mathbb{R}:A\mbox{为开集}\}\\
+			\mathcal{C}_7&=&\{A\subset\mathbb{R}:A\mbox{为闭集}\}
+		\end{eqnarray*}
+		则以上 7 个集类的生成 $\sigma$-代数均相同，称以上集类的生成 $\sigma$-代数中的元素为 Borel 集，并记作 $\mathcal{B}(\mathbb{R})$, 即
+		\begin{eqnarray*}
+			\sigma(\mathcal{C}_1)=\cdots=\sigma(\mathcal{C}_7):=\mathcal{B}(\mathbb{R}).
+		\end{eqnarray*}
+
+	\end{exam}
+\end{frame}
+%\begin{frame}
+%	\frametitle{实直线上的 $\sigma$- 域}
+%	\begin{thm}
+%		实直线上的如下三种 $\sigma$ 域相同，都是一维 Borel 域 $\mathcal{B}^1$：
+%			\begin{enumerate}
+%				\item 由全体有界开区间构成的类所生成的 $\sigma$ 域；
+%				\item 由子集类 $\left\{(-\infty,x)|x\in\mathbb{R}\right\}$ 所生成的 $\sigma$ 域；
+%				\item 由全体开集和闭集构成的类所生成的 $\sigma$ 域。
+%		\end{enumerate}
+%	\end{thm}
+%\end{frame}
+
+
+
+
+
+
+
+\begin{frame}
+	\frametitle{其他集类}
+	\begin{defi}
+	  设$\mathcal{C}$为$\Omega$的某些子集构成的非空集类,
+	  \begin{itemize}[<+-|alert@+>]
+	  \item 称$\mathcal{C}$为$\pi$类, 如果$\mathcal{C}$关于有限交运算封闭, 即
+		\begin{eqnarray*}
+		  A,B\in \mathcal{C}\Rightarrow A\cap B\in \mathcal{C};
+		\end{eqnarray*}
+	  \item 称$\mathcal{C}$为代数, 如果$\mathcal{C}$关于有限交与取余运算封闭, 即
+		\begin{eqnarray*}
+		  A,B\in \mathcal{C}\Rightarrow A\cap B\in \mathcal{C}, \bar{A}\in \mathcal{C};
+		\end{eqnarray*}
+	  \item 称$\mathcal{C}$为单调类, 如果$\mathcal{C}$关于单调极限运算封闭, 即
+		\begin{eqnarray*}
+		  A_n\in \mathcal{C}, A_n\uparrow A \mbox{ 或 } A_n\downarrow A \Rightarrow A\in \mathcal{C}
+		\end{eqnarray*}
+	  \item 称$\mathcal{C}$为$\lambda$类, 如果$\Omega\in \mathcal{C}$并且$\mathcal{C}$对真差运算及上升极限运算封闭, 即
+		\begin{itemize}
+		\item $\Omega\in \mathcal{C}$;
+		\item $A, B\in \mathcal{C}, B\subset A\Rightarrow A-B\in \mathcal{C}$;
+		\item $A_n\in \mathcal{C}, n\geq 1, A_n\uparrow A\Rightarrow A\in \mathcal{C}$
+		\end{itemize}
+
+	  \end{itemize}
+
+	\end{defi}
+  \end{frame}
+
+  \begin{frame}
+	\frametitle{集类之间的关系}
+	\begin{thm}
+	  设$\mathcal{C}$为$\Omega$的某些子集构成的非空集类,则
+	  \begin{enumerate}
+	  \item 若$\mathcal{C}$为$\sigma-$代数,则$\mathcal{C}$一定是:$\pi$类,代数,$\lambda$类,单调类;
+	  \item 若$\mathcal{C}$既是代数又是单调类,则$\mathcal{C}$一定是$\sigma-$代数;
+	  \item 若$\mathcal{C}$既是$\pi$类又是$\lambda$类,则$\mathcal{C}$一定是$\sigma-$代数.
+	  \end{enumerate}
+
+	\end{thm}
+
+  \end{frame}
+  \begin{frame}
+	\frametitle{单调类定理}
+	\begin{defi}
+	  与生成$\sigma-$代数类似, 我们可以定义包含集类$\mathcal{C}$的最小单调类$m(\mathcal{C})$及最小$\lambda$类$\lambda(\mathcal{C})$, 分别称为由集类$\mathcal{C}$生成的单调类与$\lambda$类.
+	\end{defi}
+  \vspace{0.2cm}
+  \pause
+	\begin{thm}(单调类定理) 设$\mathcal{C},\mathcal{G}$为$\Omega$中的集类且$\mathcal{C}\subset \mathcal{G}$,则
+	  \begin{enumerate}
+	  \item 若$\mathcal{C}$为一代数,则$m(\mathcal{C})=\sigma(\mathcal{C})$;
+	  \item 若$\mathcal{C}$为一$\pi$类,则$\lambda(\mathcal{C})=\sigma(\mathcal{\mathcal{C}})$;
+	  \item 若$\mathcal{C}$为代数而$\mathcal{G}$为单调类, 则$\sigma(\mathcal{C})\subset \mathcal{G}$;
+	  \item 若$\mathcal{C}$为$\pi$类而$\mathcal{G}$为$\lambda$类,则$\sigma(\mathcal{C})\subset \mathcal{G}$.
+	  \end{enumerate}
+	\end{thm}
+  \end{frame}
+
+
+  \begin{frame}
+	\frametitle{如何应用单调类定理}
+	\begin{itemize}[<+-|alert@+>]
+	\item 问题: 如何证明某$\sigma-$代数$\mathcal{F}$中的所有元素都具有某种性质($P$)?
+	\item 步骤:
+	  \begin{itemize}[<+-|alert@+>]
+	  \item $\mathcal{G}:=\{A\in \mathcal{F}: A\mbox{具有性质}(P)\}$;
+	  \item 找到某一集类$\mathcal{C}$为代数或$\pi$类且具有以下性质:
+		\begin{eqnarray*}
+		  \mathcal{C}\subset \mathcal{G}, \quad  \sigma(\mathcal{C})=\mathcal{F};
+		\end{eqnarray*}
+	  \item 证明$\mathcal{G}$为单调类或$\lambda$类;
+	  \item 由单调类定理可知:
+		\begin{eqnarray*}
+		  \mathcal{F}=\sigma(\mathcal{C})\subset \mathcal{G}\subset \mathcal{F}
+		\end{eqnarray*}
+   即
+   \begin{eqnarray*}
+	 \mathcal{G}=\mathcal{F}
+   \end{eqnarray*}
+  从而$\mathcal{F}$中所有的元素都具有某种性质(P).
+	  \end{itemize}
+
+	\end{itemize}
+  \end{frame}
+
+% \begin{frame}
+% 	\frametitle{单调类定理应用举例}
+% 	\begin{exam}
+% 	  设$\mathcal{C}$为$\Omega$上的一$\pi$类,$\mu_1$及$\mu_2$为$\sigma(\mathcal{C})$上的两个概率测度. 若$\mu_1$与$\mu_2$限于$\mathcal{C}$一致, 则对任意的$A\in \sigma(\mathcal{C})$均有$\mu_1(A)=\mu_2(A)$.
+% 	\end{exam}
+
+% 	\zheng 证明思路如下:
+% 	\begin{itemize}[<+-|alert@+>]
+% 	\item 令$\mathcal{G}:=\{A\in \sigma(\mathcal{C}):\mu_1(A)=\mu_2(A)\}$;
+% 	\item 注意到$\mathcal{C}$为$\pi$类且$\mathcal{C}\subset \mathcal{G}$,故只需证明$\mathcal{G}$为$\lambda$类即验证即
+% 	  \begin{itemize}[<+-|alert@+>]
+% 	  \item $\Omega\in \mathcal{G}$;
+% 	  \item $A, B\in \mathcal{G}, B\subset A\Rightarrow A-B\in \mathcal{G}$;
+% 	  \item $A_n\in \mathcal{G}, n\geq 1, A_n\uparrow A\Rightarrow A\in \mathcal{G}$
+% 	  \end{itemize}
+% 	\item 利用单调类定理可知$\mathcal{G}=\sigma(\mathcal{C})$
+% 	\end{itemize}
+
+%   \end{frame}
+
+
+
+\subsection{概率的公理化定义与性质}
+\begin{frame}
+	\frametitle{概率的公理化定义}
+	\begin{defi} 设 $\mathcal{F}$ 为样本空间 $\Omega$ 上的 $\sigma$-代数，如果定义在 $\mathcal{F}$ 上的集函数 $P (\cdot)$ 具有:
+		\begin{enumerate}[<+-|alert@+>]
+			\item 非负性: $P (A)\ge 0, \forall A\in \mathcal{F}$;
+			\item 规范性: $P (\Omega)=1$;
+			\item 可列可加性：对 $\mathcal{F}$ 中的任何两两互不相容事件列 $\{A_n\}$ 有
+				\begin{eqnarray*}
+					P(\cup_{n=1}^{\infty}A_n)=\sum_{n=1}^{\infty}P(A_n)
+				\end{eqnarray*}
+		\end{enumerate}
+		\pause  则称 $P (\cdot)$ 为 $\mathcal{F}$ 上的概率测度，而 $P (A)$ 称为事件 $A$ 的概率，$(\Omega,\mathcal{F},P)$ 称为概率空间.
+
+	\end{defi}
+\end{frame}
+
+
+\begin{frame}{如何定义概率}
+\begin{itemize}[<+-|alert@+>]
+	\item 概率定义在${\sigma-}$代数${\mathcal{F}}$上, 但是由于${\mathcal{F}}$中集合的复杂性, 直接对每个集合赋予概率存在困难;
+	\item 首先在${\mathcal{F}}$的子族${\mathcal{A} \subset \mathcal{F}}$上定义概率（一般${\mathcal{A}}$中的集合较为简单), 然后再将其扩张到${\mathcal{F}}$上;%变得十分自然;
+	\item 如何选择恰当的${\mathcal{A}}$, 使得${\mathcal{F}=\sigma(\mathcal{A})}$?%是通常的思路.
+\end{itemize}
+
+
+
+
+\end{frame}
+
+\begin{frame}{扩张是否唯一?}
+\begin{exam}
+(\tc{有限集合上的概率}) 设样本空间${\Omega=\{a, b, c, d\}, \sigma}$-代数${\mathcal{F}}$由集族${\mathcal{A}}$生成, 即
+	\[
+	\mathcal{F}=\sigma(\mathcal{A}), \quad  \mathcal{A}=\{\{a\},\{a, b\},\{a, b, c\}, \Omega\}
+	\]
+\end{exam}
+\pause
+
+\begin{exam}
+令$\Omega=\{a, b, c, d\}$, $\mathcal{F}=2^{\Omega}$, $\mathcal{A}=\{\{a, b\},\{a, c\},\{b, d\},\{c, d\}\}$.
+
+\begin{itemize}[<+-|alert@+>]
+	\item 容易看出,${\sigma(\mathcal{A})=2^{\Omega}}$;
+	\item 定义${P_{1}}$和${P_{2}}$为
+	{\small \begin{align*}
+		P_{1}(\{a\})&=P_{1}(\{d\})=\frac{1}{6}, \quad  P_{1}(\{b\})=P_{1}(\{c\})=\frac{1}{3} \\
+		P_{2}(\{a\})&=P_{2}(\{d\})=\frac{1}{3}, \quad  P_{2}(\{b\})=P_{2}(\{c\})=\frac{1}{6}
+	\end{align*}}
+
+	\item 显然, 它们并不相同, 但它们在${\mathcal{A}}$上却完全一致
+	{\small \begin{align*}
+		P_{1}(\{a, b\})&=\frac{1}{2}, P_{1}(\{a, c\})=\frac{1}{2}, P_{1}(\{b, d\})=\frac{1}{2}, P_{1}(\{c, d\})=\frac{1}{2}\\
+		P_{2}(\{a, b\})&=\frac{1}{2}, P_{2}(\{a, c\})=\frac{1}{2}, P_{2}(\{b, d\})=\frac{1}{2}, P_{2}(\{c, d\})=\frac{1}{2}
+	\end{align*}}
+	%\item 存在两种概率${P_{1}}$和${P_{2}}$, 使得它们在${\mathcal{A}}$上取值相同, 但在${\mathcal{F}}$上的扩展却不一致.
+\end{itemize}
+
+
+\end{exam}
+
+
+
+\end{frame}
+
+
+\begin{frame}{概率扩张唯一性定理}
+\begin{thm}(\tc{概率扩张的唯一性}) 给定样本空间${\Omega}$和其上的${\sigma}$-代数$\mathcal{F}$. 若
+\begin{itemize}[<+-|alert@+>]
+	\item $P_{1}$和${P_{2}}$是定义在${\mathcal{F}}$上的两个概率;
+	\item 集族${\mathcal{A}}$关于交运算封闭, 且${\sigma(\mathcal{A})=\mathcal{F}}$;
+	\item 对任意的$A\in \mathcal{A}$均有${P_{1}(A)=P_{2}(A)}$;
+\end{itemize}
+ 则对任意的$A\in \mathcal{F}$一定有${P_{1}(A)=P_{2}(A)}$.
+\end{thm}
+\pause
+
+\zheng 证明思路如下:
+	\begin{itemize}[<+-|alert@+>]
+	\item 令$\mathcal{G}:=\{A\in \sigma(\mathcal{A}):P_1(A)=P_2(A)\}$;
+	\item 注意到$\mathcal{A}$为$\pi$类且$\mathcal{A}\subset \mathcal{G}$,故只需证明$\mathcal{G}$为$\lambda$类即验证即
+	  \begin{itemize}[<+-|alert@+>]
+	  \item $\Omega\in \mathcal{G}$;
+	  \item $A, B\in \mathcal{G}, B\subset A\Rightarrow A-B\in \mathcal{G}$;
+	  \item $A_n\in \mathcal{G}, n\geq 1, A_n\uparrow A\Rightarrow A\in \mathcal{G}$
+	  \end{itemize}
+	\item 利用单调类定理可知$\mathcal{G}=\sigma(\mathcal{A})$
+	\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{(概率)测度扩张定理}
+\begin{thm}(\tc{Carath{\'e}odory测度扩张定理}) 设$\Omega$为样本空间,$\mathcal{A}$为代数. %$\sigma(\mathcal{A})$为包含$\mathcal{A}$的最小$\sigma-$代数.
+如果$P_{0}$为定义在$\mathcal{A}$上的概率, 且满足可数可加性, 那么存在唯一的定义在$\sigma(\mathcal{A})$上的概率$P$, 满足
+	\[
+	P(A)=P_{0}(A),  \quad \forall A \in \mathcal{A},
+	\]
+\end{thm}
+
+
+\begin{rmk}
+更一般的测度扩张定理详见测度论教材,如严加安院士的``测度论讲义"等.
+\end{rmk}
+\end{frame}
+
+\begin{frame}{如何理解概率}
+\begin{itemize}[<+-|alert@+>]
+	\item 概率空间定义中的样本空间$\Omega$和概率$P$都很好理解，但是$\sigma$-代数$\mathcal{F}$的出现总是显得有些突兀.
+	\item 概率是一个以事件(集合)为自变量的函数.
+	\item 给定一个事件(集合), 概率函数即赋予它一个非负实数, 用以表示该事件(集合)的样本点在统计实验的结果中出现的可能性大小.
+	\item 函数的基本概念中，"定义域" 占据重要位置. 概率函数也不例外.
+	\item 函数的定义域中的数对``加减乘除"运算封闭. 类似的, 概率函数应对事件的``交差并补"等运算封闭.
+	\item $\sigma$-代数$\mathcal{F}$本质上就是概率函数的 ``定义域", 对自变量(事件)的``交差并补"等运算封闭..
+\end{itemize}
+
+
+
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}%[allowframebreaks,allowdisplaybreaks]
+	\frametitle{概率测度的性质 I}
+	\begin{thm}
+		设 $(\Omega,\mathcal{F},P)$ 为一概率空间，则其上的概率 $P$ 具有如下性
+		质:
+		\begin{enumerate}[<+-|alert@+>]
+			\item $P(\emptyset)=0$;
+			\item 有限可加性：若 $A_1,\cdots, A_n$ 为 $\mathcal{F}$ 中两两互不相
+			      容事件，则
+			      \begin{eqnarray*}
+				      P(\cup_{k=1}^n A_k)=\sum_{k=1}^nP(A_k)
+			      \end{eqnarray*}
+			\item 可减性：若 $A, B\in \mathcal{F}$ 且 $A\subset
+				      B$, 则 $P (B-A)=P (B)-P (A)$;
+			\item 单调性：若 $A, B\in \mathcal{F}$ 且 $A\subset B$,
+			      则 $P (A)\leq P (B)$;
+			\item $P(\bar{A})=1-P(A)$;
+		\end{enumerate}
+	\end{thm}
+\end{frame}
+\begin{frame}
+	\frametitle{概率测度的性质 II}
+
+	\begin{enumerate}[<+-|alert@+>]
+		\setcounter{enumi}{5}
+
+		\item 加法公式(容斥原理)：对任意两个事件 $A,B$, 有
+		      \begin{eqnarray}\label{eq:plusformulatwo}
+			      P(A\cup B)=P(A)+P(B)-P(AB).
+		      \end{eqnarray}
+		      一般的，对任意 $n$ 个事件 $A_1,\cdots,A_n$, 有
+		      {\small \begin{eqnarray}
+			      \label{eq:plusformula}
+			      P(\cup_{i=1}^nA_i)&=&\sum_{i=1}^nP(A_i)-\sum_{1\leq i<j\leq n}P(A_iA_j)+\sum_{1\leq i<j<k\leq n}P(A_iA_jA_k)\nonumber\\
+			      && +\cdots+(-1)^{n-1}P(A_1A_2\cdots A_n).
+		      \end{eqnarray}}
+		\item 次可加性(Boole不等式)：对任意两个事件 $A,B$, 有
+		      \begin{eqnarray*}
+			      P(A\cup B)\leq P(A)+P(B).
+		      \end{eqnarray*}
+		      一般的，对任意 $n$ 个事件 $A_1,\cdots,A_n$, 有
+		     {\small  \begin{align*}
+			      P(\cup_{i=1}^nA_i)&\leq \sum_{i=1}^nP(A_i).
+		      \end{align*}}
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{概率测度的性质 III}
+
+	\begin{enumerate}[<+-|alert@+>]
+		\setcounter{enumi}{7}
+		\item Bonferroni不等式:
+		{\small \begin{align*}
+			P(\cup_{i=1}^{n} A_{i}) &\geq \sum_{i=1}^{n} P(A_{i})-\sum_{1\leq i<j\leq n} P(A_{i} \cap A_{j}), \\
+			P(\cup_{i=1}^nA_i)&\leq \sum_{i=1}^{n} P(A_{i})-\sum_{1\leq i<j\leq n} P(A_{i} \cap A_{j})+\sum_{1\leq i<j<k\leq n}P(A_i\cap A_j\cap A_k), \cdots.
+		\end{align*}}
+		\item 下连续性:
+		      若 $A_n\in\mathcal{F}$ 且 $A_n\subset A_{n+1}, n=1,2,\cdots,$ 则
+		      \begin{eqnarray*}
+			      P(\cup_{n=1}^\infty A_n)=P(\lim_{n\rightarrow\infty}A_n)=\lim_{n\rightarrow\infty}P(A_n)
+		      \end{eqnarray*}
+		\item 上连续性:
+		      若 $A_n\in\mathcal{F}$ 且 $A_n\supset A_{n+1}, n=1,2,\cdots,$ 则
+		      \begin{eqnarray*}
+			      P(\cap_{n=1}^\infty A_n)=P(\lim_{n\rightarrow\infty}A_n)=\lim_{n\rightarrow\infty}P(A_n)
+		      \end{eqnarray*}
+		\item 概率 $P$ 的可列可加性等价于 $P$ 有限可加且下连续.
+	\end{enumerate}
+
+	% \end{thm}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{加法公式证明 I}
+	% \begin{enumerate}[<+-|alert@+>]
+	% \item ({\color{red} 加法公式的证明})
+	注意到
+	\begin{eqnarray*}
+		A\cup B=A\cup (B-AB).
+	\end{eqnarray*}
+	\pause  故由概率的有限可加性及减法公式可得：
+	\begin{eqnarray*} P(A\cup B)=P(A)+P(B)-P(AB).
+	\end{eqnarray*}
+	\pause 对于一般情形，可由归纳法证明。当 $n=2$ 时，\eqref{eq:plusformula} 式即为
+	\eqref{eq:plusformulatwo} 式。设 \eqref{eq:plusformula} 式对 $n-1$ 成立，
+	则先对两个事件 $\cup_{i=1}^{n-1} A_i$ 与 $A_n$ 应用
+	\eqref{eq:plusformulatwo} 得 \pause
+	\begin{eqnarray}\label{eq:proofplusformula}
+		P(\cup_{i=1}^nA_i)&=&P(\cup_{i=1}^{n-1}A_i)+P(A_n)-P((\cup_{i=1}^{n-1}A_i)\cap
+		A_n)\nonumber\\
+		&=&P(\cup_{i=1}^{n-1}A_i)+P(A_n)-P((\cup_{i=1}^{n-1}(A_iA_n))
+	\end{eqnarray}
+	%\end{enumerate}
+\end{frame}
+\begin{frame}%[allowframebreaks]
+	% \begin{enumerate}[<+-|alert@+>]
+	\frametitle{加法公式证明 II}
+
+	而{\small \begin{eqnarray*}
+		P(\cup_{i=1}^{n-1}A_i)&=&\sum_{i=1}^{n-1}P(A_i)-\sum_{1\leq i<j\leq n-1}P(A_iA_j)+\sum_{1\leq i<j<k\leq n-1}P(A_iA_jA_k)\nonumber\\
+		&&
+		+\cdots+(-1)^{n-2}P(A_1A_2\cdots
+		A_{n-1}),
+	\end{eqnarray*}
+	\pause
+	\begin{eqnarray*}
+		\hspace{-2cm} P((\cup_{i=1}^{n-1}(A_iA_n))&=&\sum_{1\leq i\leq n-1}P(A_iA_n)-\sum_{1\leq i<j\leq n-1}P(A_iA_jA_n)\\
+		&& +\cdots+(-1)^{n-2}P(A_1A_2\cdots A_n)\\
+		&=&\sum_{1\leq i<j=n}P(A_iA_n)-\sum_{1\leq i<j<k=n}P(A_iA_jA_n)\\
+		&& +\cdots+(-1)^{n-2}P(A_1A_2\cdots A_n)
+	\end{eqnarray*}}
+	\pause 故将上面两式代入 \eqref{eq:proofplusformula} 式即得加法公式.
+\end{frame}
+
+\begin{frame}{{\rm Boole}不等式的证明: 归纳法}
+ \begin{itemize}[<+-|alert@+>]
+	\item $n=2$时显然有
+	\[
+	P\left(A_{1} \cup A_{2}\right)=P\left(A_{1}\right)+P\left(A_{2}\right)-P\left(A_{1} \cap A_{2}\right) \leqslant P\left(A_{1}\right)+P\left(A_{2}\right),
+	\]
+	\item 假定$n=m$时结论成立, 那么$n=m+1$时, 有
+	\begin{align*}
+	P(\bigcup_{i=1}^{m+1} A_{i})  &\leq P(\bigcup_{i=1}^{m} A_{i})+P(A_{m+1}) \\
+	&\leqslant \sum_{i=1}^{m} P(A_{i})+P(A_{m+1}) \\
+	& =\sum_{i=1}^{m+1} P(A_{i})
+	\end{align*}
+
+
+ \end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}{{\rm Boole}与{\rm Bonferroni}不等式证明:非归纳法}
+\begin{itemize}[<+-|alert@+>]
+	\item 注意到:
+	\begin{align*}
+	  \cup_{i=1}^nA_i&=A_1\cup (A_2-A_1)\cup(A_3-(A_1\cup A_2))\cup\cdots\cup(A_n-\cup_{i=1}^{n-1} A_i) \\
+	   &=A_1\cup (A_2\cap \overline{A}_1)\cup(A_3\cap \overline{A}_1\cap \overline{A}_2))\cup\cdots\cup(A_n\cap \cap_{i=1}^{n-1} \overline{A}_i)\\
+	   &=A_1\cup \cup_{k=2}^n (A_k\cap \cap_{i=1}^{k-1} \overline{A}_i)
+	\end{align*}
+	\item 从而
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{概率 $P$ 的下连续性}
+	% \begin{enumerate}[<+-|alert@+>]
+
+
+	% \item ({\color{red} 概率 $P$ 的下连续
+	%     性})
+	设 $F_n$ 是 $\mathcal{F}$ 中的一个单调不减的事件序列，
+	即
+	\begin{eqnarray*}
+		\lim_{n\rightarrow \infty}F_n=\cup_{i=1}^\infty F_i
+	\end{eqnarray*}
+	\pause 若令 $F_0=\emptyset$, 则
+	\begin{eqnarray*}
+		\cup_{i=1}^\infty F_i=\cup_{i=1}^\infty (F_i-F_{i-1}).
+	\end{eqnarray*}
+	\pause  由于 $F_{i-1}\subset F_i$, 显然诸 $F_i-F_{i-1}$ 互不相容，故由可列可加性得
+	\begin{eqnarray*}
+		P(\cup_{i=1}^\infty F_i)&=&P(\cup_{i=1}^\infty (F_i-F_{i-1}))\pause =\sum_{i=1}^\infty (P(F_i)-P(F_{i-1}))\\
+		&=&\pause \lim_{n\rightarrow \infty}\sum_{i=1}^n(P(F_i)-P(F_{i-1}))=\pause \lim_{n\rightarrow \infty}P(F_n).
+	\end{eqnarray*}
+\end{frame}
+\begin{frame}
+	\frametitle{概率 $P$ 的上连续性}
+	设 $\{E_n\}$ 是一列单调不增的事件序列，则 $\{\bar{E}_n\}$ 为
+	单调不减事件序列，由概率的下连续性可得
+	\begin{eqnarray}\label{eq:downcont}
+		P(\cup_{i=1}^\infty \bar{E}_i)=\lim_{n\rightarrow\infty}P(\bar{E}_n)=1-\lim_{n\rightarrow\infty}P(E_n)
+	\end{eqnarray}
+	\pause 另一方面，
+	\begin{eqnarray}
+		\label{eq:downcont2}
+		P(\cup_{i=1}^\infty \bar{E}_i)=P(\overline{\cap_{i=1}^\infty E_i})=1-P(\cap_{i=1}^\infty E_i)=1-P(\lim_{n\rightarrow\infty}E_n)
+	\end{eqnarray}
+	\pause 综合 \eqref{eq:downcont} 式与 \eqref{eq:downcont2} 式可得
+	\begin{eqnarray*}
+		\lim_{n\rightarrow\infty}P(E_n)=P(\lim_{n\rightarrow\infty}E_n)
+	\end{eqnarray*}
+\end{frame}
+\begin{frame}
+	\frametitle{可列可加 $\Leftrightarrow$ 有限可加且下连续}
+	$\Rightarrow$, 显然，下证 $\Leftarrow$。\pause
+
+
+	设 $A_i\in\mathcal{F},i=1,2,\cdots,$ 是两两互不相容的事件序列，则由有限可加性知，对任意的 $n$ 均有
+	$P (\cup_{i=1}^nA_i)=\sum_{i=1}^nP (A_i)$, 等式两边同时
+	令 $n\rightarrow\infty$ 可得
+	\begin{eqnarray*}
+		\lim_{n\rightarrow\infty} P(\cup_{i=1}^nA_i)=\lim_{n\rightarrow\infty}\sum_{i=1}^nP(A_i)=\sum_{i=1}^\infty P(A_i),
+	\end{eqnarray*}
+	\pause   令 $F_n:=\cup_{i=1}^nA_i$, 则易有 $F_n$ 为单调不减事件序列，
+	故有概率的下连续性可得
+	\begin{eqnarray*}
+		\lim_{n\rightarrow\infty} P(\cup_{i=1}^nA_i)= \lim_{n\rightarrow\infty} P(F_n)=P(\cup_{n=1}^\infty F_n)=P(\cup_{i=1}^\infty A_i)
+	\end{eqnarray*}
+
+
+\end{frame}
+\begin{frame}%[allowframebreaks]
+	\frametitle{几个概率空间的例子}
+	\begin{exam}({\rm Bernoulli} 概率空间) 取 $\mathcal{F}=\{\emptyset, A, \bar{A}, \Omega\}$, 其中 $A$ 为 $\Omega$ 的非空真子集。任取两个正数 $p,q (p+q=1)$, 令
+		\begin{eqnarray*}
+			P(\emptyset)=0,  P(A)=p, P(\bar{A})=q, P(\Omega)=1.
+		\end{eqnarray*}
+		易证 $P$ 是一个概率测度。从而 $(\Omega,\mathcal{F},P)$ 是一个概率空间.
+	\end{exam}
+
+	\pause
+
+	\begin{exam}(有限概率空间) 样本空间是有限集 $\Omega=\{\omega_1,\cdots,\omega_n\}$. $\mathcal{F}$ 取为 $\Omega$ 的一切子集 (共 $2^n$ 个) 组成的集类。设 $\{p_i\}_{1\leq i\leq n}$ 为满足 $\sum_{i=1}^np_i=1$ 的 $n$ 个非负实数。定义集函数 $P (\cdot)$ 如下
+		\begin{eqnarray*}
+			P(A)=\sum_{\omega_i\in A}p_i.
+		\end{eqnarray*}
+		易证 $P$ 为概率测度，称此 $(\Omega,\mathcal{F},P)$ 为有限概率空间。特别的若取 $p_i=\dfrac{1}{n}, 1\leq i\leq n$, 则为古典概率空间.
+
+	\end{exam}
+
+
+\end{frame}
+
+\begin{frame}{几个概率空间的例子}
+	\begin{itemize}[<+-|alert@+>]
+		\item \begin{exam}
+			      (离散概率空间) 样本空间 $\Omega=\left\{\omega_{1}, \omega_{2},\cdots\right\}$ 为可列集，$\mathcal{F}$ 取为 $\Omega$ 的所有子集所构成的集类。设 $\{p_i\}_{i\geq 1}$ 为满足 $\sum_{i=1}^\infty p_i=1$ 的一列非负实数。对任意的 $E\subset\Omega$, 定义集函数 $P (\cdot)$ 如下
+			      $$
+				      P(E)=\sum_{j:\omega_j\in E} p_{j}.
+			      $$
+			      易证 $P$ 是一个概率测度，于是 $(\Omega, \mathcal{F}, P)$ 是一个概率空间，称为离散概率空间.
+		      \end{exam}
+		\item \begin{exam}
+			      (一维几何概率空间) 设样本空间 $\Omega$ 为实直线上的具有正{\rm Lebesgue} 测度的某个{\rm Borel} 集，取 $\mathcal{F}$ 为 $\Omega$ 的所有{\rm Borel} 子集所构成的类。对每个 $E\in \mathcal{F}$, 令
+			      $$
+				      P(E)=\frac{m(E)}{m(\Omega)}
+			      $$
+			      其中 $m (E)$ 和 $m (\Omega)$ 分别表示集合 $E$ 与 $\Omega$ 的{\rm Lebesgue} 测度。易证 $P (\cdot)$ 为概率测度.
+		      \end{exam}
+	\end{itemize}
+\end{frame}
+\subsection{利用概率性质解题的几个例子}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{减法公式妙用}
+	\begin{exam}
+		口袋中有编号为 $1,2,\cdots,n$ 的 $n$ 个球，从中有放回地任取 $m$ 次，求取出 $m$ 个球最大号码为 $k$ 的概率.
+	\end{exam}
+
+	\pause
+	\jieda 令
+	\begin{eqnarray*}
+		A_k&:=&\{\mbox{取出的} m\mbox{个球的最大号码为} k\},\pause \\
+		B_k&:=&\{\mbox{取出的} m\mbox{个球的最大号码为小于等于} k\}
+	\end{eqnarray*}
+	\pause  则易有 $A_k=B_k-B_{k-1}$ 且 $P (B_k)=\frac{k^m}{n^m}.
+	$\pause
+	另一方面，显然有 $B_{k-1}\subset B_k$, 故
+	\pause  \begin{eqnarray*}
+		P(A_k)=P(B_k-B_{k-1})=P(B_k)-P(B_{k-1})=\frac{k^m-(k-1)^m}{n^m}
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{对立事件妙用}
+	\begin{exam}
+		口袋中有 $n-1$ 个黑球，1 个白球，每次从口袋中随机地摸出一球，并换入一只黑球，求第 $k$ 次摸到黑球的概率.
+	\end{exam}
+
+	\pause
+	\jieda 记 $A:=\{\mbox{第} k\mbox{次取到黑球}\}$,\pause 则 $A$ 的对立事件为
+	\begin{eqnarray*}
+		\overline{A}=\{\mbox{第} k\mbox{次取到白球}\}
+	\end{eqnarray*}
+	这意味着，第 1 次，$\cdots$, 第 $k-1$ 次只能取到黑球，而第 $k$ 次取到白球.\pause
+	\begin{eqnarray*}
+		P(A)=1-P(\overline{A})=1-\frac{(n-1)^{k-1}}{n^k}
+	\end{eqnarray*}
+\end{frame}
+
+
+%    \begin{frame}{利用概率性质解题：巧用对立事件}
+%    	\begin{jieda}
+%    		当 $2\leq n\leq 5$ 时，若 $B_n$ 发生，则 $5$ 一定被取出，并且还至少取出了一个非 $0$ 偶数。在 $5$ 被取出的情况下，其余 $n-1$ 个数全为奇数的取法有 $\dbinom{4}{n-1}$ 种，所以 $|B_n|=\dbinom{8}{n-1}-\dbinom{4}{n-1}$, 故得
+%    		$$P(E_n)=P(A_n)+P(B_n)=\frac{\dbinom{9}{n-1}+\dbinom{8}{n-1}-\dbinom{4}{n-1}}{\dbinom{10}{n}},\quad 2\leq n\leq 5.$$
+%    	\end{jieda}
+%    \end{frame}
+
+\begin{frame}{巧用对立事件解决无空盒问题}
+	\begin{exam}
+		将 $m$ 个不同的小球等可能地放入 $n$ 个不同的盒子，$m>n$, 试求无空盒出现的概率.
+	\end{exam}
+
+	\vspace{0.4cm}
+	\pause
+	\begin{itemize}[<+-|alert@+>]
+		\item 易知 $|\Omega|=n^m$, 记 $E=\{\mbox{无空盒出现}\}$, 但 $|E|$ 不易求得；
+		\item 记 $A_k=\{\mbox{第} k\mbox{号盒子是空盒}\}$, $|A_k|, |A_{j_1}\cdots A_{j_i}|$ 均易求；
+		\item $E$ 与 $A_k$ 的关系: \pause $\overline{E}=\bigcup\limits_{k=1}^{n} A_k$;
+		\item 加法公式:
+		      \begin{align*}
+			      P(\overline{E})=P\left(\cup_{k=1}^{n}A_k\right)=\sum_{i=1}^n(-1)^{i-1}\sum_{1\leq j_1<\cdots<j_i\leq n}P(A_{j_1}\cdots A_{j_i})
+		      \end{align*}
+	\end{itemize}
+
+\end{frame}
+\begin{frame}{巧用对立事件解决无空盒问题}
+	\begin{itemize}[<+-|alert@+>]
+		\item 计算概率 $P (A_{j_1}\cdots A_{j_i})$: \pause
+		      $$P(A_{j_1}\cdots A_{j_i})=\frac{(n-i)^m}{n^m}=\left(1-\frac{i}{n}\right)^m;$$
+		\item $P(\overline{E})=\sum_{i=1}^n(-1)^{i-1}C_n^i\left(1-\frac{i}{n}\right)^m$;
+		\item $	P(E)=1-P(\overline{E})=\sum_{i=0}^n(-1)^{i}C_n^i\left(1-\frac{i}{n}\right)^m.$
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{{\rm Buffon} 投针问题的续一}
+	\begin{exam}
+		向画满间隔为 $a$ 的平行直线的桌面上任投一直径为 $l (l<a)$ 的半圆形纸片，求事件 $E=\{
+			\mbox{纸片与某直线相交}\}$ 的概率.
+	\end{exam}
+	\pause
+
+	%    	\begin{jieda}
+	%    		将原有的半圆形塑料片称为 “甲片”, 另取一个同样的半圆形塑料片，称为 “乙片”。设想塑料片没有厚度，将它们拼成一个直径为 $l$ 的圆。
+	%
+	%    		分别以 $A$ 和 $B$ 表示 “甲片” 和 “乙片” 与直线相交的事件。于是，$A\cup B$ 表示圆形塑料片与直线相交的事件，而 $AB$ 表示 “甲片” 和 “乙片” 都与直线相交的事件。注意到半圆是凸图形，所以 $AB$ 等价于两个 “半圆” 的公共直径 (相当于一根长度为 $l$ 的针) 与直线相交的事件。
+	%    	\end{jieda}
+	%    \end{frame}
+	%       \begin{frame}%[allowframebreaks]
+	%    	\frametitle{几个例子 III}
+
+
+	\pause
+	\jieda 设想把半圆形纸片拼成一个圆形，并记 $$F=\{\mbox{新拼的半圆形与某直线相交}\},$$
+	则 \pause
+	\begin{eqnarray*}
+		E\cup F&=&\{\mbox{直径为} l\mbox{的圆形与某直线相交}\}\\
+		E\cap F&=&\{\mbox{长为} l\mbox{的线段 (即公共直径) 与某直线相交}\}
+	\end{eqnarray*}
+	\pause 由前面结论可知 $	P (E\cap F)=\dfrac{2l}{\pi a}.$ \pause 为计算 $P (E\cup F)$, 可令 $d$ 表示圆心到直线的最近距离，则有 \pause
+	$\Omega=\{d\,|0\leq d\leq \frac{a}{2}\},E\cup F=\{d\,|0\leq d\leq \frac{l}{2}\}.$ 因此
+	\begin{eqnarray*}
+		\quad P(E\cup F)=\dfrac{l}{a}.
+	\end{eqnarray*}
+	从而:\ \pause $P (E)=\dfrac{P (E)+P (F)}{2}=\dfrac{P (E\cup F)+P (E\cap F)}{2}=\dfrac{\pi l/2+l}{\pi a}$.
+\end{frame}
+
+
+\begin{frame}{{\rm Buffon} 投针问题的续二}
+	\begin{exam}
+		在平面上画有间距为 $a$ 与 $b$ 的水平直线以及垂直直线，向平面随机地抛掷长度为 $l$ 的针，$l<\min\{a,b,a+b-\sqrt{(a+b)^2-\pi ab}\}$, 试求事件 $E$=\{针与某条直线相交 \} 的概率.%, 其中 $$l<\min\{a,b,a+b-\sqrt{(a+b)^2-\pi ab}\}.$$
+	\end{exam}
+	\vspace{0.5cm}
+	\pause
+	\begin{itemize}[<+-|alert@+>]
+		\item 记 $A$=\{针与某条水平直线相交 \}, $B$=\{针与某条垂直直线相交 \};
+		\item $E=A\cup B$, 从而 \pause $P (E)=P (A\cup B)=P (A)+P (B)-P (AB)$;
+		\item $P(A)=\dfrac{2l}{\pi a},\quad P(B)=\dfrac{2l}{\pi b}$;
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{{\rm Buffon} 投针问题的续二}
+	\begin{itemize}
+		\item 计算 $P (AB)$:\pause
+		      \begin{itemize}[<+-|alert@+>]
+			      \item 设 $\rho$ 和 $\delta$ 分别表示针的中点与水平直线的最近距离和与垂直直线的最近距离，设 $\theta$ 为针与水平直线的夹角
+			      \item 易知
+			            \begin{align*}
+				            \Omega & =\{(\rho,\delta,\theta)|0\leq\rho\leq\frac{a}{2},0\leq\delta\leq\frac{b}{2},0\leq\theta\leq\frac{\pi}{2}\},            \\
+				            AB     & =\{(\rho,\delta,\theta)|(\rho,\delta,\theta)\in\Omega,\rho\leq\frac{l}{2}\sin\theta,\delta\leq\frac{l}{2}\cos\theta\}.
+			            \end{align*}
+			      \item 从而
+			            \[P(AB)=\dfrac{m(AB)}{m(\Omega)}=\dfrac{\int_{0}^{\frac{\pi}{2}}d\theta \int_{0}^{\frac{l}{2}\cos\theta}d\delta\int_{0}^{\frac{l}{2}\sin\theta}d\rho}{\dfrac{a}{2}\cdot\dfrac{b}{2}\cdot \dfrac{\pi}{2}}=\dfrac{l^2}{\pi ab}\]
+		      \end{itemize}
+		      \pause
+		\item 故由加法公式可得
+		      $$P(E)=P(A\cup B)=P(A)+P(B)-P(AB)=\frac{2l(a+b)-l^2}{\pi ab}.$$
+	\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{配对问题一}
+	\begin{exam}
+		在一个有 $n$ 个人参加的晚会上，每个人都带了一件礼物，假定各人所带礼物都不相同，晚会期间各人从放在一起的 $n$ 件礼物中随机抽取一件，问至少有一人自已抽到自已礼物的概率是多少？
+	\end{exam}
+
+	\pause \jieda 若记
+	\begin{eqnarray*}
+		A_i:=\{\mbox{第} i\mbox{个人抽到自己的礼物}\},
+	\end{eqnarray*}
+	则所求事件概率为 $P (\cup_{i=1}^nA_i)$, 易知有
+	\pause \begin{eqnarray*}
+		P(A_i)&=&\frac{(n-1)!}{n!}=\frac{1}{n},\ \sum_{i=1}^nP(A_i)=1,\\
+		P(A_iA_j)&=&\frac{(n-2)!}{n!}=\frac{1}{n(n-1)}, i\neq j,\\
+		\sum_{1\leq i<j\leq n}P(A_iA_j)&=&C_n^2\frac{1}{n(n-1)}=\frac{1}{2!},\\
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{配对问题一（续）}
+	同理可得
+	\begin{eqnarray*}
+		P(A_iA_jA_k)&=&\frac{(n-3)!}{n!}=\frac{1}{n(n-1)(n-2)}, i\neq j\neq k,\\
+		\sum_{1\leq i<j<k\leq n}P(A_iA_jA_k)&=&C_n^3\frac{1}{n(n-1)(n-2)}=\frac{1}{3!},\\
+		& \cdots& ,\\
+		P(\cap_{i=1}^nA_i)&=&\frac{1}{n!}.
+	\end{eqnarray*}
+	\pause 故由加法公式可得
+	\begin{eqnarray*}
+		P(\cup_{i=1}^nA_i)=1-\frac{1}{2!}+\frac{1}{3!}-\frac{1}{4!}+\cdots+(-1)^{n-1}\frac{1}{n!}\stackrel{n\rightarrow \infty}{\longrightarrow} 1-e^{-1}.
+	\end{eqnarray*}
+	\pause
+	\begin{eqnarray*}
+		e^x=1+\sum_{n=1}^\infty\frac{x^n}{n!}.
+	\end{eqnarray*}
+\end{frame}
+
+
+\begin{frame}{配对问题二}
+	\begin{exam}
+		假设给 $n$ 个单位发会议通知，由两个人分别在通知与信封上写单位名称。写完之后随机地把通知装入信封，试求下述各事件的概率：\\
+		(1) 恰有 $k$ 份通知装对信封；(2) 至少有 $m$ 份通知装对信封。
+	\end{exam}
+	\pause
+	\vspace{0.4cm}
+	\begin{itemize}[<+-|alert@+>]
+		\item 记 $E_k=$\{恰有 $k$ 份通知装对信封 \},$A_m=$\{至少有 $m$ 份通知装对信封 \};
+		\item $\Omega=n!$, \pause $|E_k|=?,\  |A_m|=?$;
+		      %\item 上一例已求出 $A_1$ 的概率
+		\item 若记 $D_k=$\{给定的某 $n-k$ 份通知均不对号 \},\pause 则有 $|E_k|=C_n^k|D_k|$
+		      %	\item 需要求出 $|D_k|$
+		      %	\item $|D_k|$ 不易直接求得，先从 $P (D_k)$ 看起
+		\item $D_k$ 表示给定的某 $n-k$ 份通知均不对号，不涉及其余 $k$ 份通知，故可套用 $n-k$ 情形下的配对问题即 % 上一例的计算结果：
+		      $$\dfrac{|D_k|}{(n-k)!}=P(D_k)=1-P(\overline{D}_k)=\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}$$
+		      %\item 另一方面，按古典概型有 $$P (D_k)=\frac{|D_k|}{(n-k)!}$$
+		\item 因此，$$|D_k|=(n-k)!P (D_k)=(n-k)!\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\}$$
+		      %
+		      %    			\item 从而
+		      %    			\begin{align*}
+		      %    				P(E_k)&=\frac{|E_k|}{n!}=\frac{C_n^k|D_k|}{n!}\\
+		      %    				&=C_n^k\frac{(n-k)!}{n!}\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\}\\    				&=\frac{1}{k!}\sum_{j=2}^{n-k}(-1)^j\frac{1}{j!}=\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}.
+		      %    			\end{align*}
+		      %    			\item 在上式中令 $n\rightarrow\infty$, 可得极限概率为 $\dfrac{1}{e・k!}$
+		      %    			\item 由于 $A_m=\bigcup\limits_{k=m}^{n} E_k$, 且事件 $E_m,E_{m+1},\cdots,E_n$ 两两不交，故
+		      %    			$$P(A_m)=\sum_{k=m}^{n}P(E_k)=\sum_{k=m}^{n}\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}=\sum_{k=m}^{n}\sum_{j=0}^{n-k}(-1)^j\frac{1}{k!j!}.$$
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{配对问题二}
+
+
+	\begin{itemize}[<+-|alert@+>]
+
+		\item 从而
+		      \begin{align*}
+			      P(E_k) & =\frac{|E_k|}{n!}=\frac{C_n^k|D_k|}{n!}                                                           \\
+			             & =C_n^k\frac{(n-k)!}{n!}\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\} \\    				&=\frac{1}{k!}\sum_{j=2}^{n-k}(-1)^j\frac{1}{j!}=\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}.
+		      \end{align*}
+		\item 在上式中令 $n\rightarrow\infty$, 可得极限概率为 $\dfrac{1}{e・k!}$
+		\item 由于 $A_m=\bigcup\limits_{k=m}^{n} E_k$, 且事件 $E_m,E_{m+1},\cdots,E_n$ 两两不交，故
+		      $$P(A_m)=\sum_{k=m}^{n}P(E_k)=\sum_{k=m}^{n}\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}=\sum_{k=m}^{n}\sum_{j=0}^{n-k}(-1)^j\frac{1}{k!j!}.$$
+	\end{itemize}
+
+\end{frame}
+
