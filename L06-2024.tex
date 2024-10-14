@@ -341,7 +341,7 @@
 
 \subsection{条件概率、全概率与贝叶斯公式的应用}
 \begin{frame}{条件性思维谬误：控方证人的错误}
-\begin{exam}{\tc (控方证人的错误)} 1988 年，Sally Clark 由于她的两个孩子在出生不久便死亡，因而被指控谋杀幼童。在审讯期间，控方的一个专家证人证实
+\begin{exam}\tc{(控方证人的错误)} 1988 年，Sally Clark 由于她的两个孩子在出生不久便死亡，因而被指控谋杀幼童。在审讯期间，控方的一个专家证人证实
 \begin{itemize}[<+-|alert@+>]
 \item 新生儿因婴儿猝死综合症 (SIDS) 而死亡的概率为 $1/8500$
 \item 所以两个新生儿由于婴儿猝死综合症死亡的概率为 $(1/8500)^2$, 大约为 7300 万分之一
@@ -397,7 +397,7 @@
 
   \begin{frame}{Monty Hall 问题(续)}
   \begin{jieda}
-  \begin{itemize}
+  \begin{itemize}[<+-|alert@+>]
   \item 先将三扇门从$1$到$3$编号. \\
   \item 不失一般性, 可以假设选手选择的是$1$号门
   \item 令
@@ -466,7 +466,7 @@
 
 \begin{frame}
 	\vspace{0.5cm}
-	\begin{enumerate}
+	\begin{enumerate}[<+-|alert@+>]
 		\item 当$p=q=1/2$时, 由$Q_0=0$及$Q_a=1$可得
 		\begin{eqnarray*}
 			Q_i=\dfrac{i}{a},\quad  i=0,\cdots, a.
@@ -597,20 +597,66 @@
 \end{frame}
 
 \begin{frame}{{\rm Bayesian}滤波}
-\begin{itemize}
-	\item 许多工程科学类问题都可以归结为如图 6-2 所示形式，系统自身的状态 \( X \) 是我们关注的随机事件，但是由于技术手段等方面的限制，无法直接对 \( X \) 进行观测, 我们只能获取另一随机事件, 即间接反映系统状态 \( X \) 的观测量 \( Z \), 从而问题转化为已知观测量 \( Z \) 的条件下, 如何对系统状态 \( X \) 进行推断. 用条件概率的语言讲, 就是计算 \( P(X \mid Z) \).
-
-	图 6-2 Bayesian 滤波示意
-
-	通常情况下， \( X \) 和 \( Z \) 都是和时间相关的随机事件，分别记作 \( X_{n} \) 和 \( Z_{n} \) ，其中 \( n \) 表示时间. 那么在实际应用中, 到 \( n \) 时刻为止, 我们掌握的实际观测数据为 \( \left\{Z_{1}, \cdots, Z_{n}\right\} \),
+\begin{itemize}[<+-|alert@+>]
+	\item 许多工程科学类问题都可以归结为如下图所示形式
+	\begin{figure}[htbp]\nonumber
+		\centering
+		\includegraphics<+->[width=9.19cm, height=3cm]{BayesianFilter.jpg}
+		% \caption{}
+  %\onslide<4->\centering{\small 心灵捕手 }
+	  \end{figure}
+	\item  系统自身的状态 \( X \) 是我们关注的随机事件，但是由于技术手段等方面的限制，无法直接对 \( X \) 进行观测, 只能获取另一随机事件, 即间接反映系统状态 \( X \) 的观测量 \( Z \).
+	\item 问题转化为已知观测量 \( Z \) 的条件下, 如何对系统状态 \( X \) 进行推断.用条件概率的语言讲, 就是计算 \( P(X \mid Z) \).
+	\item 通常情况下， \( X \) 和 \( Z \) 随时间变化，分别记作 \( X_{n} \) 和 \( Z_{n} \) ，其中 \( n \) 表示时间. 那么在实际应用中, 到 \( n \) 时刻为止, 我们掌握的实际观测数据为 \( \left\{Z_{1}, \cdots, Z_{n}\right\} \),
 \end{itemize}
 
 
 \end{frame}
 
 
+\begin{frame}{{\rm Bayesian}滤波}
+\begin{itemize}[<+-|alert@+>]
+	\item 如何实现 $P\left(X_{n} | Z_{1}, \cdots, Z_{n}\right) \longrightarrow P\left(X_{n+1} | Z_{1}, \cdots, Z_{n+1}\right)$的递推计算?
+	\item 注意到, 若已知$X_{n+1}$时,$Z_{n+1}$与$\left\{Z_{1}, \cdots, Z_{n}\right\}$独立, 则
+	{\small\begin{eqnarray*}
+		P\left(X_{n+1} | Z_{1}, \cdots, Z_{n+1}\right)&=&\pause \frac{P\left(X_{n+1}, Z_{1}, \cdots, Z_{n+1}\right)}{P\left(Z_{1}, \cdots, Z_{n+1}\right)}\\
+		&=&\frac{P\left(Z_{n+1} | X_{n+1}, Z_{1}, \cdots, Z_{n}\right) P\left(X_{n+1}, Z_{1}, \cdots, Z_{n}\right)}{P\left(Z_{1}, \cdots, Z_{n+1}\right)}\\
+	&=&\frac{P\left(Z_{n+1} | X_{n+1}\right) P\left(X_{n+1}, Z_{1}, \cdots, Z_{n}\right)}{P(Z_{n+1}|Z_{1}, \cdots, Z_n)P\left(Z_{1}, \cdots, Z_{n+1}\right)}
+	\end{eqnarray*}}
 
 
+
+
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}{{\rm Bayesian}滤波}
+	\begin{itemize}[<+-|alert@+>]
+
+		\item 再由
+		{\small \begin{eqnarray*}
+			&&P\left(X_{n+1}, Z_{1}, \cdots, Z_{n}\right)\pause\\
+			 &=&\sum_{X_{n}} P\left(X_{n+1}, X_{n}, Z_{1}, \cdots, Z_{n}\right) \pause\\
+			&=&\sum_{X_{n}} P\left(X_{n+1} | X_{n}, Z_{1}, \cdots, Z_{n}\right) P\left(X_{n} | Z_{1}, \cdots, Z_{n}\right) P\left(Z_{1}, \cdots, Z_{n}\right) \pause\\
+			& =&\sum_{X_{n}} P\left(X_{n+1} | X_{n}\right) P\left(X_{n} | Z_{1}, \cdots, Z_{n}\right) P\left(Z_{1}, \cdots, Z_{n}\right)\pause
+		\end{eqnarray*}}
+	    \item 将上式代入前面一页表达式中可得
+	{\small \[
+		\hspace{-0.3cm} P\left(X_{n+1} | Z_{1}, \cdots, Z_{n+1}\right)=\pause\frac{P\left(Z_{n+1} | X_{n+1}\right)}{P\left(Z_{n+1} | Z_{n}, \cdots, Z_{1}\right)} \sum_{X_{n}} P\left(X_{n+1} | X_{n}\right) P\left(X_{n} | Z_{1}, \cdots, Z_{n}\right)
+		\pause\]}
+		\item 上式便是对系统状态进行递推估计的 Bayesian 滤波公式，在雷达、声呐、通信、导航、机器学习等许多领域有广泛应用.
+
+	\end{itemize}
+
+
+
+
+
+
+	\end{frame}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t

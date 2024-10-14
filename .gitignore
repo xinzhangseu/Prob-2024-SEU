@@ -1,5 +1,6 @@
 .DS_Store
 .texpadtmp
+*.out
 *.snm
 *.nav
 *.vrb
@@ -13,4 +14,4 @@
 *.synctex.gz
 *.fls
 *.fdb_latexmk
-*.out
+.history/
