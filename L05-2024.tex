@@ -887,12 +887,12 @@
 \begin{frame}
 	\frametitle{配对问题一}
 	\begin{exam}
-		在一个有 $n$ 个人参加的晚会上，每个人都带了一件礼物，假定各人所带礼物都不相同，晚会期间各人从放在一起的 $n$ 件礼物中随机抽取一件，问至少有一人自已抽到自已礼物的概率是多少？
+		设有 \( n \) 个孩子, 每个人戴着一顶帽子. 如果他们将各自的帽子放在桌子上混杂在一起, 然后每人从中随机取一顶帽子戴上，试问至少有一人戴对自己的帽子的概率是多少?
 	\end{exam}
 
 	\pause \jieda 若记
 	\begin{eqnarray*}
-		A_i:=\{\mbox{第} i\mbox{个人抽到自己的礼物}\},
+		A_i:=\{\mbox{第} i\mbox{个人戴对自己的帽子}\},
 	\end{eqnarray*}
 	则所求事件概率为 $P (\cup_{i=1}^nA_i)$, 易知有
 	\pause \begin{eqnarray*}
@@ -922,22 +922,21 @@
 	\end{eqnarray*}
 \end{frame}
 
-
 \begin{frame}{配对问题二}
 	\begin{exam}
-		假设给 $n$ 个单位发会议通知，由两个人分别在通知与信封上写单位名称。写完之后随机地把通知装入信封，试求下述各事件的概率：\\
-		(1) 恰有 $k$ 份通知装对信封；(2) 至少有 $m$ 份通知装对信封。
+		接上面例子, 试求下述各事件的概率：\\
+		(1) 恰有 $k$ 个人抽到自己礼物；(2) 至少有 $m$ 个人抽中自己礼物。
 	\end{exam}
 	\pause
-	\vspace{0.4cm}
+	%\vspace{0.4cm}
 	\begin{itemize}[<+-|alert@+>]
-		\item 记 $E_k=$\{恰有 $k$ 份通知装对信封 \},$A_m=$\{至少有 $m$ 份通知装对信封 \};
+		\item 记 $E_k=$\{恰有 $k$ 个孩子戴对自己的帽子 \},$A_m=$\{至少有 $m$ 个孩子戴对自己的帽子 \};
 		\item $\Omega=n!$, \pause $|E_k|=?,\  |A_m|=?$;
 		      %\item 上一例已求出 $A_1$ 的概率
-		\item 若记 $D_k=$\{给定的某 $n-k$ 份通知均不对号 \},\pause 则有 $|E_k|=C_n^k|D_k|$
+		\item 若记 $D_k=$\{给定的某 $n-k$ 个孩子均未戴对自己的帽子 \},\pause 则有 $|E_k|=C_n^k|D_k|$
 		      %	\item 需要求出 $|D_k|$
 		      %	\item $|D_k|$ 不易直接求得，先从 $P (D_k)$ 看起
-		\item $D_k$ 表示给定的某 $n-k$ 份通知均不对号，不涉及其余 $k$ 份通知，故可套用 $n-k$ 情形下的配对问题即 % 上一例的计算结果：
+		\item $D_k$ 表示给定的某 $n-k$ 个孩子未戴对自己的帽子，不涉及其余 $k$ 个人，故可套用 $n-k$ 情形下的配对问题即 % 上一例的计算结果：
 		      $$\dfrac{|D_k|}{(n-k)!}=P(D_k)=1-P(\overline{D}_k)=\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}$$
 		      %\item 另一方面，按古典概型有 $$P (D_k)=\frac{|D_k|}{(n-k)!}$$
 		\item 因此，$$|D_k|=(n-k)!P (D_k)=(n-k)!\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\}$$
@@ -965,10 +964,63 @@
 			      P(E_k) & =\frac{|E_k|}{n!}=\frac{C_n^k|D_k|}{n!}                                                           \\
 			             & =C_n^k\frac{(n-k)!}{n!}\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\} \\    				&=\frac{1}{k!}\sum_{j=2}^{n-k}(-1)^j\frac{1}{j!}=\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}.
 		      \end{align*}
-		\item 在上式中令 $n\rightarrow\infty$, 可得极限概率为 $\dfrac{1}{e・k!}$
+		\item 在上式中令 $n\rightarrow\infty$, 可得极限概率为 $\dfrac{1}{e\cdot k!}$
 		\item 由于 $A_m=\bigcup\limits_{k=m}^{n} E_k$, 且事件 $E_m,E_{m+1},\cdots,E_n$ 两两不交，故
 		      $$P(A_m)=\sum_{k=m}^{n}P(E_k)=\sum_{k=m}^{n}\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}=\sum_{k=m}^{n}\sum_{j=0}^{n-k}(-1)^j\frac{1}{k!j!}.$$
 	\end{itemize}
 
 \end{frame}
+
+
+
+
+
+% \begin{frame}{配对问题二}
+% 	\begin{exam}
+% 		假设给 $n$ 个单位发会议通知，由两个人分别在通知与信封上写单位名称。写完之后随机地把通知装入信封，试求下述各事件的概率：\\
+% 		(1) 恰有 $k$ 份通知装对信封；(2) 至少有 $m$ 份通知装对信封。
+% 	\end{exam}
+% 	\pause
+% 	\vspace{0.4cm}
+% 	\begin{itemize}[<+-|alert@+>]
+% 		\item 记 $E_k=$\{恰有 $k$ 份通知装对信封 \},$A_m=$\{至少有 $m$ 份通知装对信封 \};
+% 		\item $\Omega=n!$, \pause $|E_k|=?,\  |A_m|=?$;
+% 		      %\item 上一例已求出 $A_1$ 的概率
+% 		\item 若记 $D_k=$\{给定的某 $n-k$ 份通知均不对号 \},\pause 则有 $|E_k|=C_n^k|D_k|$
+% 		      %	\item 需要求出 $|D_k|$
+% 		      %	\item $|D_k|$ 不易直接求得，先从 $P (D_k)$ 看起
+% 		\item $D_k$ 表示给定的某 $n-k$ 份通知均不对号，不涉及其余 $k$ 份通知，故可套用 $n-k$ 情形下的配对问题即 % 上一例的计算结果：
+% 		      $$\dfrac{|D_k|}{(n-k)!}=P(D_k)=1-P(\overline{D}_k)=\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}$$
+% 		      %\item 另一方面，按古典概型有 $$P (D_k)=\frac{|D_k|}{(n-k)!}$$
+% 		\item 因此，$$|D_k|=(n-k)!P (D_k)=(n-k)!\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\}$$
+% 		      %
+% 		      %    			\item 从而
+% 		      %    			\begin{align*}
+% 		      %    				P(E_k)&=\frac{|E_k|}{n!}=\frac{C_n^k|D_k|}{n!}\\
+% 		      %    				&=C_n^k\frac{(n-k)!}{n!}\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\}\\    				&=\frac{1}{k!}\sum_{j=2}^{n-k}(-1)^j\frac{1}{j!}=\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}.
+% 		      %    			\end{align*}
+% 		      %    			\item 在上式中令 $n\rightarrow\infty$, 可得极限概率为 $\dfrac{1}{e・k!}$
+% 		      %    			\item 由于 $A_m=\bigcup\limits_{k=m}^{n} E_k$, 且事件 $E_m,E_{m+1},\cdots,E_n$ 两两不交，故
+% 		      %    			$$P(A_m)=\sum_{k=m}^{n}P(E_k)=\sum_{k=m}^{n}\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}=\sum_{k=m}^{n}\sum_{j=0}^{n-k}(-1)^j\frac{1}{k!j!}.$$
+% 	\end{itemize}
+
+% \end{frame}
+
+
+% \begin{frame}{配对问题二}
+
+
+% 	\begin{itemize}[<+-|alert@+>]
+
+% 		\item 从而
+% 		      \begin{align*}
+% 			      P(E_k) & =\frac{|E_k|}{n!}=\frac{C_n^k|D_k|}{n!}                                                           \\
+% 			             & =C_n^k\frac{(n-k)!}{n!}\left\{\frac{1}{2!}-\frac{1}{3!}+\cdots+(-1)^{n-k}\frac{1}{(n-k)!}\right\} \\    				&=\frac{1}{k!}\sum_{j=2}^{n-k}(-1)^j\frac{1}{j!}=\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}.
+% 		      \end{align*}
+% 		\item 在上式中令 $n\rightarrow\infty$, 可得极限概率为 $\dfrac{1}{e\cdot k!}$
+% 		\item 由于 $A_m=\bigcup\limits_{k=m}^{n} E_k$, 且事件 $E_m,E_{m+1},\cdots,E_n$ 两两不交，故
+% 		      $$P(A_m)=\sum_{k=m}^{n}P(E_k)=\sum_{k=m}^{n}\frac{1}{k!}\sum_{j=0}^{n-k}(-1)^j\frac{1}{j!}=\sum_{k=m}^{n}\sum_{j=0}^{n-k}(-1)^j\frac{1}{k!j!}.$$
+% 	\end{itemize}
+
+% \end{frame}
 
