@@ -29,7 +29,7 @@
 
 
 
-
+\subsection{条件概率的应用}
 
 \begin{frame}{条件概率的例子：男孩女孩概率问题}
 	\begin{exam}
@@ -278,7 +278,7 @@
 
 
 \subsection{全概率公式的应用}
-\begin{frame}{全概率公式的应用}
+\begin{frame}{摸球问题}
 	\begin{exam}
 		有三个罐子, 各装有两个球, 分别为两个白球、一白一黑和两个黑球. 任意取出一个罐子, 摸出一球, 发现是白球. (1)求该罐中另一个球也是白球的概率; (2)把摸出的球放回罐中, 再从该罐中随机摸出一球, 求该球也是白球的概率.
 	\end{exam}
@@ -299,7 +299,7 @@
 	\end{jieda}
 \end{frame}
 
-\begin{frame}{全概率公式的应用}
+\begin{frame}{摸球问题}
 	\begin{itemize}[<+-|alert@+>]
 	\item 问题(2)是在同一个罐子两次有放回的取球, 要求的是在第一次取出白球的条件下, 第二次取出的还是白球的条件概率, 即$P(A_2|A_1)$
 	\item 由条件概率的定义, 知\pause $P(A_2|A_1)=\frac{P(A_1A_2)}{P(A_1)}$;\pause %$=\frac{5/12}{1/2}=\frac{5}{6}.$为此, 先要用全概率公式求出$P(A_1A_2)$:
@@ -372,37 +372,6 @@
 	\end{rmk}
 
 \end{frame}
-
-\subsection{Bayes 公式的应用}
-\begin{frame}{随机抛硬币问题}
-	\begin{exam}({\tc 随机抛硬币}) 假设有一枚均匀的硬币和一枚以概率$3/4$正面朝上的不均匀硬币. 随机选取一枚硬币掷$3$次, $3$次都是正面朝上. 试问: %
-		\vspace{-0.4cm}
-	\begin{enumerate}[<+-|alert@+>]
-		\item 给定上述信息后, 选取的硬币是均匀硬币的概率有多大?
-		\item 接下去掷第四次时, 仍是正面朝上的概率是多少?
-		\end{enumerate}
-	\end{exam}
-	\pause
-%\vspace{-0.2cm}
-\begin{jieda}
-  令 \begin{align*}
-	A &:=\{\mbox{选取的硬币掷 3 次均正面朝上}\}\\
-	F & :=\{\mbox{选取的硬币是均匀的}\},\quad
-	H :=\{\mbox{第 4 次正面朝上} \}
-  \end{align*}
-  则\pause
-  {\small \begin{align*}
-	P(F|A) \pause &=\frac{P(A|F)P(F)}{P(A)}\pause =\frac{P(A|F)P(F)}{P(A|F)P(F)+P(A|F^c)P(F^c)} \\
-	\pause &=\frac{(1/2)^3 \cdot 1/2}{(1/2)^3 \cdot 1/2 +(3/4)^3 \cdot  1/2}\pause \approx 0.23\\
-    P(H\mid A)\pause & =P(\left.H\mid F,A\right)P(\left.F\mid A\right)+P(\left.H\mid F^{\mathrm{c}},A\right)P(\left.F^{\mathrm{c}}\mid A\right)  \\
-	\pause &=\frac{1}{2}\cdot0.23+\frac{3}{4}\cdot(1-0.23) \pause \approx 0.69.
-  \end{align*}}
-\end{jieda}
-
-
-
-\end{frame}
-
 
 
 
@@ -498,6 +467,42 @@
 		\end{itemize}
 	\end{jieda}
 \end{frame}
+
+
+
+
+
+
+\subsection{Bayes 公式的应用}
+\begin{frame}{随机抛硬币问题}
+	\begin{exam}({\tc 随机抛硬币}) 假设有一枚均匀的硬币和一枚以概率$3/4$正面朝上的不均匀硬币. 随机选取一枚硬币掷$3$次, $3$次都是正面朝上. 试问: %
+		\vspace{-0.4cm}
+	\begin{enumerate}[<+-|alert@+>]
+		\item 给定上述信息后, 选取的硬币是均匀硬币的概率有多大?
+		\item 接下去掷第四次时, 仍是正面朝上的概率是多少?
+		\end{enumerate}
+	\end{exam}
+	\pause
+%\vspace{-0.2cm}
+\begin{jieda}
+  令 \begin{align*}
+	A &:=\{\mbox{选取的硬币掷 3 次均正面朝上}\}\\
+	F & :=\{\mbox{选取的硬币是均匀的}\},\quad
+	H :=\{\mbox{第 4 次正面朝上} \}
+  \end{align*}
+  则\pause
+  {\small \begin{align*}
+	P(F|A) \pause &=\frac{P(A|F)P(F)}{P(A)}\pause =\frac{P(A|F)P(F)}{P(A|F)P(F)+P(A|F^c)P(F^c)} \\
+	\pause &=\frac{(1/2)^3 \cdot 1/2}{(1/2)^3 \cdot 1/2 +(3/4)^3 \cdot  1/2}\pause \approx 0.23\\
+    P(H\mid A)\pause & =P(\left.H\mid F,A\right)P(\left.F\mid A\right)+P(\left.H\mid F^{\mathrm{c}},A\right)P(\left.F^{\mathrm{c}}\mid A\right)  \\
+	\pause &=\frac{1}{2}\cdot0.23+\frac{3}{4}\cdot(1-0.23) \pause \approx 0.69.
+  \end{align*}}
+\end{jieda}
+
+
+
+\end{frame}
+
 
 
 
