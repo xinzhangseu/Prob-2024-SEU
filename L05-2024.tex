@@ -971,6 +971,28 @@
 
 \end{frame}
 
+\begin{frame}{配对问题三}
+\begin{itemize}
+	\item 允许一个孩子拿多只帽子的情况: 即允许有孩子没有拿到帽子. 某一个孩子没有拿到帽子的概率是
+	\[
+	P_{1}=\frac{(n-1)^{n}}{n^{n}}=\left(1-\frac{1}{n}\right)^{n}
+	\]
+	\item 孩子人数 \( n \) 并不等于帽子数目 \( m \), 即并不是每一个孩子都有自己的帽子. 某一个孩子没有拿到帽子的概率是
+	\[
+	\widetilde{P}_{1}=\frac{(n-1)^{m}}{n^{m}}=\left(1-\frac{1}{n}\right)^{m}
+	\]
+
+	令 \( n, m \rightarrow \infty \), 且保持 \( m / n=\lambda \) 为常数, 得到$\widetilde{P}_{1} \rightarrow \exp (-\lambda)$.
+
+	\item 某一个孩子恰好拿到 \( k \) 顶帽子的概率为
+	\[
+	\begin{aligned}
+	\widetilde{P}_{k} & =\binom{m}{k} \frac{(n-1)^{m-k}}{n^{m}} =\frac{1}{k!} \frac{m(m-1) \cdots(m-k+1)}{(n-1)^{k}}\left(1-\frac{1}{n}\right)^{m} \\
+	& \rightarrow \frac{\lambda^{k}}{k!} \exp (-\lambda)
+	\end{aligned}
+	\]
+\end{itemize}
+\end{frame}
 
 
 

@@ -1,6 +1,6 @@
 
 
-\title[概率论]{第七讲: 全概率公式与贝叶斯公式}
+\title[概率论]{第七讲: 事件的独立性}
 %\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
 \institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
 	\large 东南大学\quad 数学学院\\
@@ -15,175 +15,330 @@
 		\titlepage
 	\end{frame}
 }
-\subsection{全概率公式}
-
-\begin{frame}{全概率公式的引入}
-%	\begin{itemize}
-%		\item 我们经常会碰到一些较为复杂的概率计算问题, 这时, 要对它们进行分解, 使之成为一些较为容易计算的情况, 以分别考虑, 全概率公式就是一个解决诸如此类复杂问题的有力武器.
-%	\end{itemize}
-
-	\begin{exam}
-		有两个罐子
-			\begin{itemize}[<+-|alert@+>]
-			\item 在第一个罐中放有$7$个红球、$2$个白球和$3$个黑球
-			\item 在第二个罐中放有$5$个红球、$4$个白球和$3$个黑球
-			\item 从第一个罐中随机取出$1$个球放入第二个罐中
-			\item 再从第二个罐中随机取出$1$个球来
-			\item 试求$B$=\{从第二个罐中随机取出的球为红球\}的概率
-		\end{itemize}
-	\end{exam}
-	\pause
-	 \textcolor{cyan}{问题简要分析:}
-	\begin{itemize}[<+-|alert@+>]
-		\item 从第二个罐中随机取出的球这一随机试验结果依赖于第一次从第一个罐中所取球的结果;
-		\item 因此,无论是计算$|B|$还是直接计算$P(B)$都不很容易
-		\item 若已知第一次从第一个罐中所取球的结果后,则从第二个罐中随机取出的球为红球的概率很容易计算.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{全概率公式的引入}
-	\begin{jieda}
-	\begin{itemize}[<+-|alert@+>]
-		\item 以$A_1,A_2,A_3$分别表示由第一个罐子取出的是红球,白球和黑球;
-		\item 显然$A_k, k=1,2,3$两两互不相容且$\bigcup_{k=1}^3A_k=\Omega$;
-		\item $B=\bigcup_{k=1}^{3}A_kB\,$;
-		\item $ P(B)=\sum_{k=1}^{3} P(A_kB)=\sum_{k=1}^{3} P(A_k) P(B|A_k)$;
-		\begin{itemize}
-			\item $ P(A_1)=\dfrac{7}{12},\, P(A_2)=\dfrac{1}{6},\, P(A_3)=\dfrac{1}{4}$;
-			\item $ P(B|A_1)=\dfrac{6}{13},\, P(B|A_2)=\dfrac{5}{13},\, P(B|A_3)=\dfrac{5}{13}$;
-		\end{itemize}
-	\item 故$ P(B)=\dfrac{7}{12}·\dfrac{6}{13}+\dfrac{1}{6}·\dfrac{5}{13}+\dfrac{1}{4}·\dfrac{5}{13}=\dfrac{67}{156};$
-	\end{itemize}
-	\end{jieda}
-\end{frame}
+\subsection{事件的独立性}
 
 \begin{frame}
-  \frametitle{全概率公式}
-  \begin{thm}[\textcolor{red}{全概率公式}] 设$A_1,A_2,\cdots,A_n$为样本空间$\Omega$的一个分割, 即$A_1,\cdots,A_n$互不相容, 且$\cup_{k=1}^nA_k=\Omega$, 若$P(A_k)>0, k=1,2,\cdots,n$, 则对任一事件$B$有
-    \begin{eqnarray*}
-      P(B)=\sum_{k=1}^nP(A_k)P(B|A_k)
-    \end{eqnarray*}
-    \pause \zheng 因为
-    \begin{eqnarray*}
-      B=B\Omega=B(\cup_{k=1}^nA_k)=\cup_{k=1}^n(BA_k)
-    \end{eqnarray*}
-    \pause 且$BA_1,BA_2,\cdots,BA_n$互不相容, 所以由有限可加性得
-    \pause
-    \begin{eqnarray*}
-      P(B)&=&P(\cup_{k=1}^n(BA_k))=\sum_{k=1}^nP(BA_k)\\ \pause
-          &=&\sum_{k=1}^nP(A_k)P(B|A_k)\pause
-    \end{eqnarray*}
-  \end{thm}
-\end{frame}
-
-
-
-\begin{frame}{全概率公式图示}
-    \begin{figure}[全概率公式.png]
-      \centering
-      \includegraphics[width=7.5cm]{figures/全概率公式.png}
-    \end{figure}
-
-\end{frame}
-\begin{frame}
-  \frametitle{全概率公式( 续)}
-  对于全概率公式, 我们要注意以下几点
+  \frametitle{两个事件的独立性}
   \begin{itemize}[<+-|alert@+>]
-  \item 全概率公式的最简单形式: 如果$0<P(A)<1$, 则
+  \item 直观上来说，两个事件的独立性是指：一个事件的发生不影响另一个事件的发生。比如在掷两颗骰子的实验中，第一颗骰子的点数和第二颗骰子的点数是互不影响的.
+  \item 从概率的角度看，$P (A|B)$ 与 $P (A)$ 的差别在于：事件 $B$ 的发生改变了事件 $A$ 发生的概率，也即事件 $B$ 对事件 $A$ 有某种影响。故如果 $A$ 与 $B$ 的发生是相互不影响的，则有 \pause
     \begin{eqnarray*}
-      P(B)=P(A)P(B|A)+P(\overline{A})P(B|\overline{A})
+      P(A|B)=P(A),\quad P(B|A)=P(B).
     \end{eqnarray*}
-  \item 条件$A_1,A_2,\cdots,A_n$为样本空间$\Omega$的一个分割, 可改为$A_1,A_2,\cdots,A_n$互不相容, 且$B\subset \cup_{k=1}^nA_k$
-  \item 在必要时,可把分割的概念推广到可列个事件($n=\infty$)的情形, 相应地有\pause
-  $$ P(B)=\sum_{k=1}^{\infty} P(A_kB)=\sum_{k=1}^{\infty} P(A_k) P(B|A_k).$$
+    \pause 上面两式均等价于
+    \begin{eqnarray}\label{eq:inden}
+      P(AB)=P(A)P(B)
+    \end{eqnarray}
+  \item 注意到 \eqref{eq:inden} 式对 $P (B)=0$ 或 $P (A)=0$ 仍然成立，为此，我们用 \eqref{eq:inden} 作为两个事件相互独立的定义.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{两个事件独立性的定义}
+  \begin{defi}
+    如果对事件 $A$ 与 $B$ 有
+    \begin{eqnarray*}
+      P(AB)=P(A)P(B)
+    \end{eqnarray*}
+    成立，则称 \textcolor{red}{事件 $A$ 与 $B$ 相互独立}, 简称 \textcolor{red}{$A$ 与 $B$ 独立}. 否则称 $A$ 与 $B$ 不独立或相依.
+  \end{defi}
+
+\begin{rmk}
+	\begin{itemize}
+		\item 零概率事件 $E$ 与任何事件相互独立，特别的，不可能事件与任何事件相互独立
+        \item 非零概率互不相容事件，一定不独立
+        \item 非零概率相互独立事件，一定相容
+\end{itemize}
+
+
+\end{rmk}
+
+\pause
+  \textcolor{red}{如何确定事件的独立性: }
+  \begin{itemize}[<+-|alert@+>]
+  \item 实际问题中，两个事件的独立大多根据经验及相互有无影响的直观性来判断.
+  \item 但对于较复杂事件，有无相互影响并不是很直观，则需要验证 \eqref{eq:inden} 式是否成立来说明独立性.
   \end{itemize}
 \end{frame}
 
 
-
-\subsection{贝叶斯公式}
-\begin{frame}
-	\frametitle{贝叶斯公式}
+ \begin{frame}
+	\frametitle{对立事件的独立性}
 	\begin{thm}
-		设$A_1,A_2,\cdots,A_n$为样本空间$\Omega$的一个分割, 即 $A_1,A_2,\cdots,A_n$互不相容, 且$\cup_{k=1}^nA_k=\Omega$, 若 $$P(B)>0, P(A_k)>0, k=1,2,\cdots,n$$ 则
-		\begin{eqnarray*}
-			P(A_k|B)=\dfrac{P(A_k)P(B|A_k)}{\sum_{j=1}^nP(A_j)P(B|A_j)}.
-		\end{eqnarray*}
-	特别的, 我们有
-  \begin{eqnarray*}
-    P(A|B)=\frac{P(B|A)P(A)}{P(B)}
-    \end{eqnarray*}
+		若 $A$ 与 $B$ 独立，则 $A$ 与 $\overline{B}$ 独立，$\overline{A}$ 与 $B$ 独立，$\overline{A}$ 与 $\overline{B}$ 独立.
 	\end{thm}
-\end{frame}
+	\pause
 
+	\zheng 我们仅证 $P (A\overline{B})=P (A) P (\overline{B})$, 其余类似可证.
+	\begin{eqnarray*}
+		P(A\overline{B})&=&\pause P(A-B)=\pause P(A)-P(AB)\pause =P(A)-P(A)P(B)\\
+		&=&\pause P(A)(1-P(B))=\pause P(A)P(\overline{B})
+	\end{eqnarray*}
 
-\begin{frame}{贝叶斯几率}
-    \begin{defi}({\tc 几率}) 一个事件的几率(odds)为
-    \begin{eqnarray*}
-     ​\text{odds}(A)=P(A)/P(A^{\mathrm{c}})=\frac{P(A)}{1-P(A)}
-     \end{eqnarray*}
-    \end{defi}
-  %\vspace{-0.5cm}
-  \pause
-  %\begin{itemize}[<+-|alert@+>]
-  %\item
-  \textcolor{cyan}{概率的几率表示:} $P(A)=\text{odds}(A)/(1+\text{odds(A)}) $
-  %\end{itemize}
-  \begin{thm} ({\tc 贝叶斯公式的几率形式})对于任意两个正概率事件$A$和$B$, 给定以$B$为条件的情况下, $A$的几率如下:
-   \begin{eqnarray*}
-    \frac{P(A|B)}{P(A^c| B)}=\frac{P(B| A)P(A)}{P(B| A^c)P(A^c)}
-    \end{eqnarray*}
-    \end{thm}
-  \pause
-
-  \begin{itemize}[<+-|alert@+>]
-  \item 后验几率 $\dfrac{P(A|B)}{P(A^c|B)}$ 等于先验几率 $\dfrac{P(A)}{P(A^c)}$ 乘以似然比因子 $\dfrac{P(B|A)}{P(B|A^c)}$. % 这个因子就是统计学中很有名的似然比.
-  \item 有时候用上述形式的贝叶斯准则可以更方便地求出后验几率, 如果需要的话还可以将几率形式转换成概率形式形式.
-  \end{itemize}
-
-
+	\pause
+	对于上面的定理直观上来理解也是很容易的：因 $A,B$ 独立，故 $A$ 的发生不影响 $B$ 的发生，从而也不会影响 $B$ 的不发生，$\cdots$
 \end{frame}
 
 
 
 
-\begin{frame}{全概率与贝叶斯内涵:由因到果,由果推因}
+
+
+
+
+
+   \begin{frame}
+	\frametitle{三个事件的独立性}
+	\begin{defi}
+		设 $A,B,C$ 三个事件，如果有
+		\begin{eqnarray}\label{eq:inden1}
+			\left.\begin{array}{l}
+				P(AB)=P(A)P(B)\\
+				P(AC)=P(A)P(C) \\
+				P(BC)=P(B)P(C)
+			\end{array}\right\}\\
+			\label{eq:inden2}
+			P(ABC)=P(A)P(B)P(C)
+		\end{eqnarray}
+		则称 $A,B,C$ 相互独立。如果仅有 \eqref{eq:inden1} 式成立，则称 $A,B,C$ 两两独立.
+	\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{两两独立与相互独立的关系}
 	\begin{itemize}[<+-|alert@+>]
-		\item 在现实中把事件$B$看作结果, 把事件$A_1,A_2,\cdots, A_n$看作导致结果$B$的各种原因
-		\item 全概率公式是由各种原因推理出结果事件发生的概率,是由因到果
-		\item 在日常生活中常常是观察到某种现象,反推造成这种现象的各种原因的概率,即由果推因
-		\item 条件概率$P(A_k|B)$, 就是在观察到结果事件$B$已经发生的情况下,推断结果事件$B$是由原因$A_k$造成的概率的大小
-		\item $P(A_k)$: 先验概率, 在没有别的前提信息情况下的概率值,一般借助经验来估计,或赋予所有原因以相同的先验概率
-		\item $P(A_k|B)$:后验概率, 在获得“结果事件$B$发生”这个信息之后原因$A_k$出现的概率
-		\item 后验概率可看作先验概率在获取了新信息之后的一种修正, 贝叶斯公式恰恰提供了一种计算后验概率的工具
+		\item 由定义可知，三个事件相互独立必能推出两两独立.
+		\item 但两两独立未必能推出相互独立，即 \eqref{eq:inden1} 式成立，不一定能推出 \eqref{eq:inden2} 成立
+		\begin{itemize}
+			\item 考虑独立投掷两枚均匀硬币的随机试验，设事件 $A$ 代表第一枚硬币正面朝上，事件 $B$ 代表第二枚硬币正面朝上，事件 $C$ 表示两枚硬币结果相同。易知: \pause
+			$A$ $B$ 和 $C$ 是两两独立，但
+			\begin{align*}
+				P(A\cap B\cap C)=1/4\neq 1/8=P(A)P(B)P(C).
+			\end{align*}
+			\item 考虑一个均匀的正四面体，第一二三面分别染上红 / 白 / 黑色，第四面同时染上红白黑色。现在以 $A,B,C$ 分别记投一次四面体出现红，白，黑色朝下的事件。则易有 \pause
+			\begin{eqnarray*}
+				P(A)=P(B)=P(C)=\pause 1/2\\ \pause
+				P(AB)=P(BC)=P(AC)=\pause 1/4\\ \pause
+				P(ABC)=\pause 1/4    \pause
+			\end{eqnarray*}
+		\end{itemize}\vspace{-0.7cm}
+	\end{itemize}
+\end{frame}
 
-%		\item 条件概率$P(A_k|B)$通常由贝叶斯公式来计算%Bayes 公式虽然很简单, 但是它却很有哲理意义
-%	%	事件原因的事前可能性估计(先验概率$P(A_k)$)$\Rightarrow$得知结果后对可能性作出新的认识(后验概率$P(A_k|B)$)
-%		\item Bayes
-%		\item Bayes 学派: 对概率统计问题有自己的独特理解, 但他们主张按照同等无知原则, 赋予所有原因以相同的先验概率, 常受批评
-%		\item 后来有人为了取其之长避其之短, 发展出所谓经验 Bayes 方法
-%		\item 在计算机广为普及的今天, Bayes 方法和经验 Bayes 方法的实用价值也随之大大提高
-		\item 贝叶斯理论对于人工智能、深度学习等理论具有重要的指导意义, 贝叶斯统计受到了从未有过的青睐, 迎来了前所未有的发展机遇
+		\begin{frame}
+			\frametitle{两两独立与相互独立的关系}
+			\begin{itemize}[<+-|alert@+>]
+		\item 反之，如果 \eqref{eq:inden2} 成立，是否能推出 \eqref{eq:inden1} 成立？
+		\begin{itemize}[<+-|alert@+>]
+			\item 考虑一个均匀的正八面体，第 1, 2, 3, 4 面染上红色，第 1, 2, 3, 5 面染上白色，第 1, 6, 7, 8 面染上黑色。现在以 $A,B,C$ 分别记投一次八面体出现红，白，黑色朝下的事件，则 \pause
+			\begin{eqnarray*}
+				P(A)=P(B)=P(C)=\pause 4/8=1/2\\ \pause
+				P(ABC)=\pause 1/8   \\ \pause
+				P(AB)=3/8\pause \neq 1/4=P(A)P(B)
+			\end{eqnarray*}
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{条件全概率公式和条件贝叶斯公式}
-  \vspace{0.2cm}
-    \begin{thm} ({\tc 条件全概率公式}) 令$A_1,\cdots,A_n$为样本空间$\Omega$的一个划分. 设对于所有的$i$满足$P(A_iE)>0$, 则
-   \begin{eqnarray*}
-    P(B| E)=\sum_{i=1}^{n}P(B| A_{i},E)P(A_{i}| E)
-    \end{eqnarray*}
-    \end{thm}
-    \pause
-  \vspace{0.3cm}
-  \begin{thm} ({\tc 条件贝叶斯公式}) 设$P(AE)>0$且$P(BE)>0$,则有
-   \begin{eqnarray*}
-    P(A| B,E)=\frac{P(B| A,E)P(A| E)}{P(B| E)}
-    \end{eqnarray*}
-    \end{thm}
+	\frametitle{三个以上事件的独立性}
+	\begin{defi}
+		设 $(\Omega,\mathcal{F}, P)$ 为一概率空间，$A_1,A_2,\cdots,A_n\in\mathcal{F}$, 对任意的 $1\le k\le n$ 及任意的 $1< j_1<j_2<\cdots<j_k\leq n$ 均有:
+		\begin{eqnarray}\label{eq:mulinden0}
+			P(A_{j_1}A_{j_2}\cdots A_{j_k})=P(A_{j_1})P(A_{j_2})\cdots P(A_{j_k})
+		\end{eqnarray}
+		成立，则称事件 $A_1,\cdots, A_n$ 相互独立.
+	\end{defi}
+	\pause
+	\begin{itemize}[<+-|alert@+>]
+		\item \eqref{eq:mulinden0} 式共有多少个等式？\pause
+		\begin{eqnarray}
+			\label{eq:mulinden}
+			\left.\begin{array}{l}
+				P(A_{j_1}A_{j_2})=P(A_{j_1})P(A_{j_2})\\
+				P(A_{j_1}A_{j_2}A_{j_3})=P(A_{j_1})P(A_{j_2})P(A_{j_3}) \\
+				\qquad \vdots\\
+				P(A_1A_2\cdots A_n)=P(A_1)P(A_2)\cdots P(A_n)
+			\end{array}\right\} \pause \textcolor{red}{C_n^2+\cdots+C_n^n=2^n-n-1}
+		\end{eqnarray}
+		\pause
+		\item 从定义可以看出，$n$ 个相互独立事件中的任取 $m$($2\le m\le n$) 个事件仍是相互独立的，而且任意一部分与另一部分也是独立的.
+		\item 类似于前面的证明，将相互独立事件中的任一部分换为对立事件，所得诸事件仍是相互独立的.
+	\end{itemize}
+
+
 
 \end{frame}
+
+\begin{frame}
+	\frametitle{任意多个事件相互独立}
+	\begin{defi}
+		设 $(\Omega,\mathcal{F}, P)$ 为一概率空间，每个 $t\in T$ 有 $A_t\in \mathcal{F}$. 称 $\{A_t, t\in T\}$ 为独立事件族，如果对 $T$ 的任意有限子集 $\{t_1,t_2,\cdots, t_s\}$, 事件 $A_{t_1}, A_{t_2},$ $\cdots, A_{t_s}$ 相互独立.
+	\end{defi}
+
+
+	\vspace{0.8cm}
+	\pause
+	\begin{exam}
+		$\mathcal{F}$ 中事件序列 $\{A_n\}$ 为相互独立的充分必要条件是，任意 $n\geq 1$, 事件 $A_1,A_2, \cdots, A_n$ 独立；等价的，任意有限个自然数 $k_1,\cdots, k_s$ 有
+		\begin{eqnarray*}
+			P(A_{k_1}A_{k_2}\cdots A_{k_s})=P(A_{k_1})P(A_{k_2})\cdots P(A_{k_s})
+		\end{eqnarray*}
+
+	\end{exam}
+
+\end{frame}
+
+
+\begin{frame}{条件独立}
+\begin{defi}
+称事件 $A$ 和 $B$ 是关于 $E$ 条件独立的，如果 $$P (A\cap B|E)=P (A|E) P (B|E)$$
+\end{defi}
+\pause
+\begin{itemize}[<+-|alert@+>]
+\item 两个事件可以在给定事件 $E$ 的条件下是条件独立的，但它们不是独立的.
+\item 两个事件可以是独立但却不是关于 $E$ 条件独立的.
+\item 两个事件可以关于 $E$ 条件独立但关于 $E^c$ 不存在条件独立.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{条件独立不意味着独立}
+\begin{exam}
+假设有两枚硬币，一枚是均匀的，一枚是不均匀的。从两枚硬币中随机的选一枚硬币并进行抛掷 2 次，若令
+\begin{align*}
+  F &:=\{\mbox{选取的硬币是均匀的}\}\\
+   A_{1}&:= \{\mbox{第一次投掷硬币正面朝上}\}\\
+   A_{2}&:= \{\mbox{第二次投掷硬币正面朝上}\}
+\end{align*}
+则给定 $F$ 为条件，$A_1$ 和 $A_2$, 是相互独立的，$A_1$ 和 $A_2$ 并不是无条件独立的，因为 $A_1$ 会提供关于 $A_2$ 的信息.
+\end{exam}
+\end{frame}
+
+\begin{frame}{独立不意味着条件独立}
+\begin{exam}
+假设只有我的朋友 Alice 和 Bob 给我打过电话。每天他俩都会相互独立地决定是否给我打电话。若令
+\begin{align*}
+	 A&:= \{\mbox{Alice 给我打电话}\}\\
+	 B&:= \{\mbox{Bob 给我打电话}\}\\
+     R&:=\{\mbox{听到电话铃响}\}
+  \end{align*}
+  \pause
+  \begin{itemize}[<+-|alert@+>]
+  \item 显然，$A$ 和 $B$ 是无条件独立的.
+  \item 但现在我听到一声电话铃响，那 $A$ 和 $B$ 就不再独立了：如果这个电话不是 Alice 打的，那就肯定是 Bob 打的。从而 \pause
+  $$P(B|R)<1=P(B|A^cR)= \frac{P(BA^cR)}{P(A^cR)}= \frac{P(BA^c|R)}{P(A^c|R)}.$$
+  显然: $P (BA^c|R)>P (B|R) P (A^c|R)$
+  \item $B$ 与 $A^c$ 关于 $R$ 不条件独立，$A,B$ 亦是如此.
+  \end{itemize}
+
+\end{exam}
+\end{frame}
+
+\begin{frame}{给定 $E$ 条件独立 $vs$ 给定 $E^c$ 条件独立}
+\begin{exam}
+\label{27}
+假设有两种课程：好的课程和坏的课程。在好的课上，如果你努力，就很有可能得到 $A$. 在坏的课上，教授随机分配给学生分数，而不管他们是否努力。若令
+\begin{align*}
+	G&:= \{\mbox{这个课程是好的}\}\\
+	W&:= \{\mbox{你学习努力}\}\\
+	A&:=\{\mbox{你的得分为} A\}
+ \end{align*}
+ \pause 这时，给定 $G^c$, $A$ 和 $W$ 是条件独立的，但给定 $G$, $A$ 和 $W$ 却不是独立的！
+
+\end{exam}
+\end{frame}
+
+\subsection{随机试验的独立性}
+ \begin{frame}
+              \frametitle{随机试验的独立性}
+
+               \begin{itemize}[<+-|alert@+>]
+               \item 先考虑两个随机试验，假定 $(\Omega_i,\mathcal{F}_i,P_i), i=1,2$ 为第 $i$ 个随机试验对应的概率空间。按照之前独立性的理解，两个试验的独立性应当叙述为:\pause
+                \textcolor{red}{ \begin{eqnarray*}
+                   &&\mbox{对任何的} A_i\in\mathcal{F}_i, i=1,2, A_1\mbox{与} A_2\mbox{同时}\\
+                   &&\mbox{发生的概率等于它们各自概率之乘积}
+                 \end{eqnarray*}}
+             \item 两个不妥:
+               \begin{itemize}[<+-|alert@+>]
+               \item ``$A_1$ 与 $A_2$ 同时发生" 应当是这两个事件的交，但它们分别是两个样本空间 $\Omega_1,\Omega_2$ 的子集，无法进行运算；
+               \item 两个概率空间有各自的概率 $P_1, P_2$, 但涉及两个度验，命题中 ``同时发生的概率" 既不能用 $P_1$ 也不能用 $P_2$ 来度量.
+               \end{itemize}
+             \item 解决方法：构造可以同时描述两个试验的新概率空间 $(\Omega,\mathcal{F},P)$.
+               \end{itemize}
+             \end{frame}
+
+             \begin{frame}
+               \frametitle{乘积空间的构造}
+               \begin{itemize}[<+-|alert@+>]
+               \item 样本乘积空间: $\Omega:=\Omega_1\times \Omega_2=\{(\omega_1,\omega_2):\omega_1\in\Omega_1\mbox{且}\omega_2\in \Omega_2\}$;
+               \item 乘积 $\sigma$- 代数 $\mathcal{F}_1\times\mathcal{F}_2$:
+                 \begin{itemize}[<+-|alert@+>]
+                 \item 可测矩形集类: $\mathcal{G}:=\{A_1\times A_2: A_1\in\mathcal{F}_1, A_2\in \mathcal{F}_2\}$;
+                 \item $\mathcal{F}_1\times \mathcal{F}_2:=\sigma(\mathcal{G})$
+                 \end{itemize}
+               \item 乘积概率测度:
+                 \begin{itemize}[<+-|alert@+>]
+                 \item 对于每个可测矩形 $A_1\times A_2\in \mathcal{G}$ 定义如下集函数:
+                   \begin{eqnarray}\label{eq:timeprob}
+                     P(A_1\times A_2)=P_1(A_1)P_2(A_2), \quad A_i\in\mathcal{F}_i, i=1,2.
+                   \end{eqnarray}
+                 \item 理论上可以证明如上定义在 $\mathcal{G}$ 上的集函数 $P$ 可唯一地扩张为 $\mathcal{F}_1\times\mathcal{F}_2$ 上的概率测度，称之为 $P_1$ 与 $P_2$ 的乘积 (概率) 测度.
+                 \end{itemize}
+               \item 在上述乘积测度下
+                 \begin{eqnarray*}
+                   &&P(A_1\times \Omega_2)=P_1(A_1), \quad P(\Omega_1\times A_2)=P_2(A_2)\\\pause
+                   &&\pause P\big((A_1\times \Omega_2)\cap (\Omega_1\times A_2)\big)=\pause P(A_1\times A_2)\\
+                   &&\pause = P_1(A_1)P_2(A_2)=\pause P(A_1\times\Omega_1)P(\Omega_1\times A_2)
+                 \end{eqnarray*}
+               \item $(\Omega_i,\mathcal{F}_i,P_i)$ 的独立性取决于乘积样本空间 $\Omega_1\times\Omega_2$ 上的概率是否取作由 (\ref{eq:timeprob}) 所确定的乘积测度
+               \end{itemize}
+             \end{frame}
+
+             \begin{frame}
+               \frametitle{$n$ 个试验相互独立的定义}
+
+               \begin{defi}
+                 设有 $n$ 个随机试验，第 $i$ 个试验的概率空间为 $(\Omega_i,\mathcal{F}_i,P_i),$ $ i=1,\cdots,n$. 代表这 $n$ 个试验的乘积样本空间 $\Omega=\Omega_1\times \cdots \times \Omega_n$, $\mathcal{F}=\mathcal{F}_1\times \cdots\times \mathcal{F}_n=\sigma (\mathcal{G})$, 其中 $\mathcal{G}$ 为形如 $B_1\times\cdots\times B_n (B_i\in\mathcal{F}_i)$ 的可测矩形的全体。如果 $(\Omega,\mathcal{F})$ 上的概率测度 $P$ 是 $P_1,\cdots, P_n$ 的乘积测度，即对任何 $B_1\times\cdots\times B_n\in \mathcal{G}$ 满足
+                 \begin{eqnarray*}
+                   P(B_1\times\cdots\times B_n)=P_1(B_1)\cdots P(B_n),
+                 \end{eqnarray*}
+                 则称这 $n$ 个度验独立. \pause 如果现设 $$\Omega_i\equiv \Omega_0, \mathcal{F}_i\equiv \mathcal{F}_0, P_i\equiv P_0, i=1,\cdots,n, $$ 即 $n$ 个试验有相同的概率空间，则称它们为 $n$ 个 (重) 独立重复试验. \pause 如果在 $n$ 个独立重复实验中，每次试验的可能结果为两个:$A$ 或 $\overline{A}$, 则称这种试验为 \textcolor{red}{$n$ 重伯努利试验}.
+               \end{defi}
+             \end{frame}
+                          \begin{frame}{彩票问题}
+               % \frametitle{试验的独立性}
+               % \begin{defi}
+               %   设有两个实验 $E_1$ 和 $E_2$，假如实验 $E_1$ 的任一结果（事件）与试验 $E_2$ 的任一结果（事件）都是相互独立事件，则称这两个实验相互独立.
+               % \end{defi}
+               % \pause
+               % \begin{defi}
+               %   如果 $n$ 个实验 $E_1,E_2,\cdots,E_n$ 的任一结果都是相互独立的事件，则称试验 $E_1,\cdots E_n$ 相互独立。如果这 $n$ 个实验是相同的，则称其为 \textcolor{red}{$n$ 重独立重复实验}. 如果在 $n$ 重独立重复实验中，每次试验的可能结果为两个:$A$ 或 $\overline{A}$, 则称这种试验为 \textcolor{red}{$n$ 重伯努利试验}.
+               % \end{defi}
+               % \pause
+
+               \begin{exam}
+                 某彩票每周开奖一次，每次提供十万分之一的中奖机会，且各周开奖是独立的。若你每周买一张彩票，坚持十年（每年按 52 周计算），试求未中奖的概率.
+               \end{exam}
+
+               \pause  \jieda 依假设，每次中奖的概率为 $10^{-5}$, 于是每次不中奖的概率是 $1-10^{-5}$. 另外十年一共购买 520 次彩票，而每次开奖都是独立的，相当于进行了 520 次独立重复试验. \pause 若记 $A_i$ 为 “第 $i$ 次开奖不中奖”, 则 $A_1,\cdots, A_{520}$ 相互独立，从而
+               \begin{eqnarray*}
+                 P(A_1A_2\cdots A_{520})=(1-10^{-5})^{520}=0.9948
+               \end{eqnarray*}
+
+             \end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{全概率公式的应用}
 \begin{frame}{全概率公式的应用}
 	\begin{exam}
@@ -586,54 +741,6 @@
 \end{frame}
 
 
-\begin{frame}{{\rm Monty Hall}三门问题}
-  \begin{exam}在 Monty Hall 主持的“Let's Make a Deal”节目中, 有三扇门, 其中有两扇门后面是一只山羊, 一扇门后面是一辆车.  选手将获得其所选中的那扇门后面的物品.
-	\begin{itemize}[<+-|alert@+>]
-	\item 一位选手从三扇最近的门中选一扇
-	\item Monty 知道车在哪扇门后面, 并以不暴露车的位置打开剩下两扇门中的一扇, 即他打开的门后面永远是山羊.
-	\item 若剩下的两扇门后都是山羊的话, Monty 会等可能地随机选一扇门.
-	\item 然后 Monty 会让对手选择, 是换另一扇没打开的门还是不换.
-	\item 如果对手的目标是得到车, 她应该换吗?
-	\end{itemize}
-
-    \end{exam}
-    \vspace{-0.2cm}
-     \begin{figure}[Monty Hall 问题.png]
-      \centering
-      \includegraphics[width=8.5cm]{figures/Monty Hall 问题.png}
-    \end{figure}
-\end{frame}
-
-\begin{frame}{Monty Hall 问题(续)}
-\begin{jieda}
-\begin{itemize}
-\item 先将三扇门从$1$到$3$编号. \\
-\item 不失一般性, 可以假设选手选择的是$1$号门
-\item 令
-\begin{align*}
-	A&=\{\mbox{换门得到车} \} \\
-	B&=\{\mbox{不换门得到车} \}\\
-   C_i&:=\{\mbox{车在第}i \mbox{扇门后面} \}, i=1,2,3.
-\end{align*}
-\item 显然, $P(B)=P( \mbox{不换门得到车} )=1/3$
-
-\item 则由全概率公式
-\begin{align*}
-	P(A)&=P(A|C_1)\cdot\frac{1}{3}+P(A|C_2)\cdot\frac{1}{3}+P(A|C_3)\cdot\frac{1}{3}\\
-   & =0\cdot\frac{1}{3}+1\cdot\frac{1}{3}+1\cdot\frac{1}{3}=\frac{2}{3}
-\end{align*}
-
-\end{itemize}
-\end{jieda}
-\end{frame}
-
-\begin{frame}{Monty Hall 三门问题图示}
-	\begin{figure}[ch1-montyhall-visual-prob.png]
-		\centering
-		\includegraphics[width=11cm]{figures/ch1-montyhall-visual-prob.png}
-	  \end{figure}
-
-\end{frame}
 
 
 
@@ -749,94 +856,6 @@
 \end{frame}
 
 
-
-\begin{frame}{随机徘徊的吸收概率}
-	\begin{exam}
-		质点在数轴上整数点运动, 若质点处在整数点$i$上, 则下一时刻%
-		\begin{itemize}[<+-|alert@+>]
-			\item  以概率$p$向右移动到$i+1$
-			\item 以概率$q$向左移动到$i-1$, 其中$p,q>0, p+q=1$
-			\item 我们把质点的上述运动称之为随机徘徊或随机游动
-			%\item 特殊的点$0$与$a(a>1)$
-			\item 考虑数轴上的两个\textcolor{cyan}{吸收壁$0$与$a(a>1)$}:质点运动到$0$或$a$之后就永远不再移动
-			\item 现求自$i(0<i<a)$出发的质点将被$0$或$a$吸收的概率
-		\end{itemize}
-	\end{exam}
-\end{frame}
-
-
-\begin{frame}
-	\vspace{0.5cm}
-	\hspace{-0.2cm}\jieda 令 $E_i=\{\mbox{质点自}i\mbox{出发}\}, F=\{\mbox{质点在}0\mbox{被吸收}\}, G=\{\mbox{质点在}a\mbox{被吸收}\}$. \pause
-
-	下面对$i=0,1,\cdots,a$ 计算
-	\begin{eqnarray*}
-		P_i=P(F|E_i), \quad Q_i=P(G|E_i)
-	\end{eqnarray*}
-	\pause 记$B=\{\mbox{质点第一次向左移动 1 单位}\}$并以第 1 次可能的运动情
-	况为条件进行全概率展开可得
-	\begin{eqnarray*}
-		Q_i&=&P(GB|E_i)+P(G\bar{B}|E_i)\\
-		&=&P(B|E_i)P(G|BE_i)+P(\bar{B}|E_i)P(G|\bar{B}E_i)\\
-		&=&pQ_{i+1}+qQ_{i-1}, \quad i=1,2,\cdots a-1.
-	\end{eqnarray*}
-	\pause 将上述递推式重写为
-	\begin{eqnarray}\label{eq:ditui1}
-		Q_{i+1}-Q_i=\dfrac{q}{p}(Q_i-Q_{i-1}), \quad i=1,\cdots, a-1.
-	\end{eqnarray}
-
-\end{frame}
-
-\begin{frame}
-	\vspace{0.5cm}
-	\begin{enumerate}
-		\item 当$p=q=1/2$时, 由$Q_0=0$及$Q_a=1$可得
-		\begin{eqnarray*}
-			Q_i=\dfrac{i}{a},\quad  i=0,\cdots, a.
-		\end{eqnarray*}
-		\item 当$p\neq q$时, 反复利用递推式\eqref{eq:ditui1}并注意到$Q_0=0$可导出
-		\begin{eqnarray}\label{eq:ditui2}
-			Q_{i+1}-Q_i=\bigg(\dfrac{q}{p}\bigg)^iQ_1, \quad i=1,\cdots, a-1.
-		\end{eqnarray}
-		\pause 上式对$i=1,\cdots, a-1$求和并利用$Q_a=1$可得
-		\begin{eqnarray*}
-			Q_1=\bigg[\sum_{i=0}^{a-1}\bigg(\dfrac{q}{p}\bigg)^{i}\bigg]^{-1}=\dfrac{1-q/p}{1-(q/p)^a}
-		\end{eqnarray*}
-		\pause 再将(\ref{eq:ditui2})式对$i=1,\cdots, i-1$求和并将上述$Q_1$代入可得
-		\begin{eqnarray*}
-			Q_i=\dfrac{1-(q/p)^i}{1-(q/p)^a}, \quad i=0,\cdots, a.
-		\end{eqnarray*}
-
-	\end{enumerate}
-\end{frame}
-
-\begin{frame}
-	综上可得
-	\begin{eqnarray*}
-		Q_i=\left\{
-		\begin{array}{cl}
-			\dfrac{i}{a}, &p=q,\\
-			\\
-			\dfrac{1-(q/p)^i}{1-(q/p)^a}, &p\neq q.
-		\end{array}
-		\right.
-	\end{eqnarray*}
-	类似可得
-
-
-
-	\begin{eqnarray*}
-		P_i=\left\{
-		\begin{array}{cl}
-			\dfrac{a-i}{a}, &p=q,\\
-			\\
-			\dfrac{(q/p)^i-(q/p)^a}{1-(q/p)^a}, &p\neq q.
-		\end{array}
-		\right.
-	\end{eqnarray*}
-
-
-\end{frame}
 
 
 
