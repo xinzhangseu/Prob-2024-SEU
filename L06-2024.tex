@@ -517,245 +517,87 @@
 
 
 
-
-
-
-\begin{frame}{条件概率的例子：男孩女孩概率问题}
+\begin{frame}{Simpson 悖论}
 	\begin{exam}
-	(年长的是女孩 vs 至少一个女孩) 某家庭有两个孩子，已知至少有一个是女孩。两个孩子都是女孩的概率是多少？如果条件改为年长的孩子是女孩，那么两个都是女孩的概率又是多少？
+		有两种治疗肾结石的方案,其治疗效果如下:
+		\begin{itemize}[<+-|alert@+>]
+			\item \textcolor{cyan}{方案$1$:} 小结石患者占$25\%$, 大结石患者占$75\%$, 小结石患者的治愈率是$93\%$, 大结石患者的治愈率是$73\%$
+			\item \textcolor{cyan}{方案$2$:} 小结石患者占$77\%$, 大结石患者占$23\%$, 小结石患者的治愈率是$87\%$, 大结石患者的治愈率是$69\%$
+			\item 不管是对小结石患者, 还是大结石患者, 方案$1$的治愈率都要高于方案$2$
+			\item \textcolor{red}{方案$1$优于方案$2$吗?}
+		\end{itemize}
 	\end{exam}
-
+	\pause
 	\begin{jieda}
-	假设每个孩子都是女孩和男孩的可能性相同且不相关，那么
-        \begin{align}
-            &P (\mbox{都是女孩 | 至少有一个是女孩})\pause
-            \\
-			&=\frac{P (\mbox{都是女孩，至少有一个是女孩})}{P (\mbox{至少有一个是女孩})}\pause=\frac{1/4}{3/4}=1/3\pause\\
-            &P (\mbox{都是女孩 | 年长的是女孩})\pause\\
-            &=\frac{P (\mbox{都是女孩，年长的是女孩})}{P (\mbox{年长的是女孩})}\pause=\frac{1/4}{1/2}=1/2
-        \end{align}
+		计算两种方案的治愈率
+		\begin{itemize}[<+-|alert@+>]
+			\item 记$A$=\{患者是小结石患者\}, $B$=\{患者被治愈\}
+			\item 根据全概率公式\pause
+			\begin{align*}
+				&\hspace{-0.5cm}P_1(B)=\pause P_1(A)P_1(B|A)+P_1(\overline{A})P_1(B|\overline{A})=\pause 0.25·0.93+0.75·0.73=0.78\pause \\
+				&\hspace{-0.5cm} P_2(B)=\pause P_2(A)P_2(B|A)+P_2(\overline{A})P_2(B|\overline{A})=\pause 0.77·0.87+0.23·0.69=0.8286
+			\end{align*}
+			\item 方案$2$的治愈率高于方案$1$, 可见方案$1$并不优于方案$2$
+		\end{itemize}
 	\end{jieda}
-
-
 \end{frame}
-
-%
-
-\begin{frame}{男孩女孩概率问题续：随机的一个孩子是女孩}
-    \begin{exam}
-        某家庭有两个孩子。随机遇到其中的一个，发现是女孩。给定这个信息后，两个孩子都是女孩的概率是多少？假设随机遇到两个孩子的可能性相同，且与性别无关.
-    \end{exam}
-
-    \begin{jieda}
-        \begin{itemize}[<+-|alert@+>]
-            \item 直观来看，结果应为 1/2.
-            \item 令 $G_{1}$, $G_{2}$, $G_{3}$ 分别表示年长、 年幼、 随机的孩子是女孩这三个事件。由对称性可得: $P (G_{1})=P (G_{2})=P (G_{3})=1/2$
-            \item 根据朴素概率的定义，或者独立性，可得: $P (G_{1}\cap G_{2})=1/4$
-            \item 因此，$P (G_{1}\cap G_{2}|G_{3})=P (G_{1}\cap G_{2}\cap G_{3})/P (G_{3})=1/2$
-            \item 又因为 $G_{1}\cap G_{2}\cap G_{3}=G_{1}\cap G_{2}$, 所以概率为 $1/2$.
-        \end{itemize}
-    \end{jieda}
-	\pause
-	\begin{rmk}
-	假设一个强制性法律规定：如果一个男孩有姐妹则禁止他走出家门。那么这时 ``随机遇到的孩子是女孩" 就等价于 `` 至少有一个孩子是女孩”
-	\end{rmk}
-
-\end{frame}
-
-%
-\begin{frame}{男孩女孩概率问题续：冬天出生的女孩}
-\begin{exam}
-	某家庭有两个孩子，给定条件至少一个是女孩且在冬天出生，求两个孩子都是女孩的概率。假设四个季节出生的可能性相同且性别和季节是相互独立的.
-\end{exam}
-\pause
-
-    \begin{jieda}
-        由条件概率的定义，可得:
-        \begin{align*}
-            \ P (\mbox{两个都是女孩 | 至少有一个是冬天出生的女孩})\\
-            =\frac{P (\mbox{两个都是女孩，至少有一个是冬天出生的女孩})}{P (\mbox{至少有一个是冬天出生的女孩})}
-        \end{align*}\pause
-		由于指定的孩子是在冬天出生的女孩的概率为 $1/8$, 所以，$$P (\mbox{至少有一个是在冬天出生的女孩}) = 1 - (7/8)^2.$$
-    \end{jieda}
-\end{frame}
-
-
-		\begin{frame}{男孩女孩概率问题续：冬天出生的女孩}
-			利用性别和季节是相互独立的假设，得到:
-        \begin{align*}
-            &P (\mbox{两个都是女孩，至少有一个是冬天出生的女孩})\\
-            &=P (\mbox{两个都是女孩，至少有一个是冬天出生的})\\
-            &=(1/4) P (\mbox{至少有一个是冬天出生的女孩})\\
-            &=(1/4) (1-P (\mbox{所有孩子都不是在冬天出生的})
-        \end{align*}
-        合在一起得到，$$P (\mbox{两个都是女孩 | 至少有一个是冬天出生的女孩})=7/15$$
-\end{frame}
-
-
-\begin{frame}{结绳问题}
-	\vspace{-0.15cm}
-	\begin{exam}\
-		$n$ 根绳 $2n$ 个头两两相接，求事件 $A=\{\mbox{恰好结成} n\mbox{个圈}\}$ 的概率.
-	\end{exam}
-	\pause
-	\vspace{-0.4cm}
-	\begin{itemize}[<+-|alert@+>]
-		\item 设想 $2n$ 个头排成一行，规定将第 $2k-1$ 个头与第 $2k$ 个端头相接；
-		\item 令 $B_i$ 表示第 $i$ 根绳的头与尾恰好相接，则 $A=B_1B_2\cdots B_n$;
-		\item 若以 $n (A)$ 表示事件 $A$ 所包含的样本点个数，则易知 \pause
-		\begin{eqnarray*}
-			n(\Omega)=(2n)!, \pause n(B_1)=2n(2n-2)!\pause \Rightarrow P(B_1)=\dfrac{n(B_1)}{n(\Omega)}=\dfrac{1}{2n-1};\pause
-		\end{eqnarray*}
-		\item $P (B_2|B_1)$ 可看作 $n-1$ 根绳某根绳头尾相接的概率，类比 $n$ 根绳情形可得 $P (B_2|B_1)=\dfrac{1}{2 (n-1)-1}=\dfrac{1}{2n-3};$
-		\item 同理可得 $P (B_k|B_1B_2\cdots B_{k-1})=\dfrac{1}{2[n-(k-1)]-1}=\dfrac{1}{2n-2k+1}, 3\leq k\leq n;$
-		\item 利用乘法公式可得
-		\begin{align*}
-			P(A)&=\pause P(B_1B_2\cdots B_n)=\pause P(B_1)P(B_2|B_1)\cdots P(B_n|B_1\cdots B_{n-1})\pause\\
-			&=\pause\dfrac{1}{(2n-1)!!}
-		\end{align*}
-	\end{itemize}
-
-
-\end{frame}
-
-\begin{frame}{取球问题}
-	\begin{exam}
-		在计算机中输入程序，让它自动完成如下操作：
-		\begin{itemize}[<+-|alert@+>]
-			\item 在 $1-\dfrac{1}{2^n}$ 时刻，往盒中放入标号 $10 (n-1)+1\sim 10n$ 的 $10$ 个球，同时取出标号为 $10 (n-1)+1$ 的球，$n\geq 1$;
-			\item 在 $1-\dfrac{1}{2^n}$ 时刻，往盒中放入标号 $10 (n-1)+1\sim 10n$ 的 $10$ 个球，同时取出标号为 $n$ 的球，$n\geq 1$;
-			\item 在 $1-\dfrac{1}{2^n}$ 时刻，往盒中放入标号 $10 (n-1)+1\sim 10n$ 的 $10$ 个球，同时随机地从盒中取出一个球，$n\geq 1$.
-		\end{itemize}
-	\pause
-		则在时刻 $1$, 盒中的球数结果如下
-		\begin{itemize}[<+-|alert@+>]
-			\item 盒子中有无穷多个球；
-			\item 盒子变为空的；
-			\item 盒子变为空的概率等于 $1$?
-		\end{itemize}
-	\end{exam}
-\end{frame}
-
-\begin{frame}{取球问题}
-	\jieda\
-	\begin{itemize}[<+-|alert@+>]
-		\item 记 $E$=\{在时刻 $1$ 时盒子变空 \};
-		\item $\overline{E}$=\{在时刻 $1$ 时盒中有球未被取出 \};
-		\item 记 $A_k$=\{在时刻 $1$ 时 $k$ 号球仍在盒中未被取出 \}， 则 \pause$\overline{E}=\bigcup\limits_{k=1}^{\infty} A_k$;\pause
-		\item 由概率的次可加性知
-		$$ P( \overline{E})= P\big(\bigcup_{k=1}^{\infty}A_k\big)\leq\sum_{k=1}^{\infty} P(A_k);$$
-		\item 为证 $ P (\overline{E})=0$，只需证明 $P (A_k)=0,\,k\geq 1$;
-		\item 由于证法类似，仅以证明 $ P (A_1)=0$ 为例；
-	\end{itemize} %，则 $ \overline{E}$=\{在时刻 $1$ 时盒中有球未被取出 \}。为证 $ P (E)=1$，只需证明 $ P ( \overline{E})=0$。
-
-
-\end{frame}
-
-\begin{frame}{取球问题}
-	\begin{itemize}[<+-|alert@+>]
-	\item 记 $B_n$=\{在 $1-\dfrac{1}{2^n}$ 时刻 $1$ 号球未被取出 \}，\pause 易知 $A_1=\bigcap\limits_{n=1}^{\infty} B_n$;\pause
-	\item 令 $C_m=\bigcap\limits_{n=1}^{m} B_n$, 则有 \pause
-	\[C_m=\bigcap\limits_{n=1}^{m} B_n\supset\bigcap\limits_{n=1}^{m+1} B_n=C_{m+1},\mbox{ 且 } \lim_{m\rightarrow\infty} C_m=A_1;\]\pause
-	\item 由概率的上连续性知 $$ P (A_1)= P\big (\lim_{m\rightarrow\infty} C_m\big)=\lim_{m\rightarrow\infty} P\big (C_m\big);$$
-	\item 下面求 $P (C_m)$, 即 $P\big (\bigcap_{n=1}^{m} B_n\big)=\prod_{n=1}^{m}\frac{9n}{9n+1}=\prod_{n=1}^{m}\left (1-\frac{1}{9n+1}\right)$;
-	\begin{itemize}[<+-|alert@+>]
-		\item $B_1$: 在 $1/2$ 时刻，盒中 $10$ 个球，$1$ 号球未被取出，故 \pause $ P (B_1)=\frac{9}{10}$;\pause
-		\item $B_2$: 在 $3/4$ 时刻，盒中 $19$ 个球，$1$ 号球未被取出，故 \pause $ P (B_2|B_1)=\frac{18}{19}$;\pause
-		\item $B_n$: $ P(B_n|B_1B_2\cdots B_{n-1})=\frac{9n}{9n+1}.$
-	\end{itemize}
-\item $ P (A_1)=\prod_{n=1}^{\infty}\big (1-\frac{1}{9n+1}\big)=0.$ 同理可证 $ P (A_k)=0,\,k=2,3,\cdots$.
-\end{itemize} %，则 $ \overline{E}$=\{在时刻 $1$ 时盒中有球未被取出 \}。为证 $ P (E)=1$，只需证明 $ P ( \overline{E})=0$。
-
-
-
-\end{frame}
-
-%\begin{frame}{取球问题}
-%	在时刻 $\dfrac{3}{4}$ 时，盒中共有 $19$ 个球，若 $1$ 号球仍未被取出，则在 $B_1$ 发生的条件下还有 $B_2$ 发生，此时有 $18$ 种取球方式，由于面对的是变化了的概率空间，故按无条件概率的求法计算出 $$ P (B_2|B_1)=\frac{18}{19}.$$
-%	一般地，有 $$ P (B_n|B_1B_2\cdots B_{n-1})=\frac{9n}{9n+1}.$$
-%	于是按照概率的乘法定理得到 $$ P\left (\bigcap_{n=1}^{m} B_n\right)=\prod_{n=1}^{m}\frac{9n}{9n+1}=\prod_{n=1}^{m}\left (1-\frac{1}{9n+1}\right).$$
-%\end{frame}
-%
-%\begin{frame}{取球问题}
-%	于是就有 $$ P (A_1)=\lim_{m\rightarrow\infty} P\left (\bigcap_{n=1}^{m} B_n\right)=\prod_{n=1}^{\infty}\left (1-\frac{1}{9n+1}\right).$$
-%	由于 $$\sum_{n=1}^{\infty}\frac{1}{9n+1}=\infty,$$ 所以由无穷乘积发散的判别准则，知 $$ P (A_1)=\prod_{n=1}^{\infty}\left (1-\frac{1}{9n+1}\right)=0.$$
-%	同理可证 $ P (A_k)=0,\,k=2,3,\cdots$。综合上述，就证出了在时刻 $1$ 时，盒子变为空的概率等于 $1$。
-%\end{frame}
-%
-%\begin{frame}
-%	\begin{itemize}
-%		\item 上一题的解答需要清晰正确的转换思路：$E\rightarrow  \overline{E}\rightarrow A_1\rightarrow\bigcap\limits_{n=1}^{m} B_n$
-%		\item 概率论中的许多问题都可以用罐中取球的模型来描述
-%		\item 下一例出现的罐子模型是所谓有后效的模型，可用来粗略描述流行病的传播规律
-%	\end{itemize}
-%\end{frame}
-
-
-
-
-
-
-
 
 \begin{frame}
-	\frametitle{罐子模型（波利亚模型）}
-	\begin{exam}
-		设罐中有 $b$ 个黑球，$r$ 个红球，每次随机的取出一球，取出后将原球放回，还加进 $c$ 个同色球和 $d$ 个异色球。记 $B_i:=\{\mbox{第} i\mbox{次取出的是黑球}\}, R_j:=\{\mbox{第} j\mbox{次取出的是红球}\}$. 若连续从罐子中取出三个球，其中有两个红球，一个黑球，则由乘法公式可得
-		\begin{eqnarray*}
-			P(B_1R_2R_3)&=&P(B_1)P(R_2|B_1)P(R_3|B_1R_2)\\
-			&=&\frac{b}{b+r}\cdot\frac{r+d}{b+r+c+d}\cdot\frac{r+d+c}{b+r+2c+2d}\\
-			P(R_1B_2R_3)&=&P(R_1)P(B_2|R_1)P(R_3|R_1B_2)\\
-			&=&\frac{r}{b+r}\cdot\frac{b+d}{b+r+c+d}\cdot\frac{r+d+c}{b+r+2c+2d}\\
-			P(R_1R_2B_3)&=&P(R_1)P(R_2|R_1)P(B_3|R_1R_2)\\
-			&=&\frac{r}{b+r}\cdot\frac{r+c}{b+r+c+d}\cdot\frac{b+2d}{b+r+2c+2d}
-		\end{eqnarray*}
-		显然以上概率与黑球在第几次抽取有关.
-	\end{exam}
+	\frametitle{敏感性问题调查}
+	敏感性问题调查方案的关键在于要使被调查者愿意作出真实的回答又能保守个人秘密, 如果调查方案有误, 被调查者就会拒绝配合, 所得调查数据将失去真实性.
+	\pause
+	\vspace{0.5cm}
+
+	{\bf 调查方案: } 被调查者只需要加答以下两个问题中的一个问题,且只需要回答“是”或“否”.
+
+	\pause
+	问题 A: 你的生日是否在 7 月 1 日之前?
+
+	问题 B: 所调查的敏感性问题.
+
+	\pause
+	\vspace{0.5cm}
+	{\bf 调查方案的操作: }
+
+	( 1)被调查者在没有旁人的情况下独自一人在房间内操作回答问题
+
+	\pause
+	( 2)被调查者从一个罐子中随机抽一球, 看过颜色后放回, 若抽到白球, 回答问题 A, 抽到红球, 回答问题 B.
+
+	( 3)被调查者无论回答问题 A 还是问题 B, 只需在仅有“是”与“否”选项的答卷上作答然后将答卷放入密封的投票箱内.
+
 \end{frame}
+
 \begin{frame}
-	\frametitle{罐子模型（波利亚模型）}
-	\vspace{-0.3cm}
+	\frametitle{敏感性问题调查}
+	{\bf \textcolor{red}{问题:}} 假若我们有$n$张问卷, 其中$k$张回答“是”, 我们如何确定选定红球回答问题 B 为“是”的概率?
+
+
+	\pause
+	{\bf \textcolor{red}{已知:}}
 	\begin{itemize}[<+-|alert@+>]
-		\item 当 $c=-1, d=0$ 时，即为不返回抽样。此时前次抽取结果会影响后次抽取结果，但只要抽取的黑球与红球个数确定，则概率不依赖其抽出球的次序，都是一样的.
-		{\small\begin{eqnarray*}
-				P(B_1R_2R_3)= P(R_1B_2R_3)=P(R_1R_2B_3)=\frac{br(r-1)}{(b+r)(b+r-1)(b+r-2)}.
-		\end{eqnarray*}}
-		\item 当 $c=0,d=0$ 时，即为返回抽样。此时前次抽取结果不会影响后次抽取结果，故上述三个概率相等且都等于
-		{\small\begin{eqnarray*}
-				P(B_1R_2R_3)= P(R_1B_2R_3)=P(R_1R_2B_3)=\frac{br^2}{(b+r)^3}.
-		\end{eqnarray*}}
-		\item 当 $c>0,d=0$ 时，称为传染病模型。此时每次取出球后会增加下一次取出同色球的概率，或换言之，每发现一个传染病患者，以后都会增加再传染的概率。与前两种情况一样，三个概率都等于
-		{\small\begin{eqnarray*}
-				P(B_1R_2R_3)= P(R_1B_2R_3)=P(R_1R_2B_3)=\frac{br(r+c)}{(b+r)(b+r+c)(b+r+2c)}.                                                        \end{eqnarray*}}
-
+		\item 红白球的比例, 即$P(\mbox{红球}):=\pi, P(\mbox{白球})=1-\pi$;
+		\item $P(\mbox{是}|\mbox{白球})=0.5$;
+		\item $P(\mbox{是})\approx \dfrac{k}{n}$.
 	\end{itemize}
-\end{frame}
-\begin{frame}
-	\frametitle{罐子模型（波利亚模型）}
-	\begin{itemize}[<+-|alert@+>]
-		\item 从上面的结果可以看出，只要 $d=0$，以上三个概率都相等，即只要抽取的黑球与红球的个数确定，则概率不依赖于抽出黑红球的次序.
-		\item 当 $c=0,d>0$ 时，称为安全模型。此模型可解释为：每当事故发生了 (当红球被取出)，安全工作就抓紧一些，下次再发生事故的概率就会减少，而当事故没有发生时 (黑球被取出)，安全工作就放松一些，下次再发生事故的概率就会增大，此时，上述三个概率分别为
-		{\small\begin{eqnarray*}
-				P(B_1R_2R_3) &=&\frac{b}{b+r}\cdot\frac{r+d}{b+r+d}\cdot\frac{r+d}{b+r+2d}\\
-				P(R_1B_2R_3)&=&\frac{r}{b+r}\cdot\frac{b+d}{b+r+d}\cdot\frac{r+d}{b+r+2d}\\
-				P(R_1R_2B_3) &=&\frac{r}{b+r}\cdot\frac{r}{b+r+d}\cdot\frac{b+2d}{b+r+2d}
-		\end{eqnarray*}}
-	\end{itemize}
+	\pause
+	{\bf \textcolor{red}{待求:}} $p:=P(\mbox{是}|\mbox{红球})$.
+
+	\pause
+	{\bf\jieda} 由全概率公式可得
+	\begin{eqnarray*}
+		P(\mbox{是})=P(\mbox{白球})P(\mbox{是}|\mbox{白球})+P(\mbox{红球})P(\mbox{是}|\mbox{红球})
+	\end{eqnarray*}
+	即\pause
+	\begin{eqnarray*}
+		\dfrac{k}{n}\approx (1-\pi)\cdot 0.5+\pi\cdot p \Rightarrow p=\dfrac{k/n-0.5(1-\pi)}{\pi}
+	\end{eqnarray*}
+
 
 \end{frame}
 
-\begin{frame}{罐子模型（波利亚模型）}
-	\begin{exam}
-	设罐中有 $b$ 个黑球，$r$ 个红球，每次随机取出一球后将原球放回并加进 $c$ 个同色球，如此反复进行。试证明：在前 $n=n_1+n_2$ 次取球中，取出了 $n_1$ 个红球和 $n_2$ 个黑球的概率为
-		$$C_n^{n_1}\frac{a(a+c)(a+2c)\cdots(a+n_1c-c)b(b+c)(b+2c)\cdots(b+n_2c-c)}{(a+b)(a+b+c)(a+b+2c)\cdots(a+b+nc-c)}.$$
-	\end{exam}
-%	\begin{jieda}
-%		记 $A_k$=\{第 $k$ 次取球时取出白球 \}, 于是 $A_k^c$=\{第 $k$ 次取球时取出黑球 \}. 采用逐个考虑被改变了的概率空间的方法，不难利用乘法定理求得
-%		\begin{align*}
-%			& P(A_1\cdots A_{n_1}A_{n_1+1}^c\cdots A_n^c)\\=&\frac{a(a+c)(a+2c)\cdots(a+n_1c-c)b(b+c)(b+2c)\cdots(b+n_2c-c)}{(a+b)(a+b+c)(a+b+2c)\cdots(a+b+nc-c)}.
-%		\end{align*}
-%	\end{jieda}
-\end{frame}
+
+
 
 
 %%% Local Variables:
