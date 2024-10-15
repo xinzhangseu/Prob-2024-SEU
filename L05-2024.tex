@@ -619,21 +619,44 @@
 
 \end{frame}
 
-\begin{frame}{{\rm Boole}与{\rm Bonferroni}不等式证明:非归纳法}
-\begin{itemize}[<+-|alert@+>]
-	\item 注意到:
-	\begin{align*}
-	  \cup_{i=1}^nA_i&=A_1\cup (A_2-A_1)\cup(A_3-(A_1\cup A_2))\cup\cdots\cup(A_n-\cup_{i=1}^{n-1} A_i) \\
-	   &=A_1\cup (A_2\cap \overline{A}_1)\cup(A_3\cap \overline{A}_1\cap \overline{A}_2))\cup\cdots\cup(A_n\cap \cap_{i=1}^{n-1} \overline{A}_i)\\
-	   &=A_1\cup \cup_{k=2}^n (A_k\cap \cap_{i=1}^{k-1} \overline{A}_i)
-	\end{align*}
-	\item 从而
-\end{itemize}
+\begin{frame}{{\rm Boole}不等式证明:非归纳法}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到:
+		\begin{align*}
+		  \cup_{i=1}^nA_i&=A_1\cup (A_2-A_1)\cup(A_3-(A_1\cup A_2))\cup\cdots\cup(A_n-\cup_{i=1}^{n-1} A_i) \\
+		   &=A_1\cup (A_2\overline{A}_1)\cup(A_3\overline{A}_2\overline{A}_1))\cup\cdots\cup(A_n\overline{A}_{n-1}\cdots\overline{A}_1)\\
+		   &=A_1\cup \cup_{i=2}^n (A_i\overline{A}_{i-1}\cdots\overline{A}_1)
+		\end{align*}
+		\item 从而
+		\begin{align*}
+		  P(\cup_{i=1}^nA_i) &=\pause P(A_1)+\sum_{i=2}^nP(A_i\overline{A}_{i-1}\cdots\overline{A}_1) \\
+		   & =\pause P(A_1)+\sum_{i=2}^n\big[P(A_i)-P(A_i\cap (A_{i-1}\cup \cdots \cup A_1))\big] \\
+		   &=\pause \sum_{i=1}^nP(A_i)-\sum_{i=2}^nP(\cup_{j=1}^{i-1}(A_iA_j))<\pause \sum_{i=1}^nP(A_i)
+		\end{align*}
+	\end{itemize}
 
-\end{frame}
+	\end{frame}
 
 
+	\begin{frame}{{\rm Bonferroni}不等式证明:非归纳法}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到
+		{\small \begin{align*}
+			P(\cup_{j=1}^{i-1}(A_iA_j)) &\leq \sum_{j=1}^{i-1}P(A_iA_j)
+		\end{align*}}
+		\item 从而
+		{\small \begin{align*}
+			P(\cup_{i=1}^nA_i) &=\pause \sum_{i=1}^nP(A_i)-\sum_{i=2}^nP(\cup_{j=1}^{i-1}(A_iA_j)) \\
+			&\geq\pause \sum_{i=1}^nP(A_i)-\sum_{i=2}^n\sum_{j=1}^{i-1}P(A_iA_j) \\
+			&=\pause\sum_{i=1}^nP(A_i)-\sum_{1\leq j<i\leq n}P(A_iA_j).
+		  \end{align*}}
+		\item 再由{\small $P(\cup_{j=1}^{i-1}(A_iA_j)) \geq \sum_{j=1}^{i-1}P(A_iA_j)-\sum_{1\leq j<k\leq i-1}P(A_iA_j\cap A_iA_k)$}可得\pause
+		{\small \begin{align*}
+			P(\cup_{i=1}^nA_i)\leq\pause \sum_{i=1}^{n} P(A_{i})-\sum_{1\leq i<j\leq n} P(A_{i} \cap A_{j})+\sum_{1\leq i<j<k\leq n}P(A_i\cap A_j\cap A_k)
+		\end{align*}}
+	\end{itemize}
 
+	\end{frame}
 
 
 

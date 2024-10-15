@@ -104,10 +104,13 @@
 
 
 \renewcommand{\proofname}{证明}
-\newcommand{\tc}{\color{cyan}}
+%\newcommand{\tc}{\color{cyan}}
 \newcommand{\trc}{\color{red}}
 
-
+ \makeatletter
+ \newcommand*{\tc}{\@ifnextchar\bgroup{\tc@}{\color{cyan}}}
+ \newcommand*{\tc@}[1]{{\textcolor{cyan}{#1}}}
+ \makeatother
 
 \usepackage{listings} %frame 要加 option [fragile]
 \usepackage{xcolor}
