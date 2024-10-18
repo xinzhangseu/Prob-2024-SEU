@@ -39,6 +39,63 @@
 \end{frame}
 
 \subsection{条件概率的定义和直观解释}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{条件概率的引入}
+	\begin{exam}
+		抛掷一枚均匀的骰子一次，已知掷出的点数为奇数，试求点数大于$1$的概率。
+	\end{exam}
+	\pause
+
+	\vspace{0.2cm}
+
+		\begin{itemize}[<+-|alert@+>]
+			\item $\Omega=\{1,2,\cdots,6\}, A=\{1,3,5\}, B=\{2,3,4,5,6\}$;
+			\item 令$P(B|A)$表示“已知$A$发生的情况下$B$发生的概率”；%$\Rightarrow$ 记作
+			\item $A=\{1,3,5\}$, \pause $B$发生就是$AB=\{3,5\}$发生，于是
+			$$P(B|A)=\frac{|AB|}{|A|}=\frac{2}{3}.$$\pause
+			\item 在原样本空间考虑：
+			$$P(AB)=\frac{|AB|}{|\Omega|}=\frac{2}{6},\quad P(A)=\frac{|A|}{|\Omega|}=\frac{3}{6}.$$
+			\item 易验证：$$P(B|A)=\frac{P(AB)}{P(A)}=\frac{2}{3}.$$
+		\end{itemize}
+
+\end{frame}
+
+\begin{frame}{条件概率的引入}
+	\begin{exam}
+		从分别写有号码$1,2,\cdots,10$的$10$张卡片中随机抽取一张，已知抽出的卡片的号码不小于$3$，试求其号码为偶数的概率。
+	\end{exam}
+	\pause
+	\vspace{0.2cm}
+
+		\begin{itemize}[<+-|alert@+>]
+			\item $\Omega=\{1,2,\cdots,10\}, A=\{3,4,\cdots,10\}, B=\{2,4,6,8,10\}$;
+			\item 类似上一例:
+			$$P(B|A)=\frac{|AB|}{|A|}=\frac{4}{8}=\frac{1}{2}.$$
+			\item 在原样本空间考虑：
+			$$P(AB)=\frac{|AB|}{|\Omega|}=\frac{4}{10}=\frac{2}{5},\quad P(A)=\frac{|A|}{|\Omega|}=\frac{8}{10}=\frac{4}{5}.$$
+			\item 易验证：$$P(B|A)=\frac{P(AB)}{P(A)}=\frac{1}{2}.$$
+		\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{条件概率的引入}
+	\begin{exam}
+		考察有两个小孩的家庭，其样本空间为$\Omega:=\{bb,bg,gb,gg\}$，其中$b, g$分别表男孩与女孩，$bg$表示大的是男孩，小的是女孩，其他样本点类似说明. 在$\Omega$中的四个样本点可能情况下，我们讨论如下事件的概率：
+		\vspace{0.2cm}
+		\begin{itemize}[<+-|alert@+>]
+			\item 事件$A:=\{\mbox{家中至少有一个女孩}\}$发生的概率为$P(A)=\dfrac{3}{4}$
+			\item 若已知$B:=\{\mbox{家中至少有一个男孩}\}$发生，再求$A$发生的概率为
+			\begin{eqnarray*}
+				P(A|B)=\frac{2}{3}
+			\end{eqnarray*}
+			\item 若对上述条件概率的分子分母各除以4，则有
+			\begin{eqnarray*}
+				P(A|B)=\frac{2/4}{3/4}=\frac{P(AB)}{P(B)}
+			\end{eqnarray*}
+		\end{itemize}
+	\end{exam}
+
+	\end{frame}
 
 \begin{frame}{条件概率的定义}
 	\begin{defi}

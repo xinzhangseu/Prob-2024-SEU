@@ -628,7 +628,7 @@
 		\begin{align*}
 		  P(\cup_{i=1}^nA_i) &=\pause P(A_1)+\sum_{i=2}^nP(A_i\overline{A}_{i-1}\cdots\overline{A}_1) \\
 		   & =\pause P(A_1)+\sum_{i=2}^n\big[P(A_i)-P(A_i\cap (A_{i-1}\cup \cdots \cup A_1))\big] \\
-		   &=\pause \sum_{i=1}^nP(A_i)-\sum_{i=2}^nP(\cup_{j=1}^{i-1}(A_iA_j))<\pause \sum_{i=1}^nP(A_i)
+		   &=\pause \sum_{i=1}^nP(A_i)-\sum_{i=2}^nP(\cup_{j=1}^{i-1}(A_iA_j))\leq \pause \sum_{i=1}^nP(A_i)
 		\end{align*}
 	\end{itemize}
 
@@ -945,12 +945,12 @@
 \begin{frame}{配对问题二}
 	\begin{exam}
 		接上面例子, 试求下述各事件的概率：\\
-		(1) 恰有 $k$ 个人抽到自己礼物；(2) 至少有 $m$ 个人抽中自己礼物。
+		(1) 恰有 $k$ 个孩子戴对帽子；(2) 至少有 $m$ 个孩子戴对帽子.
 	\end{exam}
 	\pause
 	%\vspace{0.4cm}
 	\begin{itemize}[<+-|alert@+>]
-		\item 记 $E_k=$\{恰有 $k$ 个孩子戴对自己的帽子 \},$A_m=$\{至少有 $m$ 个孩子戴对自己的帽子 \};
+		\item 记 $E_k=$\{恰有 $k$ 个孩子戴对帽子 \},$A_m=$\{至少有 $m$ 个孩子戴对帽子 \};
 		\item $\Omega=n!$, \pause $|E_k|=?,\  |A_m|=?$;
 		      %\item 上一例已求出 $A_1$ 的概率
 		\item 若记 $D_k=$\{给定的某 $n-k$ 个孩子均未戴对自己的帽子 \},\pause 则有 $|E_k|=C_n^k|D_k|$
