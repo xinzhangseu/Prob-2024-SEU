@@ -347,6 +347,28 @@ P\left(A_{1} A_{2} \cdots A_{n}\right)=P\left(A_{1}\right) P\left(A_{2}\right) \
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{Borel-Cantelli引理}
+  \begin{thm}
+    对于事件列$\{A_j\}$，有
+    \begin{itemize}[<+-|alert@+>]
+    \item 如果$\sum_{j=1}^\infty P(A_j)<\infty$，则$P(A_n\ i.o.)=0$
+    \item 如果$\{A_j\}$相互独立，$\sum_{j=1}^\infty P(A_j)=\infty$，则$P(A_n\ i.o.)=1$
+    \end{itemize}
+  \end{thm}\pause
+  \zheng 注意到
+  \begin{eqnarray*}
+    P(A_n\ i.o.)=\pause P(\lim \cup_{j=n}^\infty A_j)=\pause \lim P(\cup_{j=n}^\infty A_j)\le \pause \lim\sum_{j=n}^\infty P(A_j)\pause =0
+  \end{eqnarray*}
+  \pause
+  由于\pause
+  \begin{eqnarray*}
+    P(\cup_{j=n}^\infty A_j)&=&\pause \lim_{m\rightarrow\infty}P(\cup_{j=n}^m A_j)=\pause \lim_{m\rightarrow\infty}(1-P(\cap_{j=n}^m\overline{A}_j))\\\pause
+    P(\cap_{j=n}^m\overline{A}_j)&=&\pause \Pi_{j=n}^m P(\overline{A}_j)=\Pi_{j=n}^m(1-P(A_j))\\
+                            &\le&\pause \Pi_{j=n}^m \exp(-P(A_j))=\exp(-\sum_{j=n}^m P(A_j))\pause \stackrel{m\rightarrow\infty}{\longrightarrow} 0
+  \end{eqnarray*}
+
+\end{frame}
 
 
 
