@@ -192,7 +192,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{随机变量的分类}
+\begin{frame}{随机变量的分类以及两个注记}
 	\begin{itemize}[<+-|alert@+>]
 		\item 随机变量 $X$ 是从样本空间 $\Omega$ 到实数 $R$ 的映射，故根据其值域集合可粗略的分为两大类
 		      \begin{itemize}[<+-|alert@+>]
@@ -201,7 +201,26 @@
 			      \item 非离散型随机变量：其值域集合不是有限点集或可数点集
 		      \end{itemize}
 	\end{itemize}
+	\pause
+	\begin{rmk} 随机变量的两点注记:
+		\begin{itemize}[<+-|alert@+>]
+			\item 首先, 随机变量是确定性函数, 自身并没有随机性. 给定样本空间上的样本点, 有唯一确定的实数值与之相对应, 这种对应关系并没有不确定性. 所有的不确定性都体现在样本点是否在试验结果中出现, 和随机变量本身没有关系。随机变量的引入, 更多地是为了数学处理上的方便.
+			\item 其次, 随机变量并不是概率论中独有的概念. 若将前面可测映射中的$(\Omega, \mathcal{F}), (E, \mathcal{E})$均取为$(R, \mathcal{B}(\mathbb{R}))$, 则可测映射的定义便退化为实分析中的 ``可测函数". 随机变量是一特殊的可测函数.
+		\end{itemize}
+
+	\end{rmk}
+
 \end{frame}
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{frame}{示性随机变量}
@@ -311,12 +330,12 @@
 \begin{frame}{随机变量的函数是否仍为随机变量？}
 	\vspace{0.5cm}
 	\begin{thm}
-		设 $X$ 是可测空间 $(\Omega,\mathcal{F})$ 上的随机变量，$g (x)$ 为 $(R,\mathcal{B})\rightarrow (R,\mathcal{B})$ 上的可测函数，证 $Y:=g (X)$ 为 $(\Omega,\mathcal{F})$ 上的随机变量.
+		设 $X$ 是可测空间 $(\Omega,\mathcal{F})$ 上的随机变量，$g (x)$ 为 $(R,\mathcal{B})\rightarrow (R,\mathcal{B})$ 上的Borel可测函数，证 $Y:=g (X)$ 为 $(\Omega,\mathcal{F})$ 上的随机变量.
 	\end{thm}
 
 	\vspace{0.3cm}
 	\pause
-	\jieda 注意到，对任意的 $B\in \mathcal{B}$, $g^{-1}(B)\in \mathcal{B}$, 故 \pause
+	\zheng 注意到，对任意的 $B\in \mathcal{B}$, $g^{-1}(B)\in \mathcal{B}$, 故 \pause
 	\begin{align*}
 		Y^{-1}(B) & =\pause \{\omega:Y(\omega)\in B\}         \\
 		          & =\pause \{\omega:g(X(\omega))\in B\}      \\
@@ -392,6 +411,110 @@
 		\end{eqnarray*}
 		而且当 $X$ 非负时，还可选取 $\{X_n (\omega),n\ge 1\}$ 为非负单调不减的简单随机变量序列.
 	\end{thm}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{随机变量的生成$\sigma$-代数}
+	\begin{defi}
+	(\tc{单个随机变量的生成$\sigma$-代数}) 设$X$为定义在$(\Omega,\mathcal{F})$上的随机变量并令
+	$\mathcal{F}_X:=\{X^{-1}(A):A\in \mathcal{B}(\mathbb{R})\}$. 我们称$\sigma(X):=\sigma\left(\mathcal{F}_{X}\right)$为随机变量$X$的生成$\sigma$-代数.
+	\end{defi}
+	\pause
+
+\begin{defi}
+  (\tc{有限个随机变量的生成$\sigma$-代数})设$X_k, k=1,2,\cdots, n$为定义在$(\Omega,\mathcal{F})$上的随机变量并令
+  $\mathcal{F}_{X_k}:=\{X_k^{-1}(A):A\in \mathcal{B}(\mathbb{R})\}$. 我们称\[\sigma(X_1,X_2,\cdots,X_n):=\sigma\left(\cup_{k=1}^n\mathcal{F}_{X_k}\right)\]为随机变量$X_1,X_2,\cdots,X_n$的生成$\sigma$-代数.
+\end{defi}
+\pause
+\begin{itemize}[<+-|alert@+>]
+	\item $\mathcal{F}_{X}, \mathcal{F}_{X_k}$均为$\sigma$-代数, 但$\cup_{k=1}^n\mathcal{F}_{X_k}$不一定是$\sigma$-代数, 因此
+	\[\sigma(X)=\mathcal{F}_X, \quad \mbox{ 但  } \quad  \sigma(X_1,X_2,\cdots,X_n)\neq \cup_{k=1}^n\mathcal{F}_{X_k}.\]
+	\item 若$X$是$(\Omega,\mathcal{F})$上的随机变量,则必有$\sigma(X):=\mathcal{F}_X\subset\mathcal{F}$, 即$\sigma(X)$是$\Omega$上使得$X$成为随变量所需要的最小$\sigma$-代数.
+	\item 类似的, $\sigma(X_1,X_2,\cdots,X_n)$是$\Omega$上使得$X_1,X_2,\cdots,X_n$为随机变量所需要的最小$\sigma$-代数.
+	\item 随机变量$X$生成的$\sigma-$代数$\sigma(X)$集中体现了$X$的取值信息.
+\end{itemize}
+\end{frame}
+\begin{frame}{两个随机变量之间的关系}
+\begin{defi}
+考虑两个随机变量$X, Y$，如果对任意的$B\in\mathcal{B}(\mathbb{R})$均有
+\[
+Y^{-1}(B) \in \sigma(X),\ \mbox{等价的}\ \sigma(Y)\subset \sigma(X).
+\]则称$Y$适应(adaptive to) $X$.
+\end{defi}
+
+\pause
+
+\begin{thm}
+考虑可测空间$(\Omega, \mathcal{F})$, $X$和$Y$为定义其上的随机变量. 若$Y$适应$X$, 则存在可测函数$g: \mathbb{R} \rightarrow \mathbb{R}$, 使得
+\[
+Y(\omega)=g(X(\omega)),  \ \forall \omega \in \Omega .
+\]
+\end{thm}
+\pause
+\begin{rmk}
+	\begin{itemize}[<+-|alert@+>]
+		\item 随机变量的生成$\sigma$-代数研究随机变量间关系起着重要作用.
+		\item 直观地看,$Y$适应$X$, 意味着$Y$包含的信息被$X$包含的信息所涵盖. 换句话说,$Y$和$X$间存在导出关系.
+	\end{itemize}
+\end{rmk}
+
+
+
+\end{frame}
+\subsection{随机向量}
+
+\begin{frame}{随机向量: 如何定义$\mathcal{B}(\mathbb{R}^n)$}
+\begin{itemize}
+	\item 直观上来讲, 随机向量就是取值于$\mathbb{R}^n$的随机变量.
+	\item 如何定义$\mathcal{B}(\mathbb{R}^n)$
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到$$\mathbb{R}^n:=\mathbb{R}\times \mathbb{R}\times\cdots\times \mathbb{R}=\Pi_{k=1}^n\mathbb{R}$$
+		\item 我们希望
+		\[\mathcal{B}(\mathbb{R}^n)=\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R})=\Pi_{k=1}^n\mathcal{B}(\mathbb{R})\]
+		\item 但$\Pi_{k=1}^n\mathcal{B}(\mathbb{R})$不是$\sigma$-代数.
+		\item 因此, 定义
+		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R}))=\sigma(\Pi_{k=1}^n\mathcal{B}(\mathbb{R}))\]
+		\item 我们也可以类比$\mathcal{B}(\mathbb{R})$的定义方法, 先定义$\mathbb{R}^n$上的立方体
+		$$I=I_1\times I_2\times\cdots\times I_n=\Pi_{k=1}^nI_k, \ I_k=(a_k, b_k].$$ 然后定义$\mathcal{B}(\mathbb{R}^n)$为:
+		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\{I:I\mbox{为}\mathbb{R}^n\mbox{上的立方体}\}).\]%集合的生成$\sigma$-代数来定义$\mathcal{B}(\mathbb{R}^n)$.
+	\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{随机向量}
+\begin{defi}
+(\tc{$n$维随机向量}) 考虑可测空间$(\Omega,\mathcal{F})$, 若映射$X: \Omega \rightarrow \mathbb{R}^{n}$使得对任意的$B \in \mathcal{B}(\mathbb{R}^{n})$均有
+	\[
+	X^{-1}(B) \in \mathcal{F}
+	\]
+则称$X$为$n$维随机向量.
+\end{defi}
+\pause
+\begin{rmk}
+若记$X=(X_1, X_2,\cdots, X_n)$, 则$X$为$n$维随机向量当且仅当$X_k, k=1,\cdots,n$为随机变量.
+\end{rmk}
+
+\pause
+\begin{defi}
+(\tc{复随机变量}) 考虑可测空间$(\Omega,\mathcal{F})$以及映射$Z$
+\[
+Z(\omega)=X(\omega)+\mathrm{i} Y(\omega) \in \mathbb{C}
+\]
+其中$\mathrm{i}=\sqrt{-1}$是虚数单位. 如果$(X(\omega), Y(\omega))$构成二维随机向量, 则称$Z$为复随机变量.
+\end{defi}
+
 \end{frame}
 
 
