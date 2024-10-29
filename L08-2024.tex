@@ -68,7 +68,7 @@
 		      \end{itemize}
 		\item 以 $k=2$ 为例，看一下 $X_2$ 的取值情况，设 $i\geq 2$
 		      \begin{itemize}[<+-|alert@+>]
-			      \item $\Omega=\{\omega_1,\omega_2, \omega_3,\omega_4\}$, 其中 $\omega_1=(\mbox{胜，胜}), \omega_2=(\mbox{胜，败}), \omega_1=(\mbox{败，胜}), \omega_1=(\mbox{败，败})$
+			      \item $\Omega=\{\omega_1,\omega_2, \omega_3,\omega_4\}$, 其中 $\omega_1=(\mbox{胜，胜}), \omega_2=(\mbox{胜，败}), \omega_3=(\mbox{败，胜}), \omega_4=(\mbox{败，败})$
 			      \item $X_2(\omega_1)=i+2,\  X_2(\omega_2)=X_2(\omega_3)=i,\  X_2(\omega_4)=i-2$
 		      \end{itemize}
 		\item $X_k$ 可以看作定义在样本空间 $\Omega$ 上的函数，即 $X_k:\Omega\rightarrow \{0, 1,\cdots, a\}$
@@ -87,7 +87,7 @@
 	\begin{exam}\label{312}
 		考虑硬币抛掷两次的随机试验，其样本空间为 $$\Omega=\{HH,HT,TH,TT\}.$$ % 这里存在该空间上的一些随机变量 (用于实践，你也可以想出一些自己的随机变量). 每一个随机变量都是试验在某方面的数值表示.%
 		\begin{itemize}[<+-|alert@+>]
-			\item 令 $X$ 表示正面朝上的次数，则 $X$ 是一个随机变量，相应的映射如下
+			\item 令$X$表示正面朝上的次数，则$X$是一个随机变量,相应的映射如下
 			      % 其可能的取值为 0、1、2. 将其看作是一个函数，$X$ 作用在 $HH$ 上的值为 2,$X$ 作用在 $TH$ 或者 $HT$ 上的值为 1,$X$ 作用在 $TT$ 上的值为 0, 即
 			      $$X(TT)=0, X(HT)=X(TH)=1, X(HH)=2.$$
 			\item 令 $Y$ 表示反面朝上的次数，则 $Y=2-X$, 对于任意的 $\omega\in \Omega$, 有 $Y (\omega)=2-X (\omega)$.
