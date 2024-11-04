@@ -1,416 +1,107 @@
-\title [概率论]{第八讲：随机变量及其分布}
-%\author [张鑫 {\rm Email: x.zhang.seu@foxmail.com} ]{\large 张 鑫}
-\institute [东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
-	\large 东南大学 \quad 数学学院 \\
+
+
+\title[概率论]{第八讲: 事件的独立性}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学\quad 数学学院\\
 	\vspace{0.3cm}
-	%  \trc{公共邮箱: \textrm{zy.prob@qq.com}\\
-	%    \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+	%\trc{ 公共邮箱: \textrm{zy.prob@qq.com}\\
+		% \hspace{-1.7cm}  密\qquad 码: \textrm{seu!prob}}
 }
 \date{}
 
-
-
-{ \setbeamertemplate{footline}{}
+{\setbeamertemplate{footline}{}
 	\begin{frame}
 		\titlepage
 	\end{frame}
 }
-
-% \begin{frame}[plain]
-%   \frametitle{目录}
-%   \setcounter{tocdepth}{2}
-%   \tableofcontents
-% \end{frame}
-\addtocounter{framenumber}{-3}  % 目录页不计算页码
-\section{随机变量}
-
-\subsection{随机变量的定义及性质}
-
-
-\begin{frame}{随机变量的引入}
-	\begin{itemize}[<+-|alert@+>]
-		\item 赌徒输光：甲和乙初始资金分别为 $i, a-i$ 元，每一局甲赢的概率为 $p$%\in (0,1)$.
-		\item 关注的问题
-		      \begin{itemize}[<+-|alert@+>]
-			      \item 甲最终获胜的概率
-			      \item 甲乙两人在任意时刻的剩余资产:$k$ 轮赌博后恰好剩下 $j$ 元
-			      \item $k$ 轮赌博后甲乙两人资产的差额 $Z$
-			      \item 赌博持续时间 $R$
-		      \end{itemize}
-		\item 表示方法:
-		      \begin{itemize}[<+-|alert@+>]
-			      \item $E:=$\{甲最终获胜 \}, $Q_i:=P$(E)
-			      \item $A_{jk}:=$\{甲在 $k$ 轮赌博后恰好剩下 $j$ 元 \}
-			      \item $B_{jk}:=$\{乙在 $k$ 轮赌博后恰好剩下 $j$ 元 \}
-			      \item $k$ 轮赌博后甲乙两人资产的差额如何表示？
-			      \item 赌博持续时间 $R$ 如何表示？
-			      \item 很难用事件来表示或者表示很复杂
-		      \end{itemize}
-
-	\end{itemize}
-
-\end{frame}
-
-\begin{frame}{随机变量的引入}
-	\begin{itemize}[<+-|alert@+>]
-		\item $X_k:=$ 甲在 $k$ 轮赌博后的资产
-		      \begin{itemize}[<+-|alert@+>]
-			      \item 乙在 $k$ 轮赌博后的资产 $Y_k=a-X_k$
-			      \item 资产差额:$Z=X_k-Y_k=2X_k-a$
-			      \item 持续时间:$R=\min\{n: X_n=0, \mbox{或} Y_n=0\}$
-		      \end{itemize}
-		\item $X_k$ 取值的特点
-		      \begin{itemize}[<+-|alert@+>]
-			      \item 依赖于前面 $k$ 次赌博这一 “随机试验” 的结果
-			      \item 在 “随机试验” 完成之前，$X_k$ 取值不确定，因此具有不确定性
-			      \item $k$ 次赌博 “随机试验” 一旦完成，$X_k$ 的值必然确定
-			      \item 记 $k$ 次赌博 “随机试验” 样本空间为 $\Omega$, 则给定 $\omega\in\Omega$, 则 $X_k$ 值确定
-		      \end{itemize}
-		\item 以 $k=2$ 为例，看一下 $X_2$ 的取值情况，设 $i\geq 2$
-		      \begin{itemize}[<+-|alert@+>]
-			      \item $\Omega=\{\omega_1,\omega_2, \omega_3,\omega_4\}$, 其中 $\omega_1=(\mbox{胜，胜}), \omega_2=(\mbox{胜，败}), \omega_3=(\mbox{败，胜}), \omega_4=(\mbox{败，败})$
-			      \item $X_2(\omega_1)=i+2,\  X_2(\omega_2)=X_2(\omega_3)=i,\  X_2(\omega_4)=i-2$
-		      \end{itemize}
-		\item $X_k$ 可以看作定义在样本空间 $\Omega$ 上的函数，即 $X_k:\Omega\rightarrow \{0, 1,\cdots, a\}$
-		\item 一般的，随机变量可以看作从样本空间到实数的映射:$X:\Omega\rightarrow R$
-
-	\end{itemize}
-
-\end{frame}
-\begin{frame}{随机变量的直观定义}
-	\begin{defi} \textcolor{cyan}{(直观定义)}
-		称 $X$ 为随机变量，如果 $X$ 是从样本空间 $\Omega$ 到实数的映射，即 $X:\Omega\rightarrow R$.
-	\end{defi}
-
-\end{frame}
-\begin{frame}{一个随机变量的例子}
-	\begin{exam}\label{312}
-		考虑硬币抛掷两次的随机试验，其样本空间为 $$\Omega=\{HH,HT,TH,TT\}.$$ % 这里存在该空间上的一些随机变量 (用于实践，你也可以想出一些自己的随机变量). 每一个随机变量都是试验在某方面的数值表示.%
-		\begin{itemize}[<+-|alert@+>]
-			\item 令$X$表示正面朝上的次数，则$X$是一个随机变量,相应的映射如下
-			      % 其可能的取值为 0、1、2. 将其看作是一个函数，$X$ 作用在 $HH$ 上的值为 2,$X$ 作用在 $TH$ 或者 $HT$ 上的值为 1,$X$ 作用在 $TT$ 上的值为 0, 即
-			      $$X(TT)=0, X(HT)=X(TH)=1, X(HH)=2.$$
-			\item 令 $Y$ 表示反面朝上的次数，则 $Y=2-X$, 对于任意的 $\omega\in \Omega$, 有 $Y (\omega)=2-X (\omega)$.
-			\item 设 $I$ 是由第一次掷硬币的结果决定的随机变量：若第一次硬币正面朝上则 $I=1$, 反之 $I=0$, 即
-			      \begin{align*}
-				      I(HH)=I(HT)=1,\quad I(TH)=I(TT)=0.
-			      \end{align*}
-			\item 若正面记 1, 反面记 0, 此时 $\Omega=\{(1,1),(1,0),(0,1),(0,0)\}$. 上述的 $X,Y$ 和 $I$ 可表示为:$$X (\omega_1,\omega_2)=\omega_1+\omega_2,Y (\omega_1,\omega_2)=2-\omega_1-\omega_2,I (\omega_1,\omega_2)=\omega_1.$$
-		\end{itemize}
-	\end{exam}
-\end{frame}
-
-
-\begin{frame}{与函数对比分析}
-	\begin{itemize}[<+-|alert@+>]
-		\item 数学分析中的函数 $f (x)$
-		      \begin{itemize}[<+-|alert@+>]
-			      \item $f (x):D\rightarrow R$, 其中 $D\subset R$
-			      \item $R$ 上可定义距离 $d (x,y)=|x-y|$
-			      \item 可根据距离 $d$ 定义函数的连续性 %
-		      \end{itemize}
-		\item 概率论中的随机变量 $X$
-		      \begin{itemize}[<+-|alert@+>]
-			      \item $X(\omega):\Omega\rightarrow R$
-			      \item 定义域 $\Omega$ 没有距离的定义，\pause 但有事件域 $\mathcal{F}$ 及定义其上的概率 $P$, 即具有结构 $(\Omega, \mathcal{F}, P)$\pause
-			      \item 值域 $R$ 有距离，\pause 但因定义域无距离，故无法考虑随机变量的连续性 \pause
-			      \item 值域 $R$ 还有 $\sigma$- 代数 $\mathcal{B}:=\mathcal{B}(R)$, 有可测空间结构 $(R,\mathcal{B})$
-		      \end{itemize}
-		\item 是否需要对 $X (\omega):\Omega\rightarrow R$ 做一些额外的限定，以便更好的研究 $X$?
-		\item 从赌徒输光问题可以看出，对随机变量 $X$, 我们会关注
-		      \begin{itemize}[<+-|alert@+>]
-			      \item $X (\omega)=x$ 的概率，\pause $X (\omega)\leq x, X (\omega)\in [b,c]$ 的概率 \pause
-			      \item 更一般的，$\forall B\in\mathcal{B}(R), X (\omega)\in B$ 的概率
-		      \end{itemize}
-		\item 概率的定义域是 $\mathcal{F}$, 要想计算 $X (\omega)\in B$ 的概率，当且仅当
-		      \[\forall B\in\mathcal{B}(R), \ X^{-1}(B):=\{\omega: X(\omega)\in B\}\in\mathcal{F}\]
-	\end{itemize}
-\end{frame}
-
-
-
-
-
+\subsection{事件的独立性}
 
 \begin{frame}
-	\frametitle{随机变量的严格数学定义}
-	\vspace{-0.1cm}
-	\begin{defi}[可测映射] 设 $(\Omega,\mathcal{F})$ 和 $(E,\mathcal{E})$ 为两个可测空间并令 $X$ 为从样本空间 $\Omega$ 到 $E$ 的映射，即 $X (\omega):\Omega\rightarrow E$. 若对任意的 $B\in \mathcal{E}$ 均有
-		\begin{eqnarray*}
-			X^{-1}(B):=\{\omega: X(\omega)\in B\}\in \mathcal{F}
-		\end{eqnarray*}
-		则称 $X$ 为 $(\Omega,\mathcal{F})$ 到 $(E,\mathcal{E})$ 的可测映射.
-	\end{defi}
-	\pause %
-
-	若将上述定义中的可测空间 $(E,\mathcal{E})$ 更换为 $(R,\mathcal{B})$，则 % 所定义的可测映射称为可测空间 $(\Omega,\mathcal{F})$ 上的可测函数或随机变量，即:
-	\pause
-	\begin{defi}[可测函数或随机变量] \label{rvdefi1}\hspace{-0.2cm} 设 $(\Omega,\mathcal{F})$ 是可测空间，$X$ 为从样本空间 $\Omega$ 到实数集 $R$ 的映射，即 $X (\omega):\Omega\rightarrow R$. 如果对 $\forall B\in \mathcal{B}$ 均有
-		\[X^{-1}(B):=\{\omega: X(\omega)\in B\}\in \mathcal{F}.\]%
-		则称 $X$ 为可测空间 $(\Omega,\mathcal{F})$ 上的可测函数或随机变量.
-	\end{defi}%
-	\pause
-	\begin{defi}[随机变量的另一定义]\hspace{-0.2cm} \label{rvdefi2} 设 $(\Omega,\mathcal{F})$ 是可测空间，$X$ 为从样本空间 $\Omega$ 到实数集 $R$ 的映射，即 $X (\omega):\Omega\rightarrow R$. 如果对任意的 $x\in R$ 均有
-		\begin{eqnarray*}
-			\{\omega: X (\omega)\le x\}\in \mathcal{F} \mbox{  或  }      \{\omega: X (\omega)< x\}\in \mathcal{F}
-		\end{eqnarray*}
-		则称 $X (\omega)$ 是可测空间 $(\Omega,\mathcal{F})$ 上的随机变量，简称随机变量.
-	\end{defi}
+  \frametitle{两个事件的独立性}
+  \begin{itemize}[<+-|alert@+>]
+  \item 直观上来说，两个事件的独立性是指：一个事件的发生不影响另一个事件的发生。比如在掷两颗骰子的实验中，第一颗骰子的点数和第二颗骰子的点数是互不影响的.
+  \item 从概率的角度看，$P (A|B)$ 与 $P (A)$ 的差别在于：事件 $B$ 的发生改变了事件 $A$ 发生的概率，也即事件 $B$ 对事件 $A$ 有某种影响。故如果 $A$ 与 $B$ 的发生是相互不影响的，则有 \pause
+    \begin{eqnarray*}
+      P(A|B)=P(A),\quad P(B|A)=P(B).
+    \end{eqnarray*}
+    \pause 上面两式均等价于
+    \begin{eqnarray}\label{eq:inden}
+      P(AB)=P(A)P(B)
+    \end{eqnarray}
+  \item 注意到 \eqref{eq:inden} 式对 $P (B)=0$ 或 $P (A)=0$ 仍然成立，为此，我们用 \eqref{eq:inden} 作为两个事件相互独立的定义.
+  \end{itemize}
 \end{frame}
-\begin{frame}
-	\frametitle{随机变量两种定义的等价性}
-	由定义 \ref{rvdefi2} 推定义 \ref{rvdefi1}: 仅需说明若定义 \ref{rvdefi2} 成立，则对任意 $B\in\mathcal{B}$ 均有
-	$$X^{-1}(B):=\{\omega:X(\omega)\in B\}\in \mathcal{F}.$$
-	\pause 即只需说明以下集合包含关系成立即可
-	\begin{eqnarray*}
-		\mathcal{A}:=\{A:X^{-1}(A)\in \mathcal{F}\}\supset \mathcal{B}
-	\end{eqnarray*}
-	\pause
-	欲证上面包含关系成立，我们只需说明以下两点即可：
-	\begin{enumerate}[<+-|alert@+>]
-		\item $\mathcal{A}$ 是 $\sigma$ 代数；
-		\item $O_1:=\{(-\infty,x]:x\in R\}\subset \mathcal{A}$.
-	\end{enumerate}
-	\pause 再由 $\mathcal{B}:=\sigma (O_1)$ 知 $\mathcal{B}\subset \mathcal{A}$.
-\end{frame}
-\begin{frame}
-	\frametitle{$\mathcal{A}:=\{A:X^{-1}(A)\in \mathcal{F}\}$ 为 $\sigma$ 代数}
-	\begin{itemize}[<+-|alert@+>]
-		\item $X^{-1}(R)=\{\omega:X (\omega)\in R\}=\Omega\in \mathcal{F}$, 故 $R\in\mathcal{A}$;
-		\item 若 $A\in\mathcal{A}$, 即 $X^{-1}(A)\in \mathcal{F}$, 则
-		      \begin{eqnarray*}
-			      X^{-1}(\overline{A})&=&\pause \{\omega: X(\omega)\in \overline{A}\}\pause =\{\omega:X(\omega)\notin A\}\\
-			      &=&\pause \overline{\{\omega:X(\omega)\in A\}}=\pause \overline{X^{-1}(A)}\\ \pause &\in&  \mathcal{F}
-		      \end{eqnarray*}
-		\item 对于 $A_j\in \mathcal{A}, j=1,2,\cdots,$ 有 $X^{-1}(A_j)\in \mathcal{F},j=1,2,\cdots.$ 从而
-		      \begin{eqnarray*}
-			      X^{-1}(\cup_{j=1}^\infty A_j)&=&\pause \{\omega:X(\omega)\in\cup_{j=1}^\infty A_j\}
-			      =\pause \cup_{j=1}^\infty \{\omega:X(\omega)\in A_j\}\\
-			      &=&\pause \cup_{j=1}^\infty X^{-1}(A_j)\\ \pause &\in&\mathcal{F}
-		      \end{eqnarray*}
-
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{随机变量的分类以及两个注记}
-	\begin{itemize}[<+-|alert@+>]
-		\item 随机变量 $X$ 是从样本空间 $\Omega$ 到实数 $R$ 的映射，故根据其值域集合可粗略的分为两大类
-		      \begin{itemize}[<+-|alert@+>]
-			      \item 离散型随机变量：其值域集合是有限点集或可数点集即
-			            \[X(\Omega):=\{X(\omega):\omega\in \Omega\}=\{a_n\}_{n\geq 1}\]
-			      \item 非离散型随机变量：其值域集合不是有限点集或可数点集
-		      \end{itemize}
-	\end{itemize}
-	\pause
-	\begin{rmk} 随机变量的两点注记:
-		\begin{itemize}[<+-|alert@+>]
-			\item 首先, 随机变量是确定性函数, 自身并没有随机性. 给定样本空间上的样本点, 有唯一确定的实数值与之相对应, 这种对应关系并没有不确定性. 所有的不确定性都体现在样本点是否在试验结果中出现, 和随机变量本身没有关系。随机变量的引入, 更多地是为了数学处理上的方便.
-			\item 其次, 随机变量并不是概率论中独有的概念. 若将前面可测映射中的$(\Omega, \mathcal{F}), (E, \mathcal{E})$均取为$(R, \mathcal{B}(\mathbb{R}))$, 则可测映射的定义便退化为实分析中的 ``可测函数". 随机变量是一特殊的可测函数.
-		\end{itemize}
-
-	\end{rmk}
-
-\end{frame}
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{frame}{示性随机变量}
-	\begin{exam}
-		设 $\Omega$ 是某随机试验的样本空间，$\mathcal{F}$ 为其事件域 ($\sigma$ 代数)，则对于任意的 $A\in \mathcal{F}$， 示性函数
-		$I_A(\omega):=\left\{
-			\begin{array}{ll}
-				0, & \omega\notin A \\
-				1, & \omega\in A
-			\end{array}\right.$ 是随机变量.
-	\end{exam}
-
-	\pause
-	\jieda  由示性函数的定义知：
-	\begin{eqnarray*}
-		\{\omega:I_A(\omega)\le x\}=\left\{
-		\begin{array}{ll}
-			\pause \emptyset, & x<0,        \\ \pause
-			\overline{A},     & x\in [0,1), \\\pause
-			\Omega,           & x\ge 1.
-		\end{array}
-		\right.
-	\end{eqnarray*}
-	\pause
-	显然，无论 $x$ 取何值，均有 $\{\omega:I_A (\omega)\le x\}\in \mathcal{F}$
-
-
-\end{frame}
-
-
-
-
 
 \begin{frame}
-	\frametitle{随机变量的性质}
+  \frametitle{两个事件独立性的定义}
+  \begin{defi}
+    如果对事件 $A$ 与 $B$ 有
+    \begin{eqnarray*}
+      P(AB)=P(A)P(B)
+    \end{eqnarray*}
+    成立，则称 \textcolor{red}{事件 $A$ 与 $B$ 相互独立}, 简称 \textcolor{red}{$A$ 与 $B$ 独立}. 否则称 $A$ 与 $B$ 不独立或相依.
+  \end{defi}
+
+\begin{rmk}
+	\begin{itemize}
+		\item 零概率事件 $E$ 与任何事件相互独立，特别的，不可能事件与任何事件相互独立
+		\item 若$A, B$互不相容且独立, 则$A, B$至少有一个零概率事件
+        \item 非零概率不相容事件,一定不独立; 非零概率独立事件，一定相容
+        \item 若事件$A$与其自身相互独立,则$P(A)=0$, 或$P(A)=1$
+\end{itemize}
+
+
+\end{rmk}
+
+\pause
+  \textcolor{red}{如何确定事件的独立性: }
+  \begin{itemize}[<+-|alert@+>]
+  \item 实际问题中，两个事件的独立大多根据经验及相互有无影响的直观性来判断.
+  \item 但对于较复杂事件，有无相互影响并不是很直观，则需要验证 \eqref{eq:inden} 式是否成立来说明独立性.
+  \end{itemize}
+\end{frame}
+
+
+ \begin{frame}
+	\frametitle{对立事件的独立性}
 	\begin{thm}
-		若 $X,Y, \{X_n,n\ge 1\}$ 都为概率空间 $(\Omega,\mathcal{F},P)$ 上的随机变量，则
-		\begin{enumerate}[<+-|alert@+>]
-			\item $|X|$，$aX+bY,(a,b\in R)$ 均为随机变量；
-			\item $X^+:=X\vee 0, X^-:=(-X)\vee 0$ 均为随机变量；
-			\item $XY$ 为随机变量；
-			\item 若 $X/Y$ 处处有意义，则 $X/Y$ 为随机变量；
-			\item $\inf_{n} X_n,\sup_nX_n, \liminf_{n\rightarrow\infty} X_n, \limsup_{n\rightarrow\infty} X_n$ 均为随机变量.
-		\end{enumerate}
-
+		若 $A$ 与 $B$ 独立，则 $A$ 与 $\overline{B}$ 独立，$\overline{A}$ 与 $B$ 独立，$\overline{A}$ 与 $\overline{B}$ 独立.
 	\end{thm}
+	\pause
+
+	\zheng 我们仅证 $P (A\overline{B})=P (A) P (\overline{B})$, 其余类似可证.
+	\begin{eqnarray*}
+		P(A\overline{B})&=&\pause P(A-B)=\pause P(A)-P(AB)\pause =P(A)-P(A)P(B)\\
+		&=&\pause P(A)(1-P(B))=\pause P(A)P(\overline{B})
+	\end{eqnarray*}
 
 	\pause
-	\zheng
-	\begin{enumerate}[<+-|alert@+>]
-		\item
-		      \begin{itemize}[<+-|alert@+>]
-			      \item $\{\omega:|X|<x\}=\{\omega:-x<X<x\}=\{\omega:X<x\}\cap\overline{\{\omega:X\le -x\}}\in \mathcal{F}$;
-			      \item  $\{\omega:aX<x\}=\{\omega:X<\dfrac{x}{a}\}\in \mathcal{F}$,  (当 $a>0$ 时);
-			      \item  设 $Q$ 为有理数集，则
-			            \begin{eqnarray*}
-				            \{\omega:X+Y<x\}&=&\pause \{\omega:X<x-Y\}=\pause \cup_{r\in Q}\{\omega:X<r<x-Y\}\\
-				            &=&\pause \cup_{r\in Q}\{\omega:X<r,Y<x-r\}\\
-				            &=&\pause \cup_{r\in Q}(\{\omega:X<r\}\cap \{\omega:Y<x-r\})\\\pause
-				            &\in& \mathcal{F}
-			            \end{eqnarray*}
-			      \item $aX+bY$ 为随机变量显然
-		      \end{itemize}
-	\end{enumerate}
-
-
-\end{frame}
-\begin{frame}
-	\vspace{0.6cm}
-	\begin{enumerate}[<+-|alert@+>]
-		\setcounter{enumi}{1}
-		\item 注意到 $X^+=\dfrac{|X|+X}{2}, X^-=\dfrac{|X|-X}{2}$，易得 $X^+,X^-$ 均为随机变量；
-		\item 首先假定 $X,Y$ 非负， 则对任意的 $x>0$ 有
-		      \begin{eqnarray*}
-			      \{XY<x\}&=&\pause \{X=0\}\cup \{Y=0\}\cup \left(\cup_{r\in Q_+}\left[\{X<r\}\cap \{Y<\frac{x}{r}\}\right]\right)\\ \pause
-			      &\in&\mathcal{F}.
-		      \end{eqnarray*}
-		      \pause
-		      对一般的 $X,Y$, 由 $X^+,X^-,Y^+,Y^-$ 为随机变量，可得
-		      \begin{eqnarray*}
-			      XY=(X^+-X^-)(Y^+-Y^-)=(X^+Y^++X^-Y^-)-(X^+Y^-+X^-Y^+)
-		      \end{eqnarray*}
-		      为随机变量.
-		\item 设 $|Y|>0$ 处处成立，易证 $\dfrac{1}{Y}$ 是随机变量， 故 $\dfrac{X}{Y}=X\cdot \dfrac{1}{Y}$ 为随机变量.
-		\item 对任意的 $x\in R$, 我们有
-		      \begin{eqnarray*}
-			      \{\inf_nX_n<x\}=\cup_n\{X_n<x\}, \quad \{\sup_nX_n\le x\}=\cap_n\{X_n\le x\}
-		      \end{eqnarray*}
-
-	\end{enumerate}
-
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{简单随机变量}
-	\begin{exam}
-		设 $(\Omega,\mathcal{F},P)$ 为一概率空间，$A_i\in\mathcal{F}, i=1,\cdots,n$ 为 $\Omega$ 的一个分割，$a_i,i=1,\cdots, n$ 为 $n$ 个不同的实数，则
-		\begin{eqnarray}\label{eq:simplerv}
-			X(\omega):=\sum_{i=1}^na_iI_{A_i}(\omega)
-		\end{eqnarray}
-		作为 $n$ 个示性随机变量的线性组合，仍为随机变量。我们称形如 \eqref{eq:simplerv} 的 $X (\omega)$ 为简单随机变量.
-	\end{exam}
-
-\end{frame}
-
-\begin{frame}{随机变量的函数是否仍为随机变量？}
-	\vspace{0.5cm}
-	\begin{thm}
-		设 $X$ 是可测空间 $(\Omega,\mathcal{F})$ 上的随机变量，$g (x)$ 为 $(R,\mathcal{B})\rightarrow (R,\mathcal{B})$ 上的Borel可测函数，证 $Y:=g (X)$ 为 $(\Omega,\mathcal{F})$ 上的随机变量.
-	\end{thm}
-
-	\vspace{0.3cm}
-	\pause
-	\zheng 注意到，对任意的 $B\in \mathcal{B}$, $g^{-1}(B)\in \mathcal{B}$, 故 \pause
-	\begin{align*}
-		Y^{-1}(B) & =\pause \{\omega:Y(\omega)\in B\}         \\
-		          & =\pause \{\omega:g(X(\omega))\in B\}      \\
-		          & =\pause \{\omega:X(\omega)\in g^{-1}(B)\} \\
-		          & =\pause X^{-1}(g^{-1}(B))                 \\ \pause
-		          & \in  \mathcal{F}
-	\end{align*}
-
+	对于上面的定理直观上来理解也是很容易的：因 $A,B$ 独立，故 $A$ 的发生不影响 $B$ 的发生，从而也不会影响 $B$ 的不发生，$\cdots$
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{随机变量的结构}
-	对于 $(\Omega,\mathcal{F},P)$ 上的任意非负随机变量 $X$ 及自然数 $n$，我们可将 $\Omega$ 按 $X$ 的取值进行分割。即令
-	\begin{eqnarray*}
-		A_k(\omega)&:=&\pause \{\omega:\frac{k}{2^n}\le X(\omega)<\frac{k+1}{2^n}\}, k=0,1,\cdots, n2^n-1\\
-		A_{n2^n}(\omega)&:=&\pause \{\omega:X(\omega)\ge n\}
-	\end{eqnarray*}
-	\pause 则
-	\begin{eqnarray*}
-		X_n(\omega):=\sum_{k=0}^{n2^n}\frac{k}{2^n}I_{A_k}(\omega)
-	\end{eqnarray*}
-	为简单随机变量且随机变量序列 $\{X_n,n\ge 1\}$ 满足
-	\begin{eqnarray*}
-		0\le X_1(\omega)\le X_2(\omega)\le \cdots\le X_n(\omega)\rightarrow X(\omega)
-	\end{eqnarray*}
-\end{frame}
-\begin{frame}
-	\frametitle{$X_n (\omega)$ 的单调性}
-	% 事实上，要说明 $X_n (\omega)\le X_{n+1}(\omega)$，只需要说明在 $\Omega$ 有限分割集合 $A_k, k=0,1,\cdots,n2^n$ 上均有 $X_n (\omega)\le X_{n+1}(\omega)$.
-	注意到对任意的 $k=0,1,\cdots,n2^n-1$，
-	\begin{eqnarray*}
-		A_k(\omega)&=&\pause \{\omega:\frac{k}{2^n}\le X(\omega)<\frac{k+1}{2^n}\}=\pause \{\omega:\frac{2k}{2^{n+1}}\le X(\omega)<\frac{2(k+1)}{2^{n+1}}\}\\
-		&=&\pause \{\omega:\frac{2k}{2^{n+1}}\le X(\omega)<\frac{2k+1}{2^{n+1}}\}\cup \{\omega:\frac{2k+1}{2^{n+1}}\le X(\omega)<\frac{2k+2)}{2^{n+1}}\}\\
-		&=&\pause A_k^1(\omega)\cup A_k^2(\omega)
-	\end{eqnarray*}
-	\pause 故在集合 $A_k (\omega),k=0,1,\cdots,n2^n-1$ 上，\pause
-	\begin{eqnarray*}
-		X_{n+1}(\omega)=
-		\left\{\begin{array}{ll}
-			\pause  \frac{2k}{2^{n+1}},   & \omega\in A_k^1(\omega)  \\ \pause
-			                              &                          \\
-			\pause  \frac{2k+1}{2^{n+1}}, & \omega\in A_k^2(\omega)
-		\end{array}
-		\right.\pause  (\textcolor{red}{\ge \frac{k}{2^n}=X_n(\omega)})
-	\end{eqnarray*}
-	\pause
-	而在 $A_{n2^n}(\omega):=\{\omega:X (\omega)\ge n\}=\{\omega:X (\omega)\ge \frac{n2^{n+1}}{2^{n+1}}\}$ 上，显然有
-	\pause $$X_{n+1}(\omega)\ge n=X_n(\omega).$$
-\end{frame}
+\begin{frame}{概率测度与独立性的关系}
+  \begin{exam}
+    考虑掷硬币问题, 记正面向上对应的样本点为 "$H$", 反面向上为 "$T$", 那么连续掷三次的结果构成样本空间
+  \[
+  \Omega=\{H H H, H H T, H T H, H T T, T H H, T H T, T T H, T T T\},
+  \]
+    令事件$A$为 "最后一次是反面", $B$为 "三次结果相同", 则有
+  \[
+  A=\{H H T, H T T, T H T, T T T\},  B=\{H H H, T T T\}
+  \]试讨论 $A, B$的独立性.
+  \end{exam}
+\pause
 
-\begin{frame}
-	\frametitle{$X_n (\omega)$ 的收敛性}
-	注意到，对任意的 $\omega$, 必定存在 $k$ 使得
-	\begin{eqnarray*}
-		\frac{k}{2^n}\le X(\omega)<\frac{k+1}{2^n},
-	\end{eqnarray*}
-	\pause 从而
-	\begin{eqnarray*}
-		0\le X(\omega)-X_n(\omega)\le \frac{1}{2^n}
-	\end{eqnarray*}
-	\pause 显然有
-	\begin{eqnarray*}
-		\lim_{n\rightarrow \infty}X_n(\omega)=X(\omega).
-	\end{eqnarray*}
-\end{frame}
-\begin{frame}
-	\frametitle{随机变量的简单随机逼近}
-	\begin{thm}
-		对 $(\Omega,\mathcal{F},P)$ 上的实值变量 $X (\omega)$ 为随机变量的充要条件是：存在简单随机变量序列 $\{X_n (\omega),n\ge 1\}$ 使得
-		\begin{eqnarray*}
-			\lim_{n\rightarrow \infty}X_n(\omega)=X(\omega), \quad \forall \omega\in \Omega
-		\end{eqnarray*}
-		而且当 $X$ 非负时，还可选取 $\{X_n (\omega),n\ge 1\}$ 为非负单调不减的简单随机变量序列.
-	\end{thm}
+\jieda: 设每次抛掷反面向上的概率是$p$, 那么\pause
+\[
+P(A)=p^{3}+2 p^{2}(1-p)+p(1-p)^{2}, \pause  P(B)=p^{3}+(1-p)^{3},  P(A B)=p^{3},
+\]
+\pause
+不难验证, $p=0$、$p=1$和$p=\frac{1}{2}$时,$A$和$B$是独立的, 否则两者不独立.
+
+
 \end{frame}
 
 
@@ -419,733 +110,360 @@
 
 
 
-
-
-
-
-
-\begin{frame}{随机变量的生成$\sigma$-代数}
+   \begin{frame}
+	\frametitle{三个事件的独立性}
 	\begin{defi}
-	(\tc{单个随机变量的生成$\sigma$-代数}) 设$X$为定义在$(\Omega,\mathcal{F})$上的随机变量并令
-	$\mathcal{F}_X:=\{X^{-1}(A):A\in \mathcal{B}(\mathbb{R})\}$. 我们称$\sigma(X):=\sigma\left(\mathcal{F}_{X}\right)$为随机变量$X$的生成$\sigma$-代数.
+		设 $A,B,C$ 三个事件，如果有
+		\begin{eqnarray}\label{eq:inden1}
+			\left.\begin{array}{l}
+				P(AB)=P(A)P(B)\\
+				P(AC)=P(A)P(C) \\
+				P(BC)=P(B)P(C)
+			\end{array}\right\}\\
+			\label{eq:inden2}
+			P(ABC)=P(A)P(B)P(C)
+		\end{eqnarray}
+		则称 $A,B,C$ 相互独立。如果仅有 \eqref{eq:inden1} 式成立，则称 $A,B,C$ 两两独立.
+	\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{两两独立与相互独立的关系}
+	\begin{itemize}[<+-|alert@+>]
+		\item 由定义可知，三个事件相互独立必能推出两两独立.
+		\item 但两两独立未必能推出相互独立，即 \eqref{eq:inden1} 式成立，不一定能推出 \eqref{eq:inden2} 成立
+		\begin{itemize}
+			\item 考虑独立投掷两枚均匀硬币的随机试验，设事件 $A$ 代表第一枚硬币正面朝上，事件 $B$ 代表第二枚硬币正面朝上，事件 $C$ 表示两枚硬币结果相同。易知: \pause
+			$A$ $B$ 和 $C$ 是两两独立，但
+			\begin{align*}
+				P(A\cap B\cap C)=1/4\neq 1/8=P(A)P(B)P(C).
+			\end{align*}
+			\item 考虑一个均匀的正四面体，第一二三面分别染上红 / 白 / 黑色，第四面同时染上红白黑色。现在以 $A,B,C$ 分别记投一次四面体出现红，白，黑色朝下的事件。则易有 \pause
+			\begin{eqnarray*}
+				P(A)=P(B)=P(C)=\pause 1/2\\ \pause
+				P(AB)=P(BC)=P(AC)=\pause 1/4\\ \pause
+				P(ABC)=\pause 1/4    \pause
+			\end{eqnarray*}
+		\end{itemize}\vspace{-0.7cm}
+	\end{itemize}
+\end{frame}
+
+		\begin{frame}
+			\frametitle{两两独立与相互独立的关系}
+			\begin{itemize}[<+-|alert@+>]
+		\item 反之，如果 \eqref{eq:inden2} 成立，是否能推出 \eqref{eq:inden1} 成立？
+		\begin{itemize}[<+-|alert@+>]
+			\item 考虑一个均匀的正八面体，第 1, 2, 3, 4 面染上红色，第 1, 2, 3, 5 面染上白色，第 1, 6, 7, 8 面染上黑色。现在以 $A,B,C$ 分别记投一次八面体出现红，白，黑色朝下的事件，则 \pause
+			\begin{eqnarray*}
+				P(A)=P(B)=P(C)=\pause 4/8=1/2\\ \pause
+				P(ABC)=\pause 1/8   \\ \pause
+				P(AB)=3/8\pause \neq 1/4=P(A)P(B)
+			\end{eqnarray*}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{三个以上事件的独立性}
+	\begin{defi}
+		设 $(\Omega,\mathcal{F}, P)$ 为一概率空间，$A_1,A_2,\cdots,A_n\in\mathcal{F}$, 对任意的 $1\le k\le n$ 及任意的 $1< j_1<j_2<\cdots<j_k\leq n$ 均有:
+		\begin{eqnarray}\label{eq:mulinden0}
+			P(A_{j_1}A_{j_2}\cdots A_{j_k})=P(A_{j_1})P(A_{j_2})\cdots P(A_{j_k})
+		\end{eqnarray}
+		成立，则称事件 $A_1,\cdots, A_n$ 相互独立.
 	\end{defi}
 	\pause
+	\begin{itemize}[<+-|alert@+>]
+		\item \eqref{eq:mulinden0} 式共有多少个等式？\pause
+		\begin{eqnarray}
+			\label{eq:mulinden}
+			\left.\begin{array}{l}
+				P(A_{j_1}A_{j_2})=P(A_{j_1})P(A_{j_2})\\
+				P(A_{j_1}A_{j_2}A_{j_3})=P(A_{j_1})P(A_{j_2})P(A_{j_3}) \\
+				\qquad \vdots\\
+				P(A_1A_2\cdots A_n)=P(A_1)P(A_2)\cdots P(A_n)
+			\end{array}\right\} \pause \textcolor{red}{C_n^2+\cdots+C_n^n=2^n-n-1}
+		\end{eqnarray}
+		\pause
+		\item 从定义可以看出，$n$ 个相互独立事件中的任取 $m$($2\le m\le n$) 个事件仍是相互独立的，而且任意一部分与另一部分也是独立的.
+		\item 类似于前面的证明，将相互独立事件中的任一部分换为对立事件，所得诸事件仍是相互独立的.
+	\end{itemize}
 
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{任意多个事件相互独立}
+	\begin{defi}
+		设 $(\Omega,\mathcal{F}, P)$ 为一概率空间，每个 $t\in T$ 有 $A_t\in \mathcal{F}$. 称 $\{A_t, t\in T\}$ 为独立事件族，如果对 $T$ 的任意有限子集 $\{t_1,t_2,\cdots, t_s\}$, 事件 $A_{t_1}, A_{t_2},$ $\cdots, A_{t_s}$ 相互独立.
+	\end{defi}
+
+
+	\vspace{0.8cm}
+	\pause
+	\begin{exam}
+		$\mathcal{F}$ 中事件序列 $\{A_n\}$ 为相互独立的充分必要条件是，任意 $n\geq 1$, 事件 $A_1,A_2, \cdots, A_n$ 独立；等价的，任意有限个自然数 $k_1,\cdots, k_s$ 有
+		\begin{eqnarray*}
+			P(A_{k_1}A_{k_2}\cdots A_{k_s})=P(A_{k_1})P(A_{k_2})\cdots P(A_{k_s})
+		\end{eqnarray*}
+
+	\end{exam}
+
+\end{frame}
+
+
+\begin{frame}{条件独立}
 \begin{defi}
-  (\tc{有限个随机变量的生成$\sigma$-代数})设$X_k, k=1,2,\cdots, n$为定义在$(\Omega,\mathcal{F})$上的随机变量并令
-  $\mathcal{F}_{X_k}:=\{X_k^{-1}(A):A\in \mathcal{B}(\mathbb{R})\}$. 我们称\[\sigma(X_1,X_2,\cdots,X_n):=\sigma\left(\cup_{k=1}^n\mathcal{F}_{X_k}\right)\]为随机变量$X_1,X_2,\cdots,X_n$的生成$\sigma$-代数.
+称事件 $A$ 和 $B$ 是关于 $E$ 条件独立的，如果 $$P (A\cap B|E)=P (A|E) P (B|E)$$
 \end{defi}
 \pause
 \begin{itemize}[<+-|alert@+>]
-	\item $\mathcal{F}_{X}, \mathcal{F}_{X_k}$均为$\sigma$-代数, 但$\cup_{k=1}^n\mathcal{F}_{X_k}$不一定是$\sigma$-代数, 因此
-	\[\sigma(X)=\mathcal{F}_X, \quad \mbox{ 但  } \quad  \sigma(X_1,X_2,\cdots,X_n)\neq \cup_{k=1}^n\mathcal{F}_{X_k}.\]
-	\item 若$X$是$(\Omega,\mathcal{F})$上的随机变量,则必有$\sigma(X):=\mathcal{F}_X\subset\mathcal{F}$, 即$\sigma(X)$是$\Omega$上使得$X$成为随变量所需要的最小$\sigma$-代数.
-	\item 类似的, $\sigma(X_1,X_2,\cdots,X_n)$是$\Omega$上使得$X_1,X_2,\cdots,X_n$为随机变量所需要的最小$\sigma$-代数.
-	\item 随机变量$X$生成的$\sigma-$代数$\sigma(X)$集中体现了$X$的取值信息.
+\item 两个事件可以在给定事件 $E$ 的条件下是条件独立的，但它们不是独立的.
+\item 两个事件可以是独立但却不是关于 $E$ 条件独立的.
+\item 两个事件可以关于 $E$ 条件独立但关于 $\overline{E}$ 不存在条件独立.
 \end{itemize}
 \end{frame}
-\begin{frame}{两个随机变量之间的关系}
-\begin{defi}
-考虑两个随机变量$X, Y$，如果对任意的$B\in\mathcal{B}(\mathbb{R})$均有
-\[
-Y^{-1}(B) \in \sigma(X),\ \mbox{等价的}\ \sigma(Y)\subset \sigma(X).
-\]则称$Y$适应(adaptive to) $X$.
-\end{defi}
 
+\begin{frame}{条件独立不意味着独立}
+\begin{exam}
+假设有两枚硬币，一枚是均匀的，一枚是不均匀的。从两枚硬币中随机的选一枚硬币并进行抛掷 2 次，若令
+\begin{align*}
+  F &:=\{\mbox{选取的硬币是均匀的}\}\\
+   A_{1}&:= \{\mbox{第一次投掷硬币正面朝上}\}\\
+   A_{2}&:= \{\mbox{第二次投掷硬币正面朝上}\}
+\end{align*}
+则给定 $F$ 为条件，$A_1$ 和 $A_2$, 是相互独立的，$A_1$ 和 $A_2$ 并不是无条件独立的，因为 $A_1$ 会提供关于 $A_2$ 的信息.
+\end{exam}
+\end{frame}
+
+\begin{frame}{独立不意味着条件独立}
+\begin{exam}
+假设只有我的朋友 Alice 和 Bob 给我打过电话。每天他俩都会相互独立地决定是否给我打电话。若令
+\begin{align*}
+	 A&:= \{\mbox{Alice 给我打电话}\}\\
+	 B&:= \{\mbox{Bob 给我打电话}\}\\
+     R&:=\{\mbox{听到电话铃响}\}
+  \end{align*}
+  \pause
+  \begin{itemize}[<+-|alert@+>]
+  \item 显然，$A$ 和 $B$ 是无条件独立的.
+  \item 但现在我听到一声电话铃响，那 $A$ 和 $B$ 就不再独立了：如果这个电话不是 Alice 打的，那就肯定是 Bob 打的。从而 \pause
+  $$P(B|R)<1=P(B|\overline{A}R)= \frac{P(B\overline{A}R)}{P(\overline{A}R)}= \frac{P(B\overline{A}|R)}{P(\overline{A}|R)}.$$
+  显然: $P (B\overline{A}|R)>P (B|R) P (\overline{A}|R)$
+  \item $B$ 与 $\overline{A}$ 关于 $R$ 不条件独立，$A,B$ 亦是如此.
+  \end{itemize}
+
+\end{exam}
+\end{frame}
+
+\begin{frame}{给定 $E$ 条件独立 $vs$ 给定 $\overline{E}$ 条件独立}
+\begin{exam}
+\label{27}
+假设有两种课程：好的课程和坏的课程。在好的课上，如果你努力，就很有可能得到 $A$. 在坏的课上，教授随机分配给学生分数，而不管他们是否努力。若令
+\begin{align*}
+	G&:= \{\mbox{这个课程是好的}\}\\
+	W&:= \{\mbox{你学习努力}\}\\
+	A&:=\{\mbox{你的得分为} A\}
+ \end{align*}
+ \pause 这时，给定 $\overline{G}$, $A$ 和 $W$ 是条件独立的，但给定 $G$, $A$ 和 $W$ 却不是独立的！
+
+\end{exam}
+\end{frame}
+
+\begin{frame}{集类(族)的独立性}
+\begin{defi}
+  \tc{(集类(族)的独立性)} 考虑样本空间$\Omega, \mathcal{A}_{k} \subset \Omega$, $k=1,\cdots, n$. 称集类(族)$\left\{\mathcal{A}_{k}\right\}_{k=1}^{n}$是相互独立的, 如果$\left\{\mathcal{A}_{k}\right\}_{k=1}^{n}$满足
+\[
+P\left(\bigcap_{k \in I} A_{k}\right)=\prod_{k \in I} P\left(A_{k}\right),  \forall A_{k} \in \mathcal{A}_{k},  \forall I \subset\{1,2, \cdots, n\}.
+\]
+\end{defi}
 \pause
 
 \begin{thm}
-考虑可测空间$(\Omega, \mathcal{F})$, $X$和$Y$为定义其上的随机变量. 若$Y$适应$X$, 则存在可测函数$g: \mathbb{R} \rightarrow \mathbb{R}$, 使得
+  \tc{(\(\sigma\)-代数的独立性)} 设 \( \mathcal{F}_{1}, \cdots, \mathcal{F}_{n} \) 为\( \Omega \)上的 \( \sigma\)-代数, 若
 \[
-Y(\omega)=g(X(\omega)),  \ \forall \omega \in \Omega .
+P\left(A_{1} A_{2} \cdots A_{n}\right)=P\left(A_{1}\right) P\left(A_{2}\right) \cdots P\left(A_{n}\right), \quad \forall A_{k} \in \mathcal{F}_{k}, k=1,2, \cdots, n
 \]
+
+则 \( \mathcal{F}_{1}, \mathcal{F}_{2}, \cdots, \mathcal{F}_{n} \) 是独立的.
 \end{thm}
 
 \pause
 
-\begin{rmk}
-	\begin{itemize}[<+-|alert@+>]
-		\item 随机变量的生成$\sigma$-代数研究随机变量间关系起着重要作用.
-		\item 直观地看,$Y$适应$X$, 意味着$Y$包含的信息被$X$包含的信息所涵盖. 换句话说,$Y$和$X$间存在导出关系.
-	\end{itemize}
-\end{rmk}
-
-
-
-\end{frame}
-\subsection{随机向量}
-
-\begin{frame}{随机向量: 如何定义$\mathcal{B}(\mathbb{R}^n)$}
-\begin{itemize}
-	\item 直观上来讲, 随机向量就是取值于$\mathbb{R}^n$的随机变量.
-	\item 如何定义$\mathcal{B}(\mathbb{R}^n)$
-	\begin{itemize}[<+-|alert@+>]
-		\item 注意到$$\mathbb{R}^n:=\mathbb{R}\times \mathbb{R}\times\cdots\times \mathbb{R}=\Pi_{k=1}^n\mathbb{R}$$
-		\item 我们希望
-		\[\mathcal{B}(\mathbb{R}^n)=\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R})=\Pi_{k=1}^n\mathcal{B}(\mathbb{R})\]
-		\item 但$\Pi_{k=1}^n\mathcal{B}(\mathbb{R})$不是$\sigma$-代数.
-		\item 因此, 定义
-		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R}))=\sigma(\Pi_{k=1}^n\mathcal{B}(\mathbb{R}))\]
-		\item 我们也可以类比$\mathcal{B}(\mathbb{R})$的定义方法, 先定义$\mathbb{R}^n$上的立方体
-		$$I=I_1\times I_2\times\cdots\times I_n=\Pi_{k=1}^nI_k, \ I_k=(a_k, b_k].$$ 然后定义$\mathcal{B}(\mathbb{R}^n)$为:
-		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\{I:I\mbox{为}\mathbb{R}^n\mbox{上的立方体}\}).\]%集合的生成$\sigma$-代数来定义$\mathcal{B}(\mathbb{R}^n)$.
-	\end{itemize}
-
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{随机向量}
-\begin{defi}
-(\tc{$n$维随机向量}) 考虑可测空间$(\Omega,\mathcal{F})$, 若映射$X: \Omega \rightarrow \mathbb{R}^{n}$使得对任意的$B \in \mathcal{B}(\mathbb{R}^{n})$均有
-	\[
-	X^{-1}(B) \in \mathcal{F}
-	\]
-则称$X$为$n$维随机向量.
-\end{defi}
-\pause
-\begin{rmk}
-若记$X=(X_1, X_2,\cdots, X_n)$, 则$X$为$n$维随机向量当且仅当$X_k, k=1,\cdots,n$为随机变量.
-\end{rmk}
-
-\pause
-\begin{defi}
-(\tc{复随机变量}) 考虑可测空间$(\Omega,\mathcal{F})$以及映射$Z$
-\[
-Z(\omega)=X(\omega)+\mathrm{i} Y(\omega) \in \mathbb{C}
-\]
-其中$\mathrm{i}=\sqrt{-1}$是虚数单位. 如果$(X(\omega), Y(\omega))$构成二维随机向量, 则称$Z$为复随机变量.
-\end{defi}
-
-\end{frame}
-
-
-\subsection{随机变量的分布}
-\title [概率论]{第九讲：随机变量及其分布随机变量的分布与性质}
-\author [张鑫 {\rm Email: x.zhang.seu@foxmail.com} ]{\large 张 鑫}
-\institute [东南大学数学学院]{\large \textrm{Email: x.zhang.seu@foxmail.com} \\ \quad  \\
-	\large 东南大学 \quad 数学学院 \\
-	\vspace{0.3cm}
-	%  \trc{公共邮箱: \textrm{zy.prob@qq.com}\\
-	%    \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
-}
-\date{}
-\begin{frame}
-	\frametitle{分布与分布函数}
-	\begin{thm}
-		设 $X$ 为 $(\Omega,\mathcal{F},P)$ 上的随机变量，对于 Borel 集 $B$, 定义集函数 $\mathbf{F}(B)$ 如下：
-		\begin{eqnarray}\label{eq:rvprob}
-			\mathbf{F}(B):=P(X^{-1}(B))=P\circ X^{-1}(B)=P(X\in B)
-		\end{eqnarray}
-		则 $\mathbf{F}(\cdot)$ 为 $(R,\mathcal{B})$ 上的概率，称之为随机变量 $X$ 的诱导概率测度.
-	\end{thm}
-	\vspace{0.2cm}
-	\pause
-	\begin{defi}
-		称由 \eqref{eq:rvprob} 式定义在 $(R,\mathcal{B})$ 上的概率测度 $\mathbf{F}(\cdot)$ 为随机变量 $X$ 的概率分布，简称分布.
-	\end{defi}
-	\pause
-	\vspace{0.2cm}
-	\begin{itemize}[<+-|alert@+>]
-		\item 给定概率空间 $(\Omega,\mathcal{F},P)$，任给随机变量均可在 $(R,\mathcal{B})$ 上诱导出一个概率测度。由此可见，在同一个可测空间上可以定义不同的概率测度.
-		\item 对于任意的 $B\in \mathcal{B}$，随机变量 $X$ 落入 $B$ 中的概率可通过 $B$ 的概率测度 $\mathbf{F}(B)$ 得出。这也就是说，概率分布 $\mathbf{F}(\cdot)$ 完全刻画了随机变量 $X$ 取值的概率规律.
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{随机变量的分布函数}
-	如果我们将 $(R,\mathcal{B})$ 上的测度仅局限于集类 $\mathcal{P}:=\{(-\infty,x],x\in R\}$ 上，由于 $\mathcal{P}$ 中的每条半直线被它的右端点 $x$ 所决定，于是集函数 $F$ 就化为 $R$ 上的点函数.
-	\pause
-	\begin{defi}
-		对于随机变量 $X$ 而言，称 $x$ 的函数
-		\begin{eqnarray*}
-			F(x):=\mathbf{F}((-\infty,x])=P(X\le x)
-		\end{eqnarray*}
-		为 $X$ 的概率分布函数或累积分布函数，简称分布函数并记作 $X\sim F (x)$, 有时也以 $F_X (x)$ 表明是 $X$ 的分布函数.
-	\end{defi}
-	\pause  \begin{rmk}
-		也有一些教材按如下方式定义分布函数:
-		\begin{eqnarray*}
-			F(x):=\mathbf{F}((-\infty,x))=P(X<x)
-		\end{eqnarray*}
-
-	\end{rmk}
-\end{frame}
-
-\begin{frame}
-	\frametitle{分布函数的性质}
-	\begin{thm}
-		任一分布函数 $F (x)$ 都具有以下三条基本性质
-		\begin{enumerate}[<+-|alert@+>]
-			\item 单调性非降性：$F (x)$ 是单调非减函数即对任意的 $x_1<x_2$, 有 $F (x_1)\le F (x_2)$;
-			\item 右连续性：$F (x)$ 是 $x$ 的右连续函数，即
-			      \begin{eqnarray*}
-				      F(x_0)=F(x_0+):=\lim_{x\rightarrow x_0+}F(x)
-			      \end{eqnarray*}
-
-			\item 规范性：对任意的 $x$ 有，$0\le F (x)\le 1$ 且
-			      \begin{eqnarray*}
-				      F(-\infty)=\lim_{x\rightarrow-\infty}F(x)=0\\
-				      F(+\infty)=\lim_{x\rightarrow +\infty}F(x)=1
-			      \end{eqnarray*}
-		\end{enumerate}
-
-	\end{thm}
-	\pause%
-	\begin{rmk}
-	在函数论中, 我们一般不从随机变量出发来定义分布函数, 而是直接定义满足上面三条性质的函数为分布函数.
-	\end{rmk}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{分布函数性质的证明}
-	\begin{enumerate}[<+-|alert@+>]
-		\item 对任意的 $x<y$, $F (y)-F (x)=P (x< X\le y)\ge 0$；
-		\item 因 $F (x)$ 是单调有界非降函数，所以其任一点 $x_0$ 的右极限 $F (x_0+)$ 必存在，为证其连续性，只需证对单调上下降且收敛至 $x_0$ 的数列 $\{x_n\}$ 有 $\lim_{n\rightarrow\infty} F (x_n)=F (x_0)$ 即可。注意到
-		      \begin{eqnarray*}
-			      \lim_{n\rightarrow\infty}F(x_n)&=&\pause \lim_{n\rightarrow\infty}P(X\le x_n)=\pause P(\cap_{n=1}^\infty \{X\le x_n\})=\pause P(X\le x_0)\\\pause
-			      &=&F(x_0)
-		      \end{eqnarray*}
-
-
-		\item 由 $F$ 的单调性及概率的连续性可知
-		      \begin{eqnarray*}
-			      F(+\infty)&=&\pause \lim_{n\rightarrow +\infty}F(n)=\lim_{n\rightarrow +\infty}P(X\le n)\\
-			      &=&\pause P(\cup_{n=1}^\infty \{X\le n\})=P(X<\infty)=1
-		      \end{eqnarray*}
-		      \pause  同理可证 $F (-\infty)=0$.
-
-	\end{enumerate}
-
-
-\end{frame}
-% \begin{frame}
-%   \frametitle{事件概率的分布函数表示}
-%   \begin{itemize}[<+-|alert@+>]
-%   \item $P(a<X\le b)=F(b)-F(a)$;
-%   \item $P(X=a)=F(a)-F(a-0)$;
-%   \item $P(X\ge b)=1-F(b-0)$;
-%   \item $P(X>b)=1-F(b)$;
-%   \item $P(a<X<b)=F(b-0)-F(a)$;
-%   \item $P(a\le X\le b)=F(b)-F(a-0)$;
-%   \item $P(a\le X<b)=F(b-0)-F(a-0)$;
-%   \item 对于不交区间并 $\cup_{i=1}^n [a_i,b_i)$, $P (X\in \cup_{i=1}^n [a_i,b_i))=\sum_{i=1}^n [F (b_i-0)-F (a_i-0)]$
-%   \end{itemize}
-% \end{frame}
-
-% \begin{frame}
-%   \frametitle{函数成为分布函数的充分条件}
-%   \begin{thm}
-%     若函数 $F (x)$ 具有以下三条基本性质
-%     \begin{enumerate}[<+-|alert@+>]
-%     \item 单调性：$F (x)$ 是单调非减函数即对任意的 $x_1<x_2$, 有 $F (x_1)\le F (x_2)$;
-%     \item 有界性：对任意的 $x$ 有，$0\le F (x)\le 1$ 且
-%       \begin{eqnarray*}
-%         F(-\infty)=\lim_{x\rightarrow-\infty}F(x)=0\\
-%         F(+\infty)=\lim_{x\rightarrow +\infty}F(x)=1
-%       \end{eqnarray*}
-%     \item 右连续性：$F (x)$ 是 $x$ 的右连续函数，即
-%       \begin{eqnarray*}
-%         F(x_0+):=\lim_{x\rightarrow x_0+}F(x)=F(x_0)
-%       \end{eqnarray*}
-%     \end{enumerate}
-%     则 $F (x)$ 必定是某个随机变量的分布函数.
-%   \end{thm}
-% \end{frame}
-\begin{frame}
-	\frametitle{事件概率的分布函数表示}
-	\begin{itemize}[<+-|alert@+>]
-		\item $P(X> b)=1-F(b)$;%\mathbf{F}((b,\infty))$;
-		\item $P(a< X\le b)=F(b)-F(a)$;%\mathbf{F}((a,b])$;
-
-		\item $P(X<a)=F(a-)$;%\mathbf{F}((-\infty, a))$;
-
-		\item $P(X=a)=F(a)-F(a-)$;%\mathbf{F}(\{a\})$;
-		\item $P(X\ge b)=1-F(b-)$;%\mathbf{F}([b,\infty))$;
-
-		\item $P(a\le X<b)=F(b-)-F(a-)$;%\mathbf{F}([a,b))$;
-		\item $P(a\le X\le b)=F(b)-F(a-)$;%\mathbf{F}([a,b])$;
-		\item $P(a< X<b)=F(b-)-F(a)$;%\mathbf{F}((a,b))$;
-		\item 对于不交区间并: %$\cup_{i=1}^n [a_i,b_i)$,
-		$P (X\in \cup_{i=1}^n (a_i,b_i])=\sum_{i=1}^n [F (b_i)-F (a_i)]$;%\mathbf{F}(\cup_{i=1}^n (a_i,b_i])$
-		\item 一般的，$P (X\in B)=\int_BdF (x)$.
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}{随机变量与其分布(函数)之间的关系}
-\begin{itemize}[<+-|alert@+>]
-	\item 分布函数和随机变量密不可分. 每个随机变量都有自己的分布函数; 反过来, 每个分布函数都能找到与之相对应的随机变量.
-	\item 分布函数是随机变量最基本的性质，也是对随机变量概率特性最全面的描述。为清晰起见，通常记随机变量 $X$ 的分布函数为 $F_{X}(x)$.
-	\item 尽管随机变量与其分布函数密切关联，但是两者间并没有一一对应关系。一个随机变量只能有唯一的分布函数, 不同的随机变量却可能具有相同的分布函数.
-
-\end{itemize}
-\pause
 \begin{exam}
-  (\tc{不同的随机变量有相同的分布}) 考虑随机变量 $X$, 其分布满足
-	\[
-	P(X=1)=P(X=-1)=\frac{1}{2}.
-	\]\pause
-	设随机变量 $Y=-X$, 那么 $Y$ 的分布为
-	\[
-	P(Y=1)=P(Y=-1)=\frac{1}{2}
-	\]\pause
-	显然, $X$和$Y$的分布函数完全相同, 但明显是两个不同的随机变量.
+  \tc{(硬币实验的独立性)} 抛掷不均匀硬币的实验，正面(用 1 表示)向上的概率是 \( p \), 反面 (用 0 表示) 向上的概率是 \( q \). 假设连抛 \( n \) 次, 则样本空间 \( \Omega \) 为$\Omega=\left\{a_{1} a_{2} \cdots a_{n}: a_{k}=0,1\right\}$. \pause 考虑事件$A_{k}=\left\{a_{k}=1\right\}$, $k=1,\cdots, n$, 构造 \( \sigma\)-代数 \( \mathcal{F}_{k} \): \pause $\mathcal{F}_{k}=\left\{\Omega, \varnothing, A_{k}, A_{k}^{C}\right\}$.\pause  可以验证, 这些 \( \sigma\)-代数是独立的.
 \end{exam}
 
 
 \end{frame}
 
-\begin{frame}
-	\frametitle{分布函数表示与Borel域上概率测度之间的关系}
+\begin{frame}{独立的集类(族)生成的$\sigma$-代数未必独立}
+
+
+\begin{itemize}[<+-|alert@+>]
+  \item 考虑$\Omega=\{1,2,3,4\}$, 集类(族)$\mathcal{A}=\{\{1,2\},\{2,3\}\}$,$ \mathcal{B}=\{\{2,4\}\}$
+  \item 令$P(\{1\})=P(\{2\})=P(\{3\})=P(\{4\})=\dfrac{1}{4}$, 则
+  \[P(\{1,2\} \cap\{2,4\})=P(\{2\})=\frac{1}{4}=\frac{1}{2} \times \frac{1}{2}=P(\{1,2\}) P(\{2,4\}), \]
+  \[P(\{2,3\} \cap\{2,4\})=P(\{2\})=\frac{1}{4}=\frac{1}{2} \times \frac{1}{2}=P(\{2,3\}) P(\{2,4\})\]
+  \item 集类(族)$\mathcal{A}$和$\mathcal{B}$独立
+  \item 但由于
+  \[
+  \sigma(\mathcal{A})=2^{\Omega},  \sigma(\mathcal{B})=\{\{2,4\},\{1,3\}, \varnothing, \Omega\}
+  \]
+  且明显有
+  \[
+  P(\{2,4\} \cap\{3\})=0 \neq \frac{1}{8}=\frac{1}{2} \times \frac{1}{4}=P(\{2,4\}) P(\{3\})
+  \]
+  \item 故, $\sigma(\mathcal{A})$和$\sigma(\mathcal{B})$不独立.
+\end{itemize}
+
+
+
+
+\end{frame}
+
+\begin{frame}{独立的$\pi$-类(族)生成$\sigma$-代数独立}
 \begin{thm}
-任给一个定义在 Borel 域 \( \mathcal{B}(\mathbb{R}) \) 上的概率 \( \bar{P} \), 都存在如下定义的分布函数 \( F \) 与之相对应：$	F(x)=\bar{P}((-\infty, x])$. 反过来, 任给一个定义于实数轴上的分布函数 $F$, 都存在定义在 Borel 域 $\mathcal{B}(\mathbb{R})$ 上的概率 $\bar{P}$ 与之相对应.
+如果$\mathcal{A}$和$\mathcal{B}$是独立的集类(族), $\mathcal{B}$是$\pi$-类, 那么$\mathcal{A}$和$\sigma(\mathcal{B})$也独立.
 \end{thm}
-
 \pause
 
-\zheng
-第一个结论可直接验证. 由概率的单调性, 若$x_{1} \leqslant x_{2}$, 则
-{\small \[\bar{P}\left(\left(-\infty, x_{1}\right]\right) \leqslant \bar{P}\left(\left(-\infty, x_{2}\right]\right)\Rightarrow F\left(x_{1}\right) \leqslant F\left(x_{2}\right),\]}从而得到 $F$ 的单调不减. \pause 再由概率的连续性,
-{\small \begin{eqnarray*}
-	\lim _{x_{n} \downarrow x}\left(-\infty, x_{n}\right]=(-\infty, x]
-	&\Rightarrow&  \lim _{x_{n} \downarrow x} \bar{P}\left(\left(-\infty, x_{n}\right]\right)=\bar{P}((-\infty, x]) \\
-	&\Rightarrow&  \lim _{x_{n} \downarrow x} F\left(x_{n}\right)=F(x)
-\end{eqnarray*}}%
-\pause
-定理的第二个结论本质上是概率``扩张". 根据测度扩张定理，由分布函数所确定的定义在 $\mathcal{P}$ 上的集函数 $\mathbf{F}((-\infty, x]):=F (x)$ 可以唯一的扩张到 $\mathcal{B}:=\sigma (\mathcal{P})$ 上，成为 $\mathcal{B}$ 上的概率测度. 扩张后的概率测度称之为分布函数 $F (x)$ 所引出的勒贝格 - 斯蒂尔吉斯测度。实际上这个 $\mathbf{F}$ 正好是我们前面引进的概率分布.
-	% \begin{itemize}[<+-|alert@+>]
-	% 	\item 事实上根据测度扩张定理，由分布函数所确定的定义在 $\mathcal{P}$ 上的集函数 $\mathbf{F}((-\infty, x]):=F (x)$ 可以唯一的扩张到 $\mathcal{B}:=\sigma (\mathcal{P})$ 上，成为 $\mathcal{B}$ 上的概率测度，扩张后的概率测度称之为分布函数 $F (x)$ 所引出的勒贝格 - 斯蒂尔吉斯测度。实际上这个 $\mathbf{F}$ 正好是我们前面引进的概率分布.
+\zheng 应用单调类定理.
+\begin{itemize}[<+-|alert@+>]
+  \item 任意固定$A \in \mathcal{A}$, 令
+\[
+\mathscr{A}=\{B \in \sigma(\mathcal{B}): P(A B)=P(A) P(B)\}
+\]
+则$\mathscr{A}$是$\lambda$-类(系统)
 
-	% \end{itemize}
-\end{frame}
+\item 由$\mathcal{B} \subset \mathscr{A}$及单调类定理可得: $\sigma(\mathcal{B}) \subset \mathscr{A}$.
+\item $\mathcal{A}$和$\sigma(\mathcal{B})$独立.
 
 
-% \begin{frame}{分布函数与随机变量}
-% 	\begin{align*}
-% 	&	\hspace{-0.5cm}\left. \begin{array}{c}
-% 			(\Omega, \mathcal{F}, P) \\
-% 			 \\
-% 			X(\omega)
-% 			   \end{array}\right\}\Rightarrow\pause  \left\{\begin{array}{l}
-% 				\mathbf{F}(B):=P(X\in B)\\
-% 				\mbox{实数概率空间} (\mathbb{R},\mathcal{B},\mathbf{F})
-% 			 \end{array}\right. \Rightarrow \mbox{分布函数} F(x):= P(X\leq x)\\
-% 	\pause
-% 	\\
-% 	\\
-% 	&\left.\begin{array}{r}
-% 		\mbox{单调非降性} \\
-% 		\mbox{右连续性}\\
-% 		\mbox{规范性}
-% 	\end{array}\right\}\mbox{的} F (x) \mbox{给定}\Rightarrow\pause \mbox{存在}  \left\{\begin{array}{l}
-% 			(\Omega, \mathcal{F}, P) \\
-% 			\\
-% 			X(\omega)
-% 		\end{array}\right. \mbox{使得} F (x)=P (X\leq x) ?
-% 	\end{align*}
+\end{itemize}
 
-
-% 	\end{frame}
-
-
-
-\subsection{离散型分布}
-\begin{frame}
-	\frametitle{离散型随机变量}
-	\begin{defi}[离散型随机变量] 如果随机变量 $X$ 只取有限个值 $x_1,x_2,\cdots, x_n$ 或可列个值 $x_1,x_2,\cdots,$ 就称 $X$ 为离散型随机变量，简称离散随机变量，其分布函数称之为离散型的.
-	\end{defi}
-	\pause
-	\begin{defi}[离散型随机变量的分布列或概率质量函数] 对于离散型随机变量 $X$, 称 $X$ 取值 $x_k$ 的概率
-		\begin{eqnarray*}
-			p_k:=p(x_k)=P(X=x_k), k=1,2,\cdots,
-		\end{eqnarray*}
-		为 $X$ 的概率分布列或简称为分布列，记 $X\sim \{p_k\}$. 分布列也常用下面的矩阵来表示
-		\begin{eqnarray*}
-			\left(\begin{array}{ccccc}
-				x_1, & x_2, & \cdots, & x_k, & \cdots  \\
-				p_1, & p_2, & \cdots, & p_k, & \cdots
-			\end{array}\right)
-		\end{eqnarray*}
-	\end{defi}
-	\pause
-	容易验证，分布列有以下性质
-	\begin{enumerate}[<+-|alert@+>]
-		\item 非负性：$p_k\ge 0, k=1,2,\cdots$;
-		\item 正则性：$\sum_{k} p_k=1$
-	\end{enumerate}
-	% \begin{defi}[离散型随机变量] 设 $X$ 为概率空间 $(\Omega,\mathcal{F},P)$ 上的随机变量，如果存在数列 $\{x_k\}$ 及 $\{p_k\}$, 满足
-	%   \begin{enumerate}
-	%   \item $p_k\ge 0$;
-	%   \item $\sum_{k}p_k=1$
-	%   \end{enumerate}
-	%   并且使得 \vspace{-0.8cm}
-	%   \begin{eqnarray*}
-	%         P(X=x_k)=p_k, \quad k=1,2,\cdots,
-	%       \end{eqnarray*}
-	%         则称此随机变量 $X$(及其概率分布) 为离散型的。而称由这两个数列组成的矩阵
-	%         \begin{eqnarray*}
-	%         \left(\begin{array}{ccccc}
-	%         x_1,&x_2, &\cdots, &x_k, &\cdots\\
-	%         p_1,&p_2, &\cdots, &p_k, &\cdots
-	%       \end{array}\right)
-	%       \end{eqnarray*}
-	%                                              为随机变量 $X$ 的分布列 (密度).
-
-	%                                              \end{defi}
-
-\end{frame}
-\begin{frame}
-	\frametitle{离散型随机变量的概率分布及其分布函数}
-	\begin{itemize}[<+-|alert@+>]
-		\item 由概率分布的定义，对任意的 $B\in \mathcal{B}$，我们有
-		    {\small \begin{eqnarray*}
-			      \mathbf{F}(B)&=&P(X\in B)=P(\cup_{k:x_k\in B}\{X=x_k\})\\
-			      &=&\sum_{k:x_k\in B}P(X=x_k)=\sum_{k:x_k\in B}p_k
-		      \end{eqnarray*}}
-		\item 由分布函数的定义知，
-		      {\small \begin{eqnarray*}
-			      F(x)&=&P(X\le x)=P(\cup_{k:x_k\le x}\{X=x_k\})\\
-			      &=&\sum_{k:x_k\le x}P(X=x_k)=\sum_{k:x_k\le x}p_k\\
-				  &=&\sum_{k=1}^\infty p_kU(x-x_k)
-		      \end{eqnarray*}}
-			  此处, $U(x)=\left\{\begin{array}{ll}
-				1, & x\geq 0,\\
-				0, & x<0,
-				\end{array}\right.
-			  $为阶跃函数.
-		\item 易见离散型随机变量 $X$ 的分布函数是一个纯跳跃函数：在 $X$ 的每个可能取值 $x_k$ 上有跃度 $p_k$, 在每个不含 $x_k$ 的区间上恒取常值.
-	\end{itemize}
-
-\end{frame}
-\begin{frame}{退化随机变量}
-	\begin{exam}
-		常数 $c$ 可看作仅取一个值的随机变量 $X$, 即
-		\begin{eqnarray*}
-			P(X=c)=1
-		\end{eqnarray*}
-		这个分布常称为 \textcolor{red}{单点分布} 或 \textcolor{red}{退化分布}，其分布函数为
-		\pause \begin{eqnarray*}
-			F(x)=\left\{
-			\begin{array}{ll}
-				0, & x<c     \\
-				1, & x\ge c
-			\end{array}
-			\right.
-		\end{eqnarray*}
-	\end{exam}
-
-\end{frame}
-
-
-
-
-\begin{frame}%{例 \ref{312} 中随机变量的分布列或概率质量函数}
-	% 接下来介绍几个关于概率质量函数 $(PMF)$ 的例子.
-	\begin{exam}
-		计算例 \ref{312} 中的所有随机变量的分布列或概率质量函数. %, 例 \ref{312} 已知抛掷两枚均匀硬币。下面是定义的随机变量还有它们的概率质量函数：
-		\begin{itemize}[<+-|alert@+>]
-			\item  $X$ 表示正面朝上的次数，其概率质量函数 $p_X$ 为：
-			      \begin{align*}
-				       & p_X(0)=P(X=0)=1/4,\quad p_X(1)=P(X=1)=1/2,             \\
-				       & p_X(2)=P(X=2)=1/4,\quad p_X(x)=P(X=x)=0, x\neq 0,1,2.
-			      \end{align*}
-			      % 并且如果 $x$ 取其他值，则 $p_X=0$.
-			\item $Y=2-X,$ 表示反面朝上的次数。注意到 % 由上述讨论可以得到如下事实：
-			      $$P(Y=y)=P(2-X=y)=P(X=2-y)=p_X(2-y),$$\pause
-			      因此，随机变量 $Y$ 的概率质量函数为
-			      \begin{align*}
-				       & p_Y(0)=P(Y=0)=1/4,\quad p_Y(1)=P(Y=1)=1/2,             \\
-				       & p_Y(2)=P(Y=2)=1/4,\quad p_Y(y)=P(Y=y)=0, y\neq 0,1,2.
-			      \end{align*}
-			      % 并且如果 $y$ 取其他值，则 $p_Y=0$.\\
-			\item $I$ 表示第一次是否正面朝上的示性随机变量.
-			      \begin{align*}
-				       & p_I(0)=P(I=0)=1/2,\quad p_I(1)=P(I=1)=1/2, \\
-				       & p_I(i)=P(I=i)=0, i\neq 0,1.
-			      \end{align*}
-			      % 如果 $I$ 取其他值，那么 $p_I (i)=0$.\\
-
-		\end{itemize}
-	\end{exam}
-\end{frame}
-
-\begin{frame}{$X,Y$ 和 $I$ 的概率质量函数图}
-
-	\begin{figure}[图 3.3.png]
-		\centering
-		\includegraphics[width=12cm]{figures/Fig3.3.png}
-	\end{figure}
-\end{frame}
-
-\begin{frame}{}
-	\begin{exam}
-		掷两颗骰子，其样本空间 $\Omega$ 含有 36 个等可能的样本点
-		\begin{eqnarray*}
-			\Omega=\{(x,y):x,y=1,2,\cdots,6\}
-		\end{eqnarray*}
-		令 $X$ 和 $Y$ 表示每个骰子分别出现的点数。试求下面随机变量的分布列: % 在 $\Omega$ 上定义如下三个随机变量，请给出其概率分布列
-		\begin{enumerate}[<+-|alert@+>]
-			\item $T_1:=X+Y=\mbox{骰子点数之和}$；
-			\item $T_2:=14-(X+Y)$;
-			\item $T_3:=\mbox{点数为 6 点的骰子的个数}$；
-			\item $T_4:=\max\{X, Y\}=\mbox{骰子的最大点数}$
-		\end{enumerate}
-
-	\end{exam}
-\end{frame}
-
-\begin{frame}
-	\begin{itemize}[<+-|alert@+>]
-		\item $T_1, T_2$ 的概率分布列为 \pause
-		      \begin{eqnarray*}
-			      \left(\begin{array}{ccccccccccc}
-				      2            & 3            & 4            & 5            & 6            & 7            & 8            & 9            & 10           & 11           & 12           \\
-				      \frac{1}{36} & \frac{2}{36} & \frac{3}{36} & \frac{4}{36} & \frac{5}{36} & \frac{6}{36} & \frac{5}{36} & \frac{4}{36} & \frac{3}{36} & \frac{2}{36} & \frac{1}{36}
-			      \end{array}\right)
-		      \end{eqnarray*}
-		      \pause
-		      \begin{figure}[图 3.4.png]
-			      \centering
-			      \includegraphics[width=9cm]{figures/Fig3.4.png}
-		      \end{figure}
-
-	\end{itemize}
-
-\end{frame}
-
-\begin{frame}
-	\begin{itemize}[<+-|alert@+>]
-
-		\item $T_3$ 的概率分布列为 \pause
-		      \begin{eqnarray*}
-			      \left(\begin{array}{ccc}
-				      0             & 1             & 2            \\
-				      \frac{25}{36} & \frac{10}{36} & \frac{1}{36}
-			      \end{array}\right)
-		      \end{eqnarray*}
-
-		\item $T_4$ 的概率分布列为 \pause
-		      \begin{eqnarray*}
-			      \left(\begin{array}{cccccc}
-				      1            & 2            & 3            & 4            & 5            & 6             \\
-				      \frac{1}{36} & \frac{3}{36} & \frac{5}{36} & \frac{7}{36} & \frac{9}{36} & \frac{11}{36}
-			      \end{array}\right)
-		      \end{eqnarray*}
-	\end{itemize}
-
-\end{frame}
-
-% \begin{frame}
-%   \begin{exam}
-%     设离散型随机变量的 $X$ 分布列为
-%     \begin{eqnarray*}
-%       \left(\begin{array}{ccc}
-%               -1  &2 &3\\
-%               0.25 & 0.5 & 0.25
-%             \end{array}\right)
-%     \end{eqnarray*}
-%     试求 $P (X\le 0.5), P (1.5<X\le 2.5)$, 并写出 $X$ 的分布函数.
-%   \end{exam}
-
-%   \jieda $$P(X\le 0.5)=P(X=-1)=0.25,$$ $$P(1.5<X\le 2.5)=P(X=2)=0.5.$$
-
-%   其分布函数为 \pause
-%   \begin{eqnarray*}
-%     F(x)=\left\{
-%     \begin{array}{ll}
-%       \pause  0, &  x<-1\\  \pause
-%       \pause 0.25,& -1\le x<2\\  \pause
-%       \pause  0.25+0.5=0.75,&  2\le x<3\\  \pause
-%       \pause  0.25+0.5+0.25, & x\ge 3 \pause
-%     \end{array}\right.
-%   \end{eqnarray*}
-
-% \end{frame}
-
-
-\subsection{连续型分布}
-
-\begin{frame}
-	\frametitle{连续型随机变量}
-	\begin{defi}[连续型随机变量] 设 $X$ 为一随机变量，$F (x)$ 为随机变量 $X$ 的分布函数，如果存在非负可积函数 $p (x)$ 使得
-		\begin{eqnarray}\label{eq:contrvdist}
-			F(x)=\int_{-\infty}^xp(y)dy
-		\end{eqnarray}
-		则称 $X$ 为连续型随机变量，其分布函数称之为连续型分布函数，函数 $p (x)$ 称为 $X$ 的概率密度函数，简称密度函数或密度.
-	\end{defi}
-	\pause
-	\begin{rmk}
-		\begin{itemize}[<+-|alert@+>]
-			\item 能够表为 \eqref{eq:contrvdist} 式变上限积分的函数 $F (x)$ 在分析中称为绝对连续函数。绝对连续函数必为连续函数.
-			\item 在若干个点上或零测集上改变密度函数 $p (x)$ 的值并不影响其积分的值，从而不影响分布函数 $F (x)$ 的值，这意味着连续分布的密度函数不唯一.
-		\end{itemize}
-	\end{rmk}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{密度函数的性质}
-	容易验证，随机变量 $X$ 的密度函数有以下性质
-	\begin{enumerate}[<+-|alert@+>]
-		\item 非负性：$p (x)\ge 0$;
-		\item 正则性：$\int_{-\infty}^\infty p (x) dx=1$.
-	\end{enumerate}
 
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{连续型随机变量的一些常见性质}
-	\begin{itemize}
-		\item $p(x)=F^\prime (x)$;
-		\item $P(a< X\le b)=F(b)-F(a)=\int_a^bp(x)dx$;
-		\item $0\le P (X=a)\le P (X\in (a-\epsilon,a))=\int_{a-\epsilon}^ap (x) dx\stackrel{\epsilon\rightarrow 0}{\longrightarrow} 0$, 故 $P (X=a)=0$，即连续型随机变量取值单点的概率为 0;
-		\item $P(a<X\le b)=P(a\le X<b)=P(a\le X\le b)=P(a<X<b)$;
-		\item 对任意的 Borel 集 $B$,
-		      \begin{eqnarray*}
-			      P(X\in B)=\int_Bp(x)dx
-		      \end{eqnarray*}
-		\item $P(X\in[x,x+\Delta x])=\int_x^{x+\Delta x}p(y)dy=p(\xi)\Delta x\approx p(x)\Delta x$
-	\end{itemize}
+  \frametitle{Borel-Cantelli引理}
+  \begin{thm}
+    对于事件列$\{A_j\}$，有
+    \begin{itemize}[<+-|alert@+>]
+    \item 如果$\sum_{j=1}^\infty P(A_j)<\infty$，则$P(A_n\ i.o.)=0$
+    \item 如果$\{A_j\}$相互独立，$\sum_{j=1}^\infty P(A_j)=\infty$，则$P(A_n\ i.o.)=1$
+    \end{itemize}
+  \end{thm}\pause
+  \zheng 注意到
+  \begin{eqnarray*}
+    P(A_n\ i.o.)=\pause P(\lim_{n\rightarrow\infty} \cup_{j=n}^\infty A_j)=\pause \lim_{n\rightarrow\infty} P(\cup_{j=n}^\infty A_j)\le \pause \lim_{n\rightarrow\infty}\sum_{j=n}^\infty P(A_j)\pause =0
+  \end{eqnarray*}
+  \pause
+  由于\pause
+  \begin{eqnarray*}
+    P(\cup_{j=n}^\infty A_j)&=&\pause \lim_{m\rightarrow\infty}P(\cup_{j=n}^m A_j)=\pause \lim_{m\rightarrow\infty}(1-P(\cap_{j=n}^m\overline{A}_j))\\\pause
+    P(\cap_{j=n}^m\overline{A}_j)&=&\pause \Pi_{j=n}^m P(\overline{A}_j)=\Pi_{j=n}^m(1-P(A_j))\\
+                            &\le&\pause \Pi_{j=n}^m \exp(-P(A_j))=\exp(-\sum_{j=n}^m P(A_j))\pause \stackrel{m\rightarrow\infty}{\longrightarrow} 0
+  \end{eqnarray*}
+
 \end{frame}
-% \begin{frame}
-%   \begin{exam}
-%     向区间 $(0,a)$ 上任意投点，用 $X$ 表示这个点的坐标。设该点落在 $(0,a)$ 中任一小区间的概率与这个小区间的长度成正比，而与小区间的位置无关。求 $X$ 的分布函数及密度函数.
-%   \end{exam}
 
-%   \pause
-%   \jieda 记 $X$ 的分布函数为 $F (x)$, 则
-%   \begin{itemize}[<+-|alert@+>]
-%   \item 当 $x<0$ 时，$\{X\le x\}$ 为不可能事件，故 $F (x)=P (X\le x)=0$;
-%   \item 当 $x\ge a$ 时，$\{X\le x\}$ 是必然事件，故 $F (x)=P (X\le x)=1$;
-%   \item 当 $x\in [0,a)$ 时， 有 $F (x)=P (X\le x)=P (0\le X\le x)=kx$, 其中 $k$ 为比例系数.
-%   \item 注意到 $1=F (a)=P (0\le X\le a)=ka$, 故 $k=1/a$
-%   \end{itemize}
-%   \pause
-%   故 $X$ 的分布函数为
-%   \pause
-%   \begin{eqnarray*}
-%     F(x)=\left\{
-%     \begin{array}{ll}
-%       0,& x<0\\
-%       x/a, & 0\le x<a\\
-%       1,& x\ge a
-%     \end{array}
-%           \right.
-%   \end{eqnarray*}
-% \end{frame}
-% \begin{frame}
-%   下面我们求 $X$ 的密度函数，
-%   \begin{itemize}
-%   \item 当 $x<0$ 或 $x>a$ 时， $p (x)=F^\prime (x)=0$;
-%   \item 当 $0<x<a$ 时，$p (x)=F^\prime (x)=1/a$;
-%   \item 当 $x=0,a$ 时，$p (x)$ 可取任意值，一般就近取值为宜，不会影响概率的计算.
-%   \end{itemize}
-%   故 $X$ 的密度函数为
-%   \begin{eqnarray*}
-%     p(x)=\left\{
-%     \begin{array}{ll}
-%       1/a,&0<x<a,\\
-%       0,&\mbox{其他}.
-%     \end{array}
-%           \right.
-%   \end{eqnarray*}
-%   其密度函数也可取为
-%   \begin{eqnarray*}
-%     p(x)=\left\{
-%     \begin{array}{ll}
-%       1/a,&0\le x\le a,\\
-%       0,&\mbox{其他}.
-%     \end{array}
-%           \right.
-%   \end{eqnarray*}
 
-% \end{frame}
 
-% \begin{frame}
-%   \begin{exam}
-%     某种型号电子元件的寿命 $X$(以小时计) 具有以下概率密度函数
-%     \begin{eqnarray*}
-%       p(x)=\left\{
-%       \begin{array}{ll}
-%         k/x^2,&x>1000,\\
-%         0,&\mbox{其他}.
-%       \end{array}
-%             \right.
-%     \end{eqnarray*}
-%     其中 $k$ 为未知常数。现有一大批此种元件 (设各元件工作相互独立)，问
-%     \begin{enumerate}
-%     \item 任取 1 只，其寿命大于 1500 小时的概率是多少？
-%     \item 任取 4 只，4 只寿命都大于 1500 小时的概率是多少？
-%     \item 任取 4 只，至少有一只寿命大于 1500 小时的概率是多少？
-%     \item 若已知一只元件寿命大于 1500 小时，则该元件寿命大于 2000 小时的概率是多少？
-%     \end{enumerate}
 
-%   \end{exam}
-% \end{frame}
-\subsection{其他类型分布}
+
+
+\subsection{随机试验的独立性}
+ \begin{frame}{随机试验的独立性}
+
+  \begin{itemize}[<+-|alert@+>]
+  \item 先考虑两个随机试验，假定 $(\Omega_i,\mathcal{F}_i,P_i), i=1,2$ 为第 $i$ 个随机试验对应的概率空间。按照之前独立性的理解，两个试验的独立性应当叙述为:\pause
+   \textcolor{red}{ \begin{eqnarray*}
+      &&\mbox{对任何的} A_i\in\mathcal{F}_i, i=1,2, A_1\mbox{与} A_2\mbox{同时}\\
+      &&\mbox{发生的概率等于它们各自概率之乘积}
+    \end{eqnarray*}}%
+\item 两个不妥:
+  \begin{itemize}[<+-|alert@+>]
+  \item ``$A_1$ 与 $A_2$ 同时发生" 应当是这两个事件的交，但它们分别是两个样本空间 $\Omega_1,\Omega_2$ 的子集，无法进行运算；
+  \item 两个概率空间有各自的概率 $P_1, P_2$, 但涉及两个度验，命题中 ``同时发生的概率" 既不能用 $P_1$ 也不能用 $P_2$ 来度量.
+  \end{itemize}
+\item 解决方法：构造可以同时描述两个试验的新概率空间 $(\Omega,\mathcal{F},P)$.
+  \end{itemize}
+\end{frame}
 \begin{frame}
-	\begin{exam}
-		定义函数 $F (x)$ 如下
-		\begin{eqnarray*}
-			F(x)=\left\{
-			\begin{array}{ll}
-				0,              & x< 0,      \\
-				\dfrac{1+x}{2}, & 0\le x< 1, \\
-				1,              & x\ge 1.
-			\end{array}
-			\right.
-		\end{eqnarray*}
-		试说明  \begin{enumerate}
-			\item $F (x)$ 为分布函数；
-			\item $F (x)$ 既非离散型也非连续型分布；
-			\item $F (x)$ 可分解为
-			      \begin{eqnarray*}
-				      F(x)=\frac{1}{2}F_1(x)+\frac{1}{2}F_2(x)
-			      \end{eqnarray*}
-			      \pause  其中 \begin{eqnarray*}
-				      F_1(x)=\left\{
-				      \begin{array}{ll}
-					      0, & x< 0,    \\
-					      1, & x\ge 0.
-				      \end{array}
-				      \right.
-				      \quad  F_2(x)=\left\{\begin{array}{ll}
-					      0, & x<0,       \\
-					      x, & 0\le x< 1, \\
-					      1, & x\ge 1.
-				      \end{array}
-				      \right.
-			      \end{eqnarray*}
-		\end{enumerate}
-
-	\end{exam}
+  \frametitle{乘积空间的构造}
+  \begin{itemize}[<+-|alert@+>]
+  \item 样本乘积空间: $\Omega:=\Omega_1\times \Omega_2=\{(\omega_1,\omega_2):\omega_1\in\Omega_1\mbox{且}\omega_2\in \Omega_2\}$;
+  \item 乘积 $\sigma$- 代数 $\mathcal{F}_1\times\mathcal{F}_2$:
+    \begin{itemize}[<+-|alert@+>]
+    \item 可测矩形集类: $\mathcal{G}:=\{A_1\times A_2: A_1\in\mathcal{F}_1, A_2\in \mathcal{F}_2\}$;
+    \item $\mathcal{F}_1\times \mathcal{F}_2:=\sigma(\mathcal{G})$
+    \end{itemize}
+  \item 乘积概率测度:
+    \begin{itemize}[<+-|alert@+>]
+    \item 对于每个可测矩形 $A_1\times A_2\in \mathcal{G}$ 定义如下集函数:
+      \begin{eqnarray}\label{eq:timeprob}
+        P(A_1\times A_2)=P_1(A_1)P_2(A_2), \quad A_i\in\mathcal{F}_i, i=1,2.
+      \end{eqnarray}
+    \item 理论上可以证明如上定义在 $\mathcal{G}$ 上的集函数 $P$ 可唯一地扩张为 $\mathcal{F}_1\times\mathcal{F}_2$ 上的概率测度，称之为 $P_1$ 与 $P_2$ 的乘积 (概率) 测度.
+    \end{itemize}
+  \item 在上述乘积测度下
+    \begin{eqnarray*}
+      &&P(A_1\times \Omega_2)=P_1(A_1), \quad P(\Omega_1\times A_2)=P_2(A_2)\\\pause
+      &&\pause P\big((A_1\times \Omega_2)\cap (\Omega_1\times A_2)\big)=\pause P(A_1\times A_2)\\
+      &&\pause = P_1(A_1)P_2(A_2)=\pause P(A_1\times\Omega_1)P(\Omega_1\times A_2)
+    \end{eqnarray*}
+  \item $(\Omega_i,\mathcal{F}_i,P_i)$ 的独立性取决于乘积样本空间 $\Omega_1\times\Omega_2$ 上的概率是否取作由 (\ref{eq:timeprob}) 所确定的乘积测度
+  \end{itemize}
 \end{frame}
-
-
 \begin{frame}
-	\frametitle{勒贝格分解}
-	\begin{thm}[勒贝格分解] 对任一分布函数 $F (x)$ 有如下分解
-		\begin{eqnarray*}
-			F(x)=c_1F_1(x)+c_2F_2(x)+c_3F_3(x),
-		\end{eqnarray*}
-		其中常数 $c_1,c_2,c_3\ge 0, c_1+c_2+c_3=1,$ 而 $F_1 (x),F_2 (x),F_3 (x)$ 都是分布函数，$F_1 (x)$ 为纯跳跃离散型函数，$F_2 (x)$ 为连续型分布函数，$F_3 (x)$ 为奇异型分布函数(见教材3.6节奇异连续型分布构造).
-	\end{thm}
-	\vspace{0.3cm}
-	\pause
-	\begin{itemize}[<+-|alert@+>]
-		\item 上述定理中奇异函数的含义及定理的证明可参见一般的实变函数论教科书，这里我们不再详述，仅指出几种特殊情况：
-		      \begin{itemize}
-			      \item 在分解式中取 $c_1=1,c_2=c_3=0$ 便得到我们所讨论的离散型分布函数；
-			      \item 在分解式中取 $c_2=1,c_1=c_3=0$ 便得到连续型分布函数；
-			      \item 若取 $c_3=0, c_1\neq 0, c_2\neq 0, c_1+c_2=1$ 便得到离散与连续混合分布
-		      \end{itemize}
-		\item 从上面分析可看出，随机变量除了离散型与连续型外还有很多其他类型.
-	\end{itemize}
+  \frametitle{$n$ 个试验相互独立的定义}
+  \begin{defi}
+    设有 $n$ 个随机试验，第 $i$ 个试验的概率空间为 $(\Omega_i,\mathcal{F}_i,P_i),$ $ i=1,\cdots,n$. 代表这 $n$ 个试验的乘积样本空间 $\Omega=\Omega_1\times \cdots \times \Omega_n$, $\mathcal{F}=\mathcal{F}_1\times \cdots\times \mathcal{F}_n=\sigma (\mathcal{G})$, 其中 $\mathcal{G}$ 为形如 $B_1\times\cdots\times B_n (B_i\in\mathcal{F}_i)$ 的可测矩形的全体。如果 $(\Omega,\mathcal{F})$ 上的概率测度 $P$ 是 $P_1,\cdots, P_n$ 的乘积测度，即对任何 $B_1\times\cdots\times B_n\in \mathcal{G}$ 满足
+    \begin{eqnarray*}
+      P(B_1\times\cdots\times B_n)=P_1(B_1)\cdots P(B_n),
+    \end{eqnarray*}
+    则称这 $n$ 个度验独立. \pause 如果现设 $$\Omega_i\equiv \Omega_0, \mathcal{F}_i\equiv \mathcal{F}_0, P_i\equiv P_0, i=1,\cdots,n, $$ 即 $n$ 个试验有相同的概率空间，则称它们为 $n$ 个 (重) 独立重复试验. \pause 如果在 $n$ 个独立重复实验中，每次试验的可能结果为两个:$A$ 或 $\overline{A}$, 则称这种试验为 \textcolor{red}{$n$ 重伯努利试验}.
+  \end{defi}
+\end{frame}
+             \begin{frame}{彩票问题}
+  % \frametitle{试验的独立性}
+  % \begin{defi}
+  %   设有两个实验 $E_1$ 和 $E_2$，假如实验 $E_1$ 的任一结果（事件）与试验 $E_2$ 的任一结果（事件）都是相互独立事件，则称这两个实验相互独立.
+  % \end{defi}
+  % \pause
+  % \begin{defi}
+  %   如果 $n$ 个实验 $E_1,E_2,\cdots,E_n$ 的任一结果都是相互独立的事件，则称试验 $E_1,\cdots E_n$ 相互独立。如果这 $n$ 个实验是相同的，则称其为 \textcolor{red}{$n$ 重独立重复实验}. 如果在 $n$ 重独立重复实验中，每次试验的可能结果为两个:$A$ 或 $\overline{A}$, 则称这种试验为 \textcolor{red}{$n$ 重伯努利试验}.
+  % \end{defi}
+  % \pause
+  \begin{exam}
+    某彩票每周开奖一次，每次提供十万分之一的中奖机会，且各周开奖是独立的。若你每周买一张彩票，坚持十年（每年按 52 周计算），试求未中奖的概率.
+  \end{exam}
+  \pause
 
+  \jieda 依假设，每次中奖的概率为 $10^{-5}$, 于是每次不中奖的概率是 $1-10^{-5}$. 另外十年一共购买 520 次彩票，而每次开奖都是独立的，相当于进行了 520 次独立重复试验. \pause 若记 $A_i$ 为 “第 $i$ 次开奖不中奖”, 则 $A_1,\cdots, A_{520}$ 相互独立，从而
+  \begin{eqnarray*}
+    P(A_1A_2\cdots A_{520})=(1-10^{-5})^{520}=0.9948
+  \end{eqnarray*}
 \end{frame}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
