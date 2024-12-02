@@ -212,10 +212,10 @@
 		$.
 
 		显然 $\tilde{X}$ 为离散型随机变量，且
-		\[P(\tilde{X}=x_i)=P(X\in (x_i,x_{i+1}]=F(x_{i+1})-F(x_i);\]
+		\[P(\tilde{X}=x_i)=P(X\in (x_i,x_{i+1}])=F(x_{i+1})-F(x_i);\]
 		\item 故 $\tilde{X}$ 的期望为
 		\begin{eqnarray*}
-			E (\tilde{X})\approx \sum_i x_i\left[F (x_{i+1})-F (x_i)\right]\rightarrow \int xdF (x) \quad \textcolor{red}{\mbox{斯蒂尔切斯积分}}
+			E (\tilde{X})=\sum_i x_i\left[F (x_{i+1})-F (x_i)\right]\rightarrow \int xdF (x) \quad \textcolor{red}{\mbox{斯蒂尔切斯积分}}
 		\end{eqnarray*}
 
 	\end{itemize}
@@ -358,7 +358,39 @@
 			为随机变量 $X (\omega)$ 的数学期望.
 		\end{defi}
 	\end{frame}
+	\begin{frame}
+		\frametitle{随机变量期望的性质}
+		\begin{enumerate}[<+-|alert@+>]
+			\item 若 $c$ 为常数，则 $E (c)=c$;
+			\item 若 $X\ge 0$, 则 $E (X)\ge 0$
+			\item 对任意的常数 $a$, 有 $E (aX)=aE (X)$;
+			\item 对任意两个函数 $g_1 (x),g_2 (x)$ 有
+			\begin{eqnarray*}
+				E(g_1(X)\pm g_2(X))=E(g_1(X))\pm E(g_2(X))
+			\end{eqnarray*}
+			\item 对任意两个随机变量 $X,Y$, 有 $E (X+Y)=E (X)+E (Y)$;
+			\item 一般的，对任意两个随机变量 $X,Y$ 及任给两个常数 $a,b$, 有
+			\begin{eqnarray*}
+				E(aX+bY)=aE(X)+bE(Y);
+			\end{eqnarray*}
+			\item 更一般的有
+			\begin{eqnarray*}
+				E(\sum_{i=1}^na_iX_i+b)=\sum_{i=1}^na_iEX_i+b
+			\end{eqnarray*}
 
+			% \item $E(X^2)=0\Leftrightarrow P(X\neq 0)=0\Leftrightarrow X=0 $ a.s.
+
+			%   \pause 反证法，如果 $P (X\neq 0)>0$, 即 $P (|X|>0)>0$, 则存在自然数 $k$ 使得
+			%   \begin{eqnarray*}
+				%     P(|X|>\dfrac{1}{k})=\epsilon >0
+				%   \end{eqnarray*}
+			%   从而 \vspace{-0.6cm}
+			%  {\small\begin{eqnarray*}
+					%     \hspace{0.8cm} E(X^2)=\pause \int_Rx^2dF(x)\ge\pause  \int_{|x|>\frac{1}{k}}x^2dF(x)\pause >\dfrac{1}{k^2}P(|X|>\dfrac{1}{k})=\dfrac{\epsilon}{k^2}\pause>0
+					%   \end{eqnarray*}}
+
+		\end{enumerate}
+	\end{frame}
 	\begin{frame}
 		\frametitle{积分变换定理}
 		\begin{thm}
@@ -368,7 +400,7 @@
 			\end{eqnarray*}
 			特别的，若 $f (x)=x$, 则有
 			\begin{eqnarray*}
-				E(X)=\int_\Omega X(\omega)P(\omega)=\int_{\mathbb{R}}x \mathbf{F}(dx)=\int_{\mathbb{R}} xdF(x)
+				E(X)=\int_\Omega X(\omega)P(d\omega)=\int_{\mathbb{R}}x \mathbf{F}(dx)=\int_{\mathbb{R}} xdF(x)
 			\end{eqnarray*}
 
 		\end{thm}
@@ -449,39 +481,7 @@
 		\end{defi}
 
 	\end{frame}
-	\begin{frame}
-		\frametitle{随机变量期望的性质}
-		\begin{enumerate}[<+-|alert@+>]
-			\item 若 $c$ 为常数，则 $E (c)=c$;
-			\item 若 $X\ge 0$, 则 $E (X)\ge 0$
-			\item 对任意的常数 $a$, 有 $E (aX)=aE (X)$;
-			\item 对任意两个函数 $g_1 (x),g_2 (x)$ 有
-			\begin{eqnarray*}
-				E(g_1(X)\pm g_2(X))=E(g_1(X))\pm E(g_2(X))
-			\end{eqnarray*}
-			\item 对任意两个随机变量 $X,Y$, 有 $E (X+Y)=E (X)+E (Y)$;
-			\item 一般的，对任意两个随机变量 $X,Y$ 及任给两个常数 $a,b$, 有
-			\begin{eqnarray*}
-				E(aX+bY)=aE(X)+bE(Y);
-			\end{eqnarray*}
-			\item 更一般的有
-			\begin{eqnarray*}
-				E(\sum_{i=1}^na_iX_i+b)=\sum_{i=1}^na_iEX_i+b
-			\end{eqnarray*}
 
-			% \item $E(X^2)=0\Leftrightarrow P(X\neq 0)=0\Leftrightarrow X=0 $ a.s.
-
-			%   \pause 反证法，如果 $P (X\neq 0)>0$, 即 $P (|X|>0)>0$, 则存在自然数 $k$ 使得
-			%   \begin{eqnarray*}
-				%     P(|X|>\dfrac{1}{k})=\epsilon >0
-				%   \end{eqnarray*}
-			%   从而 \vspace{-0.6cm}
-			%  {\small\begin{eqnarray*}
-					%     \hspace{0.8cm} E(X^2)=\pause \int_Rx^2dF(x)\ge\pause  \int_{|x|>\frac{1}{k}}x^2dF(x)\pause >\dfrac{1}{k^2}P(|X|>\dfrac{1}{k})=\dfrac{\epsilon}{k^2}\pause>0
-					%   \end{eqnarray*}}
-
-		\end{enumerate}
-	\end{frame}
 	\begin{frame}
 		\frametitle{期望的极限性质：单调收敛定理}
 		\begin{thm}
@@ -498,19 +498,66 @@
 		\end{thm}
 
 	\end{frame}
+
+	\begin{frame}[allowframebreaks]{单调收敛定理的证明}
+	\begin{itemize}[<+-|alert@+>]
+		\item 设 $\left\{X_{n k}\right\}_{k \geqslant 1}$ 为定义 $E\left(X_{n}\right)$ 的简单随机变量列，且满足
+
+		\[0 \leqslant X_{11} \leqslant X_{12} \leqslant \cdots \leqslant X_{1 k} \uparrow X_{1} \]
+		\[0 \leqslant X_{21} \leqslant X_{22} \leqslant \cdots \leqslant X_{2 k} \uparrow X_{2} \]
+		\[\vdots\]
+		\[0 \leqslant X_{n 1} \leqslant X_{n 2} \leqslant \cdots \leqslant X_{n k} \uparrow X_{n} \]
+		\[\lim _{k \rightarrow \infty} E\left(X_{n k}\right)=E\left(X_{n}\right)\]
+
+		\item 令 $\widetilde{X}_{k}=\max _{1 \leqslant i \leqslant k} X_{i k}$ ，则 $\widetilde{X}_{k}$ 为非降简单随机变量序列，
+		\[
+		X_{n k} \leqslant \widetilde{X}_{k} \leqslant X_{k}, \quad  E\left(X_{n k}\right) \leq E\left(\widetilde{X}_{k}\right) \leq E\left(X_{k}\right)
+		\]
+	\framebreak
+        \item 下证$\lim _{k \rightarrow \infty} \widetilde{X}_{k}=X$, $\lim _{k \rightarrow \infty}E(\widetilde{X}_{k})=\lim_{n\rightarrow\infty}E(X_n)$
+
+		\begin{itemize}
+			\item 固定 $n$ ，令 $k \rightarrow+\infty$可得
+			\[
+			X_{n} \leq \lim _{k \rightarrow+\infty} \widetilde{X}_{k} \leq X, \qquad   E\left(X_{n}\right) \leq \lim _{k \rightarrow+\infty} E\left(\widetilde{X}_{k}\right) \leq \lim _{k \rightarrow+\infty}E{(X_k)}
+			\]
+
+			\item 再令 $n \rightarrow+\infty$ 可得
+			\[
+			\lim _{k \rightarrow \infty} \widetilde{X}_{k}=X, \qquad  \lim _{k \rightarrow \infty}E(\widetilde{X}_{k})=\lim_{n\rightarrow\infty}E(X_n)
+			\]
+		\end{itemize}
+\item 结合 $E(\lim_{n\rightarrow\infty}X_n)=E(X):=\lim_{n\rightarrow\infty}E(\widetilde{X}_k)$可知定理得证.
+	\end{itemize}
+
+	\end{frame}
+
 	\begin{frame}
 		\frametitle{期望的极限性质：Fatou 引理}
 		\begin{thm}
 			(Fatou 引理) 若 $\{X_n\}$ 是一随机变量序列，
 			\begin{itemize}
-				\item 如果存在可积随机变量 $X$ 使得 $X_n\geq X$, 则有 \begin{eqnarray*}
+				\item 如果存在可积随机变量 $\underline{Y}$ 使得 $X_n\geq \underline{Y}$, 则有 \begin{eqnarray*}
 					\int_{\Omega}\liminf_{n\rightarrow\infty}X_n(\omega)P(d\omega)&\leq& \liminf_{n\rightarrow\infty}\int_\Omega X_n(\omega)P(d\omega),  \\
 					{\rm i.e. }\quad  E(\liminf_{n\rightarrow\infty}X_n)&\leq& \liminf_{n\rightarrow\infty}E(X_n).                                                                                           \end{eqnarray*}
-				\item 如果存在可积随机变量 $Y$ 使得 $X_n\leq Y$, 则有 \begin{eqnarray*}                                                                                                          \int_{\Omega}\limsup_{n\rightarrow\infty} X_n (\omega)) P (d\omega)&\geq& \limsup_{n\rightarrow\infty}\int_\Omega X_n (\omega)) P (d\omega), \\
+				\item 如果存在可积随机变量 $\overline{Y}$ 使得 $X_n\leq \overline{Y}$, 则有 \begin{eqnarray*}                                                                                                          \int_{\Omega}\limsup_{n\rightarrow\infty} X_n (\omega)) P (d\omega)&\geq& \limsup_{n\rightarrow\infty}\int_\Omega X_n (\omega)) P (d\omega), \\
 					{\rm i.e.} \quad    E(\limsup_{n\rightarrow\infty}X_n)&\geq& \limsup_{n\rightarrow\infty}E(X_n).                                                                                           \end{eqnarray*} \end{itemize}
 		\end{thm}
 
 	\end{frame}
+\begin{frame}{Fatou引理证明}
+	\begin{itemize}[<+-|alert@+>]
+		\item 如果 $\liminf_{n\rightarrow\infty}E\left(X_n\right)=+\infty$, 则不等式显然成立.以下设 $\liminf_{n\rightarrow\infty}E\left(X_n\right)$ 有限.
+		\item 令$Y_{n}=\inf_{k\geq n}\left(X_{k}-\underline{Y}\right),  n \geq 1$,	则 $\left\{Y_{n}\right\}$ 为非负随机变量的上升序列，且以 $\lim_n\left(X_n-\underline{Y}\right)$ 为极限.
+		\item 由单调收敛定理可得: %故用定理 1.6 得
+		\[
+		E\left[\liminf_{n}\left(X_n-\underline{Y}\right)\right]=\lim _{n} E\left[\inf_{k\geq n}\left(X_{k}-\underline{Y}\right)\right] \leq \liminf_{n\rightarrow\infty}E\left(X_n-\underline{Y}\right) .
+		\]
+		\item 消去有限的 $E(\underline{Y})$ 可证得结论
+		\item 对 $\left\{-X_n\right\}$ 用下确界的结论可证得上确界的结论.%（1）便可得证（1.24）式，定理证毕。
+	\end{itemize}
+
+\end{frame}
 
 
 	\begin{frame}
@@ -525,6 +572,19 @@
 		\end{thm}
 
 	\end{frame}
+	\begin{frame}{控制收敛定理的证明}
+		\begin{itemize}[<+-|alert@+>]
+			\item  $\left|X_{n}\right| \leq Y$ 蕴含 $|X| \leq Y$, 故 $X$ 可积.
+			\item 取 $\underline{Y}=-Y$ 与 $\overline{Y}=Y$, 用Fatou引理便得到
+			\[
+			E(X) \leq \varliminf_{n} E\left(X_{n}\right) \leq \varlimsup_{n_{0}} E\left(X_{n}\right) \leq E(X)
+			\]
+			\item 故 $\lim _{n} E\left(X_{n}\right)$ 存在且等于 $E(X)$, 定理至此得证.
+		\end{itemize}
+
+
+	\end{frame}
+
 	\subsection{随机变量的方差}
 	\begin{frame}
 		\frametitle{随机变量方差的定义}
