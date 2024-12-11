@@ -548,10 +548,10 @@
 \begin{frame}{Fatou引理证明}
 	\begin{itemize}[<+-|alert@+>]
 		\item 如果 $\liminf_{n\rightarrow\infty}E\left(X_n\right)=+\infty$, 则不等式显然成立.以下设 $\liminf_{n\rightarrow\infty}E\left(X_n\right)$ 有限.
-		\item 令$Y_{n}=\inf_{k\geq n}\left(X_{k}-\underline{Y}\right),  n \geq 1$,	则 $\left\{Y_{n}\right\}$ 为非负随机变量的上升序列，且以 $\lim_n\left(X_n-\underline{Y}\right)$ 为极限.
+		\item 令$Y_{n}=\inf_{k\geq n}\left(X_{k}-\underline{Y}\right),  n \geq 1$,	则 $\left\{Y_{n}\right\}$ 为非负随机变量的上升序列，且以 $\liminf_{n\rightarrow\infty}\left(X_n-\underline{Y}\right)$ 为极限.
 		\item 由单调收敛定理可得: %故用定理 1.6 得
 		\[
-		E\left[\liminf_{n}\left(X_n-\underline{Y}\right)\right]=\lim _{n} E\left[\inf_{k\geq n}\left(X_{k}-\underline{Y}\right)\right] \leq \liminf_{n\rightarrow\infty}E\left(X_n-\underline{Y}\right) .
+		E\left[\liminf_{\rightarrow\infty}\left(X_n-\underline{Y}\right)\right]=\lim_{n\rightarrow\infty} E\left[\inf_{k\geq n}\left(X_{k}-\underline{Y}\right)\right] \leq \liminf_{n\rightarrow\infty}E\left(X_n-\underline{Y}\right) .
 		\]
 		\item 消去有限的 $E(\underline{Y})$ 可证得结论
 		\item 对 $\left\{-X_n\right\}$ 用下确界的结论可证得上确界的结论.%（1）便可得证（1.24）式，定理证毕。
