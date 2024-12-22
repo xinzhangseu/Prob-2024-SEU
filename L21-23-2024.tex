@@ -164,9 +164,9 @@
 	\frametitle{依分布收敛 (弱收敛)}
 	\begin{defi}
 		设随机变量 $X,X_1, X_2,\cdots,$ 的分布函数分别为 $F (x), F_1 (x),F_2 (x),\cdots,$, 如果对 $F (x)$ 的任一连续点 $x$ 均有
-		\begin{eqnarray*}
+		\begin{eqnarray}\label{eq:weakdefn}
 			\lim_{n\rightarrow}F_n(x)=F(x),
-		\end{eqnarray*}
+		\end{eqnarray}
 		则称 $\{F_n (x)\}$ 弱收敛于 $F (x)$, 记作 $F_n (x)\stackrel{W}{\rightarrow} F (x)$. 此时也称 $\{X_n\}$ 按分布收敛于 $X$, 记作 $X_n\stackrel{W}{\rightarrow} X$.
 	\end{defi}
 	\pause
@@ -275,11 +275,25 @@
 	\frametitle{弱收敛的充分条件}
 	\begin{thm}
 		设 $F (x), F_n (x)(n\geq 1)$ 均为分布函数，如果对于 $F(x)$的连续点集$C_F$ 的某个稠密子集 $D$ 上的一切 $x$ 均有
-		\begin{eqnarray*}
-			\lim_{n\rightarrow\infty}F_n(x)=F(x),
-		\end{eqnarray*}
+		\begin{eqnarray}\label{eq:wchou}
+			\lim_{n\rightarrow\infty}F_n(x)=F(x), \forall x\in D
+		\end{eqnarray}
 		则 $F_n\stackrel{W}\rightarrow F$.
 	\end{thm}
+\pause
+
+\zheng 由 $D \subset C_{F}$ 立得必要性.下设\eqref{eq:wchou}式成立. 对任何 $x \in C_{F}$,取
+$$y<x<z \text{且} y, z \in D,$$ 则有\pause
+\begin{align}
+	F_{n}(y) \leq F_{n}(x) \leq F_{n}(z).
+\end{align}\pause
+上式令 $n \rightarrow \infty$并利用\eqref{eq:wchou}式可得
+\[
+F(y)=\lim _{n} F_{n}(y) \leq \varliminf_{n} F_{n}(x) \leq \varlimsup_{n} F_{n}(x) \leq \lim _{n} F_{n}(z)=F(z) .
+\]
+\pause
+再令 $y \uparrow x$ 及 $z \downarrow x$ 便得证\eqref{eq:weakdefn}式. 即 $F_{n} \xrightarrow{W} F$ 。证毕。
+
 
 \end{frame}
 %\subsection{弱收敛与特征函数列收敛的等价性}
@@ -309,10 +323,10 @@
 
 
 \begin{itemize}[<+-|alert@+>]
-	\item 令 \( q_{1}, q_{2}, \ldots \) 为有理数排列, \(m_{0}(j) \equiv j\). 由于对每个$k$, \[  F_{m}\left(q_{k}\right) \in[0,1], \quad m\geq 1.\]
-	\pause 因此, 存在\( m_{k-1}(j)\)的子列\( m_{k}(i) \)使得\pause
+	\item 令 \( q_{1}, q_{2}, \ldots \) 为有理数排列, \(m_{0}(j) \equiv j\). 由于对每个$k$, \[  F_{m}\left(q_{k}\right) \in[0,1], \quad \forall m\geq 1.\]
+	\pause 因此, 存在\( m_{k-1}(j)\)的子列\( m_{k}(j) \)使得\pause
 	\[
-	\lim_{i \rightarrow \infty}F_{m_{k}(i)}(q_{k}) = G(q_{k}).
+	\lim_{j \rightarrow \infty}F_{m_{k}(j)}(q_{k}) = G(q_{k}).
 	\]
 \item 令 $F_{n(k)}(x):=F_{m_k(k)}(x)$, 则 \pause
 \[\lim_{k \rightarrow \infty}F_{n(k)}(q) = G(q),\quad  \forall q \in \mathbb{Q}.\]
@@ -333,6 +347,11 @@
 
 \begin{itemize}[<+-|alert@+>]
 
+\item 右连续性证明方法2:对任何 $\varepsilon>0$, 总存在 $q_{k}>x$ 使 $G\left(q_{k}\right)<F(x)+\varepsilon$, 且对于一切 $y \in\left(x, q_{k}\right)$ 有
+\[
+F(x)\leq F(y)<G\left(q_{k}\right)<F(x)+\varepsilon .
+\]
+先令 $y \downarrow x$ ，再令 $\varepsilon \downarrow 0$ 得 $F(x)\leq F(x+0) \leq F(x)$. 右连续得证.
 \item 令$x\in C_F$并取$r_1,r_2,r_3\in\mathbb{Q}$使得$r_{1}<r_{2}<x<r_3$, 则
 	\[
 	F(x)-\epsilon<F\left(r_{1}\right) \leq F\left(r_{2}\right) \leq F(x) \leq F(r_3)<F(x)+\epsilon
@@ -363,13 +382,14 @@
 \zheng
 \begin{itemize}[<+-|alert@+>]
 \item 假设$\{F_n(x)\}_{n\geq 1}$是胎紧的, 且\( F_{n(k)}(x) \rightarrow F(x) \). 下证 $F(x)$为分布函数,\pause  即证: $F(+\infty)-F(-\infty)=1$.
-\item 令 $r, s\in C_F$且\( r<-M_{\epsilon}, s>M_{\epsilon} \), 则由
+\item 令 $r, s\in C_F$且\( r<-M_{\epsilon}, s>M_{\epsilon} \), 由
 \(F_{n}(r) \rightarrow F(r), \ F_{n}(s) \rightarrow F(s) \)
-可得 \pause %, we have
+得 \pause %, we have
 \[
 \begin{aligned}
-1-F(s)+F(r) & =\pause \lim _{k \rightarrow \infty} \big(1-F_{n(k)}(s)+F_{n(k)}(r) \big)\\
-& \leq \pause \limsup _{n \rightarrow \infty} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right)\big) \leq \pause \epsilon
+1-F(s)+F(r)  &=\pause \lim _{k \rightarrow \infty} \big(1-F_{n(k)}(s)+F_{n(k)}(r) \big)\\
+& \leq\lim _{k \rightarrow \infty} \big(1-F_{n(k)}(M_{\epsilon})+F_{n(k)}(-M_{\epsilon}) \big)\\
+&\leq \pause \limsup _{n \rightarrow \infty} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right)\big) \leq \pause \epsilon
 \end{aligned}
 \]
 \item 令$r\rightarrow-\infty, s\rightarrow\infty$后再令$\epsilon\rightarrow 0$可得$F(+\infty)-F(-\infty)=1$%.由上可得${\lim \sup _{x \rightarrow \infty} 1-F(x)+F(-x) \leq \epsilon}$
@@ -380,14 +400,15 @@
 \begin{frame}{定理证明续}
 	\begin{itemize}[<+-|alert@+>]
 	\item 若极限函数是分布函数,下面用反证法证明$\{F_n(x)\}_{n\geq 1}$是胎紧的.
-	\item 若$\{F_n(x)\}_{n\geq 1}$不是胎紧的, 则存在$\epsilon>0$以及子列$n(k)\rightarrow\infty$使得对任意的$n(k)$均有 \pause
+	\item 若$\{F_n(x)\}_{n\geq 1}$不是胎紧的, 则存在$\epsilon>0$以及子列$n(k)\rightarrow\infty$使得对任意的$k$均有 \pause
 	\[
 		1-F_{n(k)}(k)+F_{n(k)}(-k) \geq \epsilon,
 		\]
 		\item 由Helly第一定理可知, $\{F_{n(k)}(x)\}_{k\geq 1}$ 存在子列$\{F_{n\left(k_{j}\right)}\}_{j\geq 1}\rightarrow F(x)$
 		\item 令$r, s\in C_F$, $r<0<s$, 则
 	\begin{align*}
-		1-F(s)+F(r)  &=\pause \lim _{j \rightarrow \infty} \big(1-F_{n\left(k_{j}\right)}(s)+F_{n\left(k_{j}\right)}(r)\big) \\
+		1-F(s)+F(r)  &=\pause \lim _{j \rightarrow \infty} \big(1-F_{n\left(k_{j}\right)}(s)+F_{n\left(k_{j}\right)}(r)\big)
+		 \\
 		&\geq \pause \liminf _{j \rightarrow \infty} \big(1-F_{n\left(k_{j}\right)}\left(k_{j}\right)+F_{n\left(k_{j}\right)}\left(-k_{j}\right)\big) \geq \pause \epsilon
 	\end{align*}
 \item 令$s \rightarrow \infty, r \rightarrow-\infty$可知$F(x)$不是分布函数, 与假设矛盾. %is not the distribution function of a probability measure.
@@ -462,7 +483,7 @@
 	\begin{itemize}[<+-|alert@+>]
 	\item 必要性
 	\begin{itemize}[<+-|alert@+>]
-		\item 由引理可知, 存在$\{Y_n\}_{n\geq 1}$及$Y$使得$Y_n\rightarrow Y a.s.$
+		\item 由引理可知, 存在$\{Y_n\}_{n\geq 1}$及$Y$使得$Y_n\rightarrow Y,    a.s.$
 		\item 由于$g(x)$是连续函数, 从而$g(Y_n)\rightarrow g(Y), a.s.$
 		\item 从而由控制收敛定理可知
 		\[E[g(X_n)]=E[g(Y_n)]\rightarrow E[g(Y)]=E[g(X)], \]
@@ -570,6 +591,28 @@
 
 \item 故综上可知, $\int g(x)dF_{n}(x)$的任一子列$\int g(x)dF_{n(k)}(x)$均存在子列$\int g(x)dF_{n(k_j)}(x)\rightarrow \int g(x)dF(x)$. 从而, $\int g(x)dF_{n}(x)\rightarrow \int g(x)dF(x)$, 即 $$E[g(X_n)]\rightarrow E[g(X)].$$
 \end{itemize}
+
+\end{frame}
+
+\begin{frame}{作业}
+\begin{enumerate}
+	\item $\text {如果 } X_{n} \xrightarrow{P} X \text {, 且 } X_{n} \xrightarrow{P} Y \text {. 试证: } P(X=Y)=1 \text {. }$
+  \item 如果 $X_{n} \xrightarrow{P} X, Y_{n} \xrightarrow{P} Y$. 试证:
+  (1) $X_{n}+Y_{n} \xrightarrow{P} X+Y$;
+  (2) $X_{n} Y_{n} \xrightarrow{P} X Y$.
+  \item 试证: $X_{n} \xrightarrow{P} X$  的充要条件为: $\lim_{n \rightarrow \infty}E\left(\dfrac{\left|X_{n}-X\right|}{1+\left|X_{n}-X\right|}\right)=0$.
+  \item 设随机变量序列 $\left\{X_{n}\right\}$ 独立同分布, 其密度函数为
+  $$p(x)=\left\{
+	\begin{array}{ll}
+  e^{-(x-\alpha)}, & x \geqslant \alpha, \\
+  0, & x<\alpha.
+  \end{array} \right.
+  $$
+
+
+
+  令 $Y_{n}=\min \left\{X_{1}, X_{2}, \cdots, X_{n}\right\}$, 试证: $Y_{n} \xrightarrow{P} \alpha$.
+\end{enumerate}
 
 \end{frame}
 
