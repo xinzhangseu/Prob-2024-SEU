@@ -896,7 +896,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\begin{itemize}[<+-|alert@+>]
 	\item 记部分和${S_{n}=\sum_{k=1}^{n} X_{k}}$. 如非负情形成立, 则有
 	\[
-	\frac{S_{n}}{n}=\frac{1}{n} \sum_{k=1}^{n} X_{k}^{+}-\frac{1}{n} \sum_{k=1}^{n} X_{k}^{-} \stackrel{a . s_{i}}{\longrightarrow} E\left(X_{1}^{+}\right)-E\left(X_{1}^{-}\right)=a .
+	\frac{S_{n}}{n}=\frac{1}{n} \sum_{k=1}^{n} X_{k}^{+}-\frac{1}{n} \sum_{k=1}^{n} X_{k}^{-} \stackrel{a.s.}{\longrightarrow} E\left(X_{1}^{+}\right)-E\left(X_{1}^{-}\right)=a .
 	\]
 	故不妨假定${\left\{X_{k}\right\}}$是非负随机变量列.
 
@@ -1158,29 +1158,76 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 \end{frame}
 
 \begin{frame}
-	\frametitle{独立情形下的强大数定律}
+	\frametitle{{\rm Kolmogorov} 极大不等式}
 	\begin{thm}
 		({\rm Kolmogorov} 极大不等式) 设随机变量 $X_1,\cdots, X_n$ 相互独立，它们都有零期望与有限方差。令 $S_n=\sum_{k=1}^nX_k$, 则对任意的 $\epsilon>0$ 有
-		\begin{eqnarray*}
+		\begin{eqnarray}\label{eq:klie}
 			P(\max_{1\leq k\leq n}|S_k|\geq \epsilon)\leq \dfrac{1}{\epsilon^2}D(S_n)
-		\end{eqnarray*}
+		\end{eqnarray}
 
 	\end{thm}
 
 
 
 \end{frame}
+\begin{frame}{{\rm Kolmogorov} 极大不等式的证明}
+\begin{itemize}[<+-|alert@+>]
+	\item 对 $k=1, \cdots, n$, 令
+	\[
+	A_{k}=\left\{\omega:\left|S_{k}\right| \geq \varepsilon \text {; 但 }\left|S_{j}\right|<\varepsilon, j=1, \cdots, k-1\right\} \text {. }
+	\]
+\item 则 $A_{k}$ 两两不相容, 且
+	\[
+	\left\{\max _{I \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\}=\bigcup_{k=1}^{n} A_{k}
+	\]
+\item 故由 $P\left(A_{k}\right)=E\left(1_{A_k}\right)$ 及 $A_{k}$ 的定义可推出
+	\begin{align}\label{eq:ki}
+		P\left\{\max _{1 \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\}=\sum_{k=1}^{n} P\left(A_{k}\right) \leq \frac{1}{\varepsilon^{2}} \sum_{k=1}^{n} E\left(S_{k}^{2} 1_{A_k}\right).
+	\end{align}
 
+	\item 注意到 $S_{k}^{2} 1_{A_k}$ 是 $\xi_{1}, \cdots, \xi_{k}$ 的函数，它与 $S_{n}-S_{k}=\sum_{i=k+1}^{72} \xi_{i}$ 相互独立. 故
+	\[
+	E\left[\left(S_{n}-S_{k}\right) S_{k} 1_{A_k}\right]=E\left[S_n-S_{k}\right] E\left[S_{k} 1_{A_k}\right]=0 .
+	\]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Kolmogorov极大不等式的证明}
+\begin{itemize}[<+-|alert@+>]
+	\item 于是 \eqref{eq:ki} 式可进一步化为
+	\[\begin{aligned}
+		& P\left\{\max _{1 \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\} \\
+		\leq & \frac{1}{\varepsilon^{2}} \sum_{k=1}^{n}\left\{E\left(S_{k}^{2} 1_{A_k}\right)+2 E\left[\left(S_{n}-S_{k}\right) S_{k} 1_{A_k}\right]+E\left[\left(S_{n}-S_{k}\right)^{2} 1_{A_k}\right]\right\} \\
+		= & \frac{1}{\varepsilon^{2}} E\left[S_{n}^{2} \sum_{k=1}^{n} 1_{A_k}\right] \leq \frac{1}{\varepsilon^{2}} E\left(S_{n}^{2}\right)=\frac{1}{\varepsilon^{2}} D\left(S_{n}\right) .
+	\end{aligned}
+	\]
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{一个引理}
+	\begin{lem}
+		考虑实数列 $\left\{c_{n}\right\}$ 及其部分和数列 $s_{n}=\sum_{k=1}^{n} c_{k}$.
+		\begin{enumerate}[1.]
+		  \item 若 $c_{n} \rightarrow c$, 则 $s_{n} / n \rightarrow c$;
+		\item  设 $b_{m}=\sup \left\{\left|s_{m+k}-s_{m}\right|: k \geq 1\right\}, b=\inf \left\{b_{m}: m \geq 1\right\}$, 则 $\sum_{n=1}^{\infty} c_{n}$ 收敛的充分必要条件是 $b=0$;
+		\item (柯罗奈克引理) 若 $\sum_{n=1}^{\infty} c_{n} / n$ 收敛, 则 $s_{n} / n \rightarrow 0$.
+		\end{enumerate}
+	\end{lem}
+
+\end{frame}
 
 
 \begin{frame}
-	\frametitle{独立情形下的强大数定律}
+	\frametitle{Kolmogorov强大数定律}
 
 	\begin{thm}
 		({\rm Kolmogorov} 强大数定律) 设 $\{X_n\}$ 是独立随机变量序列，满足
-		\begin{eqnarray*}
+		\begin{eqnarray}\label{eq:kllc}
 			\sum_{k=1}^\infty\dfrac{D(X_k)}{k^2}<+\infty,
-		\end{eqnarray*}
+		\end{eqnarray}
 		则强大数定律成立，即当 $n\rightarrow\infty$ 时有
 		\begin{eqnarray*}
 			\dfrac{1}{n}\sum_{k=1}^n[X_k-E(X_k)]\stackrel{a.s.}{\rightarrow}0.\end{eqnarray*}
@@ -1193,51 +1240,78 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 
 \end{frame}
 
+\begin{frame}{Kolmogorov强大数定律证明}
+\begin{itemize}[<+-|alert@+>]
+	\item 令 \( X_{k}'=X_{k}-E\left(X_{k}\right) \), 则 \( E\left(X_{k}'\right)=0, D\left(X_{k}'\right)=D\left(X_{k}\right) \).
+	\item  条件 \eqref{eq:kllc} 式对独立序列 \( \left\{X_{k}'\right\} \) 仍成立.
+	\item 问题化为证明 \( n \rightarrow \infty \) 时有
+	\[
+	\frac{1}{n} \sum_{k=1}^{n} X_{k}' \stackrel{a . s}{\longrightarrow} 0 \text {. }
+	\]
+
+	\item 取 \( S_{n}=\sum_{k=1}^{n} X_{k}' / k \), 并令
+\begin{align*}
+	b_{m}&=\sup \left\{\left|S_{m+k}-S_{m}\right|, k=1,2, \cdots\right\},\\
+	b&=\inf \left\{b_{m},  m=1,2, \cdots\right\}.
+\end{align*}
+\item 对任意 ${\varepsilon>0}$ 及自然数 $n, m$, 由Kolmogorov极大不等式\eqref{eq:klie} 可得
+\begin{align}\label{eq:klie-2}
+	P\left\{\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \geq \varepsilon\right\} \leq \frac{1}{\varepsilon^{2}} \sum_{k=m+1}^{m+n} \frac{D\left(X_{k}{\prime}\right)}{k^{2}} .
+\end{align}
 
 
-% \begin{frame}{Kolmogorov强大数定律证明}
-% 	\begin{itemize}[<+-|alert@+>]
-% 	\item 令 \( X_{k}^{\prime}=X_{k}-E\left(X_{k}\right) \), 则 \( E\left(X_{k}^{\prime}\right)=0, D\left(X_{k}^{\prime}\right)=D\left(X_{k}\right) \). 于是条件 (2.28) 式对独立序列 \( \left\{X_{k}^{\prime}\right\} \) 仍成立, 问题化为证明 \( n \rightarrow \infty \) 时有
-% 	\[
-% 	\frac{1}{n} \sum_{k=1}^{n} X_{k}^{\prime} \stackrel{a . s}{\longrightarrow} 0 \text {. }
-% 	\]
+\end{itemize}
 
-% 	按引理 \( 2.6 .2^{\circ} \) 取 \( S_{n}=\sum_{k=1}^{n} X_{k}^{\prime} / k \). 并令
-% 	\[
-% 	b_{m}=\sup \left\{\left|S_{m+k}-S_{m}\right| \quad k=1,2, \cdots\right\} \text {, }
-% 	\]
+\end{frame}
 
-% 	\item
-% 	\end{itemize}
+\begin{frame}{Kolmogorov强大数定律证明}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到 ${n \rightarrow \infty}$ 时,
+		\[
+		\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \uparrow b_{m} \geq b, (m \geq 1)
+		\]
+		\item
+		故对一切 $m \geq 1$ 有
+		\[
+		\{b>\varepsilon\} \subset\left\{b_{m}>\varepsilon\right\} \subset \bigcup_{n=1}^{\infty}\left\{\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \geq \varepsilon\right\} .
+		\]
+
+		\item 于是用概率的下连续性及 \eqref{eq:klie-2} 式可得
+		\[
+		P\{b>\varepsilon\} \leq P\left\{b_{m}>\varepsilon\right\} \leq \frac{1}{\varepsilon^{2}} \sum_{k=m+1}^{\infty} \frac{D\left(X_{k}{\prime}\right)}{k^{2}} .
+		\]
+		\item 由条件 \eqref{eq:kllc}式以及在上式中令 $m \rightarrow \infty$ 可得: ${P\{b>\varepsilon\}=0}$.
 
 
-% \[
-% b=\inf \left\{b_{m}  m=1,2, \cdots\right\} .
-% \]
 
-% 对任意 ${\varepsilon>0}$ 及自然数 ${n, m}$, 由柯尔莫戈路夫极大不等式 (2.26) 可得
-% \[
-% P\left\{\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \geq \varepsilon\right\} \leq \frac{1}{\varepsilon^{2}} \sum_{k=m+1}^{m+n} \frac{D\left(X_{k}{\prime}\right)}{k^{2}} .
-% \]
+	\end{itemize}
 
-% 注意到 ${n \rightarrow \infty}$ 时
-% \[
-% \max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \uparrow b_{m} \geq b, (m \geq 1)
-% \]
+	\end{frame}
 
-% 故对一切 ${m \geq 1}$ 有
-% \[
-% \{b>\varepsilon\} \subset\left\{b_{m}>\varepsilon\right\} \subset \bigcup_{n=1}^{\infty}\left\{\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \geq \varepsilon\right\} .
-% \]
 
-% 于是用概率的下连续性及 ${(2.31)}$ 式使得
-% \[
-% P\{b>\varepsilon\} \leq P\left\{b_{m}>\varepsilon\right\} \leq \frac{1}{\varepsilon^{2}} \sum_{k=m+1}^{\infty} \frac{D\left(X_{k}{\prime}\right)}{k^{2}} .
-% \]
+\begin{frame}{Kolmogorov强大数定律证明}
+	\begin{itemize}[<+-|alert@+>]
 
-% 令 ${m \rightarrow \infty}$ 由条件 ${(2.28)}$ 式知 ${P\{b>\varepsilon\}=0}$. 取 ${\varepsilon=1 / \ell}$, 并记使 ${b>1 / \ell}$ 成立的零概集为 ${E_{\ell}, E=\bigcup_{\ell=1}^{\infty} E_{\ell}}$, 则 ${P(E)=0}$, 而且在 ${E}$之外, 对一切 ${\ell \geq 1}$ 有 ${b \leq 1 / \ell}$. 因而在 ${E}$ 之外恒有 ${b=0}$. 用引理 2.6 的 ${2{\circ}}$ 得 ${\bar{E}}$ 上 ${\sum_{k=1}^{\infty} X_{k}{\prime} / k}$ 收敛. 再用引理 2.6 的 ${3{\circ}}$ 便得 ${\bar{E}}$ 上 ${\lim _{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} X_{k}{\prime}=0}$, 即 (2.30) 式成立. 证完.
+		\item 取 ${\varepsilon=1 / \ell}$, 并记使 ${b>1 / \ell}$ 成立的零概集为 $E_{\ell}$.
+		\item 令$E=\bigcup_{\ell=1}^{\infty} E_{\ell}$, 则 ${P(E)=0}$.
+		\item 对任意的$\omega\notin E$均有 ${b(\omega) \leq 1 / \ell}, \forall l\geq 1$.
+		\item 故对任意的 $\omega \notin {E}$ 恒有 $b(\omega)=0$.
+		\item 从而, 在${\bar{E}}$ 上 ${\sum_{k=1}^{\infty} X_{k}'/ k}$ 收敛.
+		\item 故在 ${\bar{E}}$ 上 ${\lim _{n \rightarrow \infty} \dfrac{1}{n} \sum_{k=1}^{n} X_{k}'=0}$.
 
-% \end{frame}
+
+	\end{itemize}
+
+	\end{frame}
+
+
+
+
+
+
+
+
+
 
 
 \title[概率论]{第二十三讲：中心极限定理}
