@@ -594,27 +594,27 @@ F(x)\leq F(y)<G\left(q_{k}\right)<F(x)+\varepsilon .
 
 \end{frame}
 
-\begin{frame}{作业}
-\begin{enumerate}
-	\item $\text {如果 } X_{n} \xrightarrow{P} X \text {, 且 } X_{n} \xrightarrow{P} Y \text {. 试证: } P(X=Y)=1 \text {. }$
-  \item 如果 $X_{n} \xrightarrow{P} X, Y_{n} \xrightarrow{P} Y$. 试证:
-  (1) $X_{n}+Y_{n} \xrightarrow{P} X+Y$;
-  (2) $X_{n} Y_{n} \xrightarrow{P} X Y$.
-  \item 试证: $X_{n} \xrightarrow{P} X$  的充要条件为: $\lim_{n \rightarrow \infty}E\left(\dfrac{\left|X_{n}-X\right|}{1+\left|X_{n}-X\right|}\right)=0$.
-  \item 设随机变量序列 $\left\{X_{n}\right\}$ 独立同分布, 其密度函数为
-  $$p(x)=\left\{
-	\begin{array}{ll}
-  e^{-(x-\alpha)}, & x \geqslant \alpha, \\
-  0, & x<\alpha.
-  \end{array} \right.
-  $$
+% \begin{frame}{作业}
+% \begin{enumerate}
+% 	\item $\text {如果 } X_{n} \xrightarrow{P} X \text {, 且 } X_{n} \xrightarrow{P} Y \text {. 试证: } P(X=Y)=1 \text {. }$
+%   \item 如果 $X_{n} \xrightarrow{P} X, Y_{n} \xrightarrow{P} Y$. 试证:
+%   (1) $X_{n}+Y_{n} \xrightarrow{P} X+Y$;
+%   (2) $X_{n} Y_{n} \xrightarrow{P} X Y$.
+%   \item 试证: $X_{n} \xrightarrow{P} X$  的充要条件为: $\lim_{n \rightarrow \infty}E\left(\dfrac{\left|X_{n}-X\right|}{1+\left|X_{n}-X\right|}\right)=0$.
+%   \item 设随机变量序列 $\left\{X_{n}\right\}$ 独立同分布, 其密度函数为
+%   $$p(x)=\left\{
+% 	\begin{array}{ll}
+%   e^{-(x-\alpha)}, & x \geqslant \alpha, \\
+%   0, & x<\alpha.
+%   \end{array} \right.
+%   $$
 
 
 
-  令 $Y_{n}=\min \left\{X_{1}, X_{2}, \cdots, X_{n}\right\}$, 试证: $Y_{n} \xrightarrow{P} \alpha$.
-\end{enumerate}
+%   令 $Y_{n}=\min \left\{X_{1}, X_{2}, \cdots, X_{n}\right\}$, 试证: $Y_{n} \xrightarrow{P} \alpha$.
+% \end{enumerate}
 
-\end{frame}
+% \end{frame}
 
 
 \title[概率论]{第二十二讲：大数定律}
@@ -1185,7 +1185,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 		P\left\{\max _{1 \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\}=\sum_{k=1}^{n} P\left(A_{k}\right) \leq \frac{1}{\varepsilon^{2}} \sum_{k=1}^{n} E\left(S_{k}^{2} 1_{A_k}\right).
 	\end{align}
 
-	\item 注意到 $S_{k}^{2} 1_{A_k}$ 是 $\xi_{1}, \cdots, \xi_{k}$ 的函数，它与 $S_{n}-S_{k}=\sum_{i=k+1}^{72} \xi_{i}$ 相互独立. 故
+	\item 注意到 $S_{k}^{2} 1_{A_k}$ 是 $\xi_{1}, \cdots, X_{k}$ 的函数，它与 $S_{n}-S_{k}=\sum_{i=k+1}^{72} \xi_{i}$ 相互独立. 故
 	\[
 	E\left[\left(S_{n}-S_{k}\right) S_{k} 1_{A_k}\right]=E\left[S_n-S_{k}\right] E\left[S_{k} 1_{A_k}\right]=0 .
 	\]
@@ -1219,12 +1219,62 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 
 \end{frame}
 
+\begin{frame}{引理证明}
+\begin{enumerate}[1.]
+  \item
+  \begin{itemize}
+	\item 对任 $\varepsilon>0$, 选 $n_{1}$ 使 $n>n_{1}$ 时 $\left|c_{n}-c\right|<\varepsilon / 2$;
+	\item 再选 $n_{2}>n_{1}$ 使 $n>n_{2}$ 则 $\sum_{k=1}^{n_{1}}\left|c_{k}-c\right| / n<\varepsilon / 2$.
+	\item 当 $n>n_{2}$ 时有
+	\begin{align}
+	\left|\frac{s_{n}-c}{n}\right| &\leq \sum_{k=1}^{n} \frac{\left|c_{n}-c\right|}{n} \\
+	&=\sum_{k=1}^{n_{1}} \frac{\left|c_{k}-c\right|}{n}+\sum_{k=n_1+1}^{n} \frac{\left|c_{k}-c\right|}{n}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon .
+	\end{align}
+\end{itemize}
+\item \begin{itemize}
+	\item 若 $b=0$, 则对任意 $\varepsilon>0$, 存在 $n_{1}$ 使 $b_{n_{1}}<\varepsilon$. 从而对一切 $k \geq 1$ 有
+	\[\left|s_{n_{1}+k}-s_{n_{1}}\right|<\varepsilon.\]
+	\item 这表明 $\sum_{n=1}^{\infty} c_{n}$ 收敛。逆命题证明类似.
+\end{itemize}
+
+
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{引理证明}
+\begin{enumerate}[3.]
+	\item \begin{itemize}
+		\item 令
+		\[
+		t_{0}=0, \quad t_{n}=\sum_{k=1}^{n} \frac{c_{k}}{k},  n \geq 1
+		\]
+
+		\item 由 $c_{k}=k\left(t_{k}-t_{k-1}\right)$ 可得
+		\[
+		s_{n+1}=\sum_{k=1}^{n+1} k t_{k}-\sum_{k=1}^{n+1} k t_{k-1}=-\sum_{k=1}^{n} t_{k}+(n+1) t_{n+1},\  n \geq 1
+		\]
+		\item 故
+		\begin{align}\label{eq:sn-1}
+			\frac{s_{n+1}}{n+1}=-\frac{n}{n+1} \cdot \frac{1}{n} \sum_{k=1}^{n} t_{k}+t_{n+1},\  n \geq 1
+		\end{align}
+
+		\item 现设 $\sum_{n=1}^{\infty} c_{n} / n$ 收敛，即其部分利序列 $\left\{t_{n}\right\}$ 收敛到有穷的极限 $t$.
+		\item 由已证得的 $1$ 知序列 $\left\{\dfrac{1}{n} \sum_{k=1}^{n} t_{k}\right\}$ 收敛到 $t$.
+		\item 由此在\eqref{eq:sn-1} 式中令 $n \rightarrow \infty$ 便得证 $s_{n} / n \rightarrow 0$. %引理全都证完.
+	\end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+
+
 
 \begin{frame}
 	\frametitle{Kolmogorov强大数定律}
 
 	\begin{thm}
-		({\rm Kolmogorov} 强大数定律) 设 $\{X_n\}$ 是独立随机变量序列，满足
+		(Kolmogorov强大数定律)设$\{X_n\}$是独立随机变量序列, 满足
 		\begin{eqnarray}\label{eq:kllc}
 			\sum_{k=1}^\infty\dfrac{D(X_k)}{k^2}<+\infty,
 		\end{eqnarray}
@@ -1293,11 +1343,11 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\begin{itemize}[<+-|alert@+>]
 
 		\item 取 ${\varepsilon=1 / \ell}$, 并记使 ${b>1 / \ell}$ 成立的零概集为 $E_{\ell}$.
-		\item 令$E=\bigcup_{\ell=1}^{\infty} E_{\ell}$, 则 ${P(E)=0}$.
-		\item 对任意的$\omega\notin E$均有 ${b(\omega) \leq 1 / \ell}, \forall l\geq 1$.
-		\item 故对任意的 $\omega \notin {E}$ 恒有 $b(\omega)=0$.
-		\item 从而, 在${\bar{E}}$ 上 ${\sum_{k=1}^{\infty} X_{k}'/ k}$ 收敛.
-		\item 故在 ${\bar{E}}$ 上 ${\lim _{n \rightarrow \infty} \dfrac{1}{n} \sum_{k=1}^{n} X_{k}'=0}$.
+		\item 令$E=\bigcup_{\ell=1}^{\infty} E_{\ell}$, 则 ${P(E)=0}$, 且对任意的$\omega\notin E$均有
+		\[{b(\omega) \leq 1 / \ell}, \forall l\geq 1.\]
+		\item 故对任意的 $\omega \notin {E}$ 恒有 $b(\omega)=0$. 进而, 在${\bar{E}}$ 上 ${\sum_{k=1}^{\infty} X_{k}'/ k}$ 收敛.
+		\item 故在 ${\overline{E}}$ 上
+		\[{\lim _{n \rightarrow \infty} \dfrac{1}{n} \sum_{k=1}^{n} X_{k}'=0}.\]
 
 
 	\end{itemize}
@@ -1576,6 +1626,46 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\begin{rmk}
 		假设 $\{X_n\}$ 独立同分布且方差有限，则容易验证上述的林德伯格条件满足，从而我们先前在独立同分布情形下的中心极限定理是林德伯格中收极限定理的特例.
 	\end{rmk}
+\end{frame}
+
+\begin{frame}{林德伯格中心极限定理证明}
+\begin{itemize}
+	\item 只需要证明可以从林德伯格条件出发导出 $\left\{Y_n^*\right\}$ 的特征函数列 \[\phi_{n}(t)\rightarrow e^{-\frac{t^2}{2}}.\]
+    \item
+	对一切 $n \geq 1$ 及 $k=1, \cdots, n$ ，令 $X_{nk}=\left(X_{k}-\mu_k\right) / \sigma(Y_n)$ 。则 $E\left(X_{nk}\right)=0$ 而 $D\left(X_{nk}\right)=\sigma^{2} / \sigma(Y_n)^{2}$ 。因此，若以 $F_{n k}$ 及 $f_{n k}$ 分别表 $X_{nk}$的分布函数及特征函数，则已知的条件 (3.6) 式化为
+	\[
+	\lim _{n} \sum_{k=1}^{n} \int_{(|x| \geq r)} x^{2} d F_{n k}(x)=0,  \text { 任 } \tau>0
+	\]
+
+	而待证的 (3.3) 式变为 $n \rightarrow \infty$ 时有
+	\[
+	f_{n}(t)=\prod_{k=1}^{n} f_{n k}(t) \longrightarrow e^{-\frac{t^{2}}{2}},  \text { 任 } t \in \Re
+	\]
+
+	据 4.2.2 节 (2.12) 式知，对一切 $t \in \Re$ 有
+	\[
+	\left|e^{i t x}-\left(1+i t x-\frac{1}{2} t^{2} x^{2}\right)\right| \leq|t x|^{2} \wedge|t x|^{3}
+	\]
+
+	注意到 $X_{nk}$ 二阶矩有限，两边对 $F_{n k}$ 取积分得
+	\[
+	\left|f_{n k}(t)-\left(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\right)\right| \leq E\left\{\left|t X_{nk}\right|^{2} \wedge\left|t X_{nk}\right|^{3}\right\}
+	\]
+
+	而对任何 $\tau>0$ ，上式右方不超过
+	\[
+	\begin{array}{c}
+	\int_{(|x|<r)}|t x|^{3} d F_{n k}(x)+\int_{(|x| \geq r)}(t x)^{2} d F_{n k}(x) \\
+	 \leq \tau|t|^{3} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^{2}}+t^{2} \int_{(|x| \geq r)} x^{2} d F_{n k}(x)
+	\end{array}
+	\]
+
+	由于 $\sum_{k=1}^{n} \sigma_{k}^{2} / \sigma(Y_n)^{2}=D\left(Y_n^*\right)=1$, 求和便推出
+	\[
+	\sum_{k=1}^{n}\left|f_{r k}(t)-\left(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\right)\right| \leq \tau|t|^{3}+t^{2} \sum_{k=1}^{n} \int_{(|x| \leq \tau)} x^{2} d F_{n k}(x)
+	\]
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}
