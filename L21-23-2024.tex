@@ -366,15 +366,34 @@ F(x)\leq F(y)<G\left(q_{k}\right)<F(x)+\varepsilon .
 	\[\lim_{k \rightarrow \infty}F_{n(k)}(x) = F(x), \quad x\in C_F.\]
 \end{itemize}
 \end{frame}
+
+
+
 \begin{frame}{胎紧(tight)}
-\begin{defi}
-  称分布函数列$\{F_n(x)\}_{n\geq 1}$为胎紧的(tight), 如果对任意的$\epsilon>0$, 存$M_{\epsilon}$使得
-  \[
-\limsup _{n \rightarrow \infty} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right) \big)=\limsup _{n \rightarrow \infty}P(|X_n|\geq M_{\epsilon})\leq \epsilon
-\]
-\end{defi}
-\pause
-\vspace{-0.5cm}
+	\vspace{-0.1cm}
+
+	\begin{defi}设随机变量$X_n$的分布函数为$F_n(x)$, 我们称分布函数列$\{F_n(x)\}_{n\geq 1}$为胎紧的(tight), 如果对任意的$\epsilon>0$, 存$M_{\epsilon}$使得
+	  \[\sup_{n\geq 1}P(|X_n|>M_{\epsilon})\leq\epsilon.\]
+	\end{defi}
+	\pause%
+	\begin{thm}
+		分布函数列$\{F_n(x)\}_{n\geq 1}$是胎紧的(tight)的当且仅当对任意的$\epsilon>0$, 存$M_{\epsilon}$使得$\sup_{n\geq 1} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right) \big)\leq \epsilon$.
+	\end{thm}
+
+	\zheng 充分性, 若$\sup_{n\geq 1} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right) \big)\leq \epsilon$, 则由
+	{\small \begin{align*}
+		\sup_{n\geq 1}P(|X_n|>M_{\epsilon})&=\sup_{n\geq 1}\big(1-F_n(M_{\epsilon})+P(X_n<M_{\epsilon})\big)\\
+		&\leq \sup_{n\geq 1}\big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right)\big)\leq \epsilon
+	\end{align*}}
+	知分布函数列$\{F_n(x)\}_{n\geq 1}$是胎紧的.\pause  反之, 取$K_\epsilon=M_\epsilon+\delta, \delta>0$, 则
+	{\small \begin{align*}
+		\sup_{n\geq 1}\big(1-F_{n}\left(K_{\epsilon}\right)+F_{n}\left(-K_{\epsilon}\right)\big)&\leq \sup_{n\geq 1}\big(1-F_{n}\left(M_{\epsilon}\right)+P(X_n<-M_\epsilon)\big)\\
+		&=\sup_{n\geq 1}P(|X_n|>M_{\epsilon})\leq  \epsilon
+	\end{align*}}
+
+
+	\end{frame}
+\begin{frame}{胎紧与分布函数列收敛}
 \begin{thm}
 	分布函数列$\{F_n(x)\}_{n\geq 1}$的子序列收敛到某个分布函数$F(x)$当且仅当$\{F_n(x)\}_{n\geq 1}$是胎紧的.
  \end{thm}\pause
@@ -388,8 +407,8 @@ F(x)\leq F(y)<G\left(q_{k}\right)<F(x)+\varepsilon .
 \[
 \begin{aligned}
 1-F(s)+F(r)  &=\pause \lim _{k \rightarrow \infty} \big(1-F_{n(k)}(s)+F_{n(k)}(r) \big)\\
-& \leq\lim _{k \rightarrow \infty} \big(1-F_{n(k)}(M_{\epsilon})+F_{n(k)}(-M_{\epsilon}) \big)\\
-&\leq \pause \limsup _{n \rightarrow \infty} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right)\big) \leq \pause \epsilon
+& \leq\lim _{k \rightarrow \infty} \sup_{k\geq 1}\big(1-F_{n(k)}(M_{\epsilon})+F_{n(k)}(-M_{\epsilon}) \big)\\
+&\leq \pause \sup_{n\geq 1} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right)\big) \leq \pause \epsilon
 \end{aligned}
 \]
 \item 令$r\rightarrow-\infty, s\rightarrow\infty$后再令$\epsilon\rightarrow 0$可得$F(+\infty)-F(-\infty)=1$%.由上可得${\lim \sup _{x \rightarrow \infty} 1-F(x)+F(-x) \leq \epsilon}$
@@ -400,7 +419,7 @@ F(x)\leq F(y)<G\left(q_{k}\right)<F(x)+\varepsilon .
 \begin{frame}{定理证明续}
 	\begin{itemize}[<+-|alert@+>]
 	\item 若极限函数是分布函数,下面用反证法证明$\{F_n(x)\}_{n\geq 1}$是胎紧的.
-	\item 若$\{F_n(x)\}_{n\geq 1}$不是胎紧的, 则存在$\epsilon>0$以及子列$n(k)\rightarrow\infty$使得对任意的$k$均有 \pause
+	\item 若$\{F_n(x)\}_{n\geq 1}$不是胎紧的, 则存在$\epsilon>0$以及子列$n(k)$使得对任意的$k$均有 \pause
 	\[
 		1-F_{n(k)}(k)+F_{n(k)}(-k) \geq \epsilon,
 		\]
@@ -987,7 +1006,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 
 	\item 综上, 我们可以证明, 对任意的$\theta>1$及相应的$u_n=[\theta^n]$, 我们均有
 	\begin{align*}
-		\dfrac{S_{u_n}^*-E(S_{u_n}^*)}{n}\stackrel{a.s.}{\rightarrow}  0
+		\dfrac{S_{u_n}^*-E(S_{u_n}^*)}{u_n}\stackrel{a.s.}{\rightarrow}  0
 	\end{align*}
 	\item 从而可证
 	\begin{align*}
@@ -1011,7 +1030,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 \[
 \frac{1}{\theta} \cdot a \leq \liminf_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \limsup_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \theta\cdot a.
 \]
-\item 上式对任意的$\theta>1$均成立, 故特别的取 \( \theta=(\ell+1) / \ell \), 则以概率 1 有
+\item 上式对任意$\theta>1$均成立, 特别的取 \( \theta=(\ell+1) / \ell \), 则以概率 1 有
 \[
 \frac{\ell}{\ell+1} \cdot a  \leq \liminf_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \limsup_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \frac{\ell+1}{\ell} \cdot a .
 \]
@@ -1599,12 +1618,12 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\begin{eqnarray*}
 		&&P(\max_{1\le i\le n}|X_i-\mu_i|>\tau\sigma(Y_n))=\pause P(\cup_{i=1}^n|X_i-\mu_i|>\tau\sigma(Y_n))\\
 		&&\le\pause \sum_{i=1}^nP(|X_i-\mu_i|>\tau\sigma(Y_n))=\pause \sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}dF_i(x)\\
-		&&\le \pause \dfrac{1}{\tau^2\sigma^2(Y_n)}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)
+		&&\le \pause \dfrac{1}{\tau^2\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)
 	\end{eqnarray*}
 
 	\pause 故只要下面的 \textcolor{red}{\bf 林德伯格条件} 满足
 	\begin{eqnarray*}%\label{eq:Lindeberg}
-		\lim_{n\rightarrow\infty} \dfrac{1}{\tau^2\sigma^2(Y_n)}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
+		\lim_{n\rightarrow\infty} \dfrac{1}{\tau^2\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
 	\end{eqnarray*}
 	就可保证 $Y_n^*$ 中各加项充分的小
 
@@ -1615,9 +1634,9 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\frametitle{林德伯格中心极限定理}
 	\begin{thm}
 		设独立随机变量序列 $\{X_n\}$ 满足林德伯格条件
-		\begin{eqnarray*}%\label{eq:Lindeberg}
-			\lim_{n\rightarrow\infty} \dfrac{1}{\tau^2\sigma^2(Y_n)}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
-		\end{eqnarray*} 则对任意的 $x$, 有
+		\begin{eqnarray}\label{eq:Lindeberg}
+			\lim_{n\rightarrow\infty} \dfrac{1}{\tau^2\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
+		\end{eqnarray} 则对任意的 $x$, 有
 		\begin{eqnarray*}
 			\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{i=1}^n(X_i-\mu_i)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du
 		\end{eqnarray*}
@@ -1628,68 +1647,228 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\end{rmk}
 \end{frame}
 
-\begin{frame}{林德伯格中心极限定理证明}
+\begin{frame}{一个引理}
+	\begin{lem}\label{lem:eixtaylor}
+		对一切 $x \in R$ 及非负整数 $n$ 有
+		\[
+		\left|e^{i x}-\sum_{k=0}^{n} \frac{(i x)^{k}}{k!}\right| \leq\left[\frac{|x|^{n+1}}{(n+1)!}\right] \wedge\left[\frac{2|x|^{n}}{n!}\right]
+		\]
+	\end{lem}
+
+\end{frame}
+\begin{frame}{引理证明}
 \begin{itemize}
-	\item 只需要证明可以从林德伯格条件出发导出 $\left\{Y_n^*\right\}$ 的特征函数列 \[\phi_{n}(t)\rightarrow e^{-\frac{t^2}{2}}.\]
-    \item
-	对一切 $n \geq 1$ 及 $k=1, \cdots, n$ ，令 $X_{nk}=\left(X_{k}-\mu_k\right) / \sigma(Y_n)$ 。则 $E\left(X_{nk}\right)=0$ 而 $D\left(X_{nk}\right)=\sigma^{2} / \sigma(Y_n)^{2}$ 。因此，若以 $F_{n k}$ 及 $f_{n k}$ 分别表 $X_{nk}$的分布函数及特征函数，则已知的条件 (3.6) 式化为
-	\[
-	\lim _{n} \sum_{k=1}^{n} \int_{(|x| \geq r)} x^{2} d F_{n k}(x)=0,  \text { 任 } \tau>0
-	\]
+	\item 用分部积分可得
+	\begin{align}\label{eq:sepinte}
+		\int_{0}^{x}(x-s)^{n} e^{i s} d s=\frac{x^{n+1}}{n+1}+\frac{i}{n+1} \int_{0}^{x}(x-s)^{n+1} e^{i s} d s
+	\end{align}
 
-	而待证的 (3.3) 式变为 $n \rightarrow \infty$ 时有
-	\[
-	f_{n}(t)=\prod_{k=1}^{n} f_{n k}(t) \longrightarrow e^{-\frac{t^{2}}{2}},  \text { 任 } t \in \Re
-	\]
+	\item 递归可得知，对一切 $n \geq 0$ 有
+	\begin{align}\label{eq:digui}
+		e^{i x}=\sum_{k=0}^{n} \frac{(i x)^{k}}{k!}+\frac{i^{n+1}}{n!} \int_{0}^{x}(x-s)^{n} e^{i s} d s
+	\end{align}
 
-	据 4.2.2 节 (2.12) 式知，对一切 $t \in \Re$ 有
+	\item
+	由此推出估计式$
+	\big|e^{i x}-\sum_{k=0}^{n} \dfrac{(i x)^{k}}{k!}\big| \leq \dfrac{|x|^{n+1}}{(n+1)!}$
+	\item 将\eqref{eq:sepinte}式中 $n$ 换为 $n-1$ ，解出右方积分并代入\eqref{eq:digui}便推出
 	\[
-	\left|e^{i t x}-\left(1+i t x-\frac{1}{2} t^{2} x^{2}\right)\right| \leq|t x|^{2} \wedge|t x|^{3}
+	e^{i x}=\sum_{k=0}^{n} \frac{(i x)^{k}}{k!}+\frac{i^{n}}{(n-1)!} \int_{0}^{x}(x-s)^{n-1}\left(e^{i s}-1\right) d s
 	\]
+\item 故可得另一估计式$
+	\left|e^{i x}-\sum_{k=0}^{n} \dfrac{(i x)^{k}}{k!}\right| \leq \dfrac{2|x|^{n}}{n!}$
+\item 联合上述两个估计式可得引理结论.%（4.10）与（4.11）便得到（4.7）式，引理证完。
 
-	注意到 $X_{nk}$ 二阶矩有限，两边对 $F_{n k}$ 取积分得
-	\[
-	\left|f_{n k}(t)-\left(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\right)\right| \leq E\left\{\left|t X_{nk}\right|^{2} \wedge\left|t X_{nk}\right|^{3}\right\}
-	\]
 
-	而对任何 $\tau>0$ ，上式右方不超过
-	\[
-	\begin{array}{c}
-	\int_{(|x|<r)}|t x|^{3} d F_{n k}(x)+\int_{(|x| \geq r)}(t x)^{2} d F_{n k}(x) \\
-	 \leq \tau|t|^{3} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^{2}}+t^{2} \int_{(|x| \geq r)} x^{2} d F_{n k}(x)
-	\end{array}
-	\]
-
-	由于 $\sum_{k=1}^{n} \sigma_{k}^{2} / \sigma(Y_n)^{2}=D\left(Y_n^*\right)=1$, 求和便推出
-	\[
-	\sum_{k=1}^{n}\left|f_{r k}(t)-\left(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\right)\right| \leq \tau|t|^{3}+t^{2} \sum_{k=1}^{n} \int_{(|x| \leq \tau)} x^{2} d F_{n k}(x)
-	\]
 \end{itemize}
 
 \end{frame}
+\begin{frame}{引理的几个常用结论}
+\begin{rmk} 若引理中的$n=0,1,2$, 则有%的特例以备引用:
+	\begin{align*}
+		\left|e^{i x}-1\right| & \leq|x| \wedge 2 \\
+		\left|e^{i x}-1-i x\right| & \leq \frac{x^{2}}{2} \wedge(2|x|) \\
+		\left|e^{i x}-1-i x+\frac{x^{2}}{2}\right| & \leq\left(\frac{1}{6}|x|^{3}\right) \wedge x^{2}
+	\end{align*}
+\end{rmk}
+
+\end{frame}
+
+\begin{frame}{林德伯格中心极限定理证明}
+\begin{itemize}
+	\item 只需证 $Y_n^*:=\frac{\sum_{k=1}^n(X_k-E[X_k])}{\sqrt{D(\sum_{k=1}^nX_k)}}$ 的特征函数列收敛到标准正态分布的特征函数,即
+	\begin{align}\label{eq:celimit}
+		\lim_{n\rightarrow\infty}\phi_{n}(t)=\lim_{n\rightarrow\infty}E[e^{itY_n^*}]= \exp\{-\frac{t^2}{2}\}.
+	\end{align}
+
+    \item 对一切 $n \geq 1$ 及 $k=1, \cdots, n$，令 $X_{nk}=\left(X_{k}-\mu_k\right) / \sigma(Y_n)$, 则
+	\[E\left(X_{nk}\right)=0,\quad D\left(X_{nk}\right)=\sigma_k^{2} / \sigma(Y_n)^{2}.\]
+	\item 以 $F_{n k}(x)$ 及 $\phi_{n k}(t)$ 分别表 $X_{nk}$的分布函数及特征函数.
+		\item 已知的林德伯格条件\eqref{eq:Lindeberg}式化为
+		\begin{align}\label{eq:Lindebergcondi-2}
+			\lim _{n} \sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)=0, \ \forall \tau>0
+		\end{align}
+
+	\item
+		而待证的\eqref{eq:celimit}式变为 $n \rightarrow \infty$ 时有
+		\[
+		\phi_{n}(t)=\prod_{k=1}^{n} \phi_{n k}(t) \longrightarrow \exp\{-\frac{t^2}{2}\},  \forall t \in R
+		\]
+
+\end{itemize}
+
+\end{frame}
+\begin{frame}{林德伯格中心极限定理证明}
+	\begin{itemize}
+		\item 注意到
+		\begin{align*}
+		  \phi_{nk}(t)&\approx 1+\phi_{nk}'(0)t+\frac{1}{2}\phi_{nk}''(0)t^2=1+iE[X_{nk}]t+\frac{1}{2}i^2E[X_{nk}^2]t^2\\
+					&=1-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\approx \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\\
+			\exp\{-\frac{t^2}{2}\}&=\exp\{-\frac{t^2}{2}\sum_{k=1}^n\frac{\sigma_k^2}{\sigma(Y_n)^2}\}=\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}
+		\end{align*}
+		\item 因此,欲证$\phi_{n}(t)=\prod_{k=1}^{n} \phi_{n k}(t) \longrightarrow e^{-\frac{t^{2}}{2}},  \forall t \in R$, 只需证明
+		\begin{align*}
+	&\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \longrightarrow 0\\
+	&\big|\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)-\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\big| \longrightarrow 0
+		\end{align*}
+	\end{itemize}
+
+
+	\end{frame}
+	\begin{frame}{证明:$\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0$}
+		\vspace{-0.1cm}
+		\begin{itemize}
+			\item 由引理\ref{lem:eixtaylor}可知，对一切 $t \in R$ 有
+		\[
+		\big|e^{i t x}-\big(1+i t x-\frac{1}{2} t^{2} x^{2}\big)\big| \leq|t x|^{2} \wedge|t x|^{3}
+		\]
+		\item 注意到 $X_{nk}$ 二阶矩有限，两边对 $F_{n k}$ 取积分得
+		\[
+		\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\big)\big| \leq E\big\{\big|t X_{nk}\big|^{2} \wedge\big|t X_{nk}\big|^{3}\big\}
+		\]
+		\item 而对任何 $\tau>0$ ，上式右方不超过
+		\begin{align*}
+			&\int_{(|x|<\tau)}|t x|^{3} d F_{n k}(x)+\int_{(|x| \geq \tau)}(t x)^{2} d F_{n k}(x)\\
+			&\leq \tau|t|^{3} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^{2}}+t^{2} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+		\end{align*}
+		\item 由于 $\sum_{k=1}^{n} \sigma_{k}^{2} / \sigma(Y_n)^{2}=D\big(Y_n^*\big)=1$, 求和便推出
+		\[
+		\sum_{k=1}^{n}\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\big)\big| \leq \tau|t|^{3}+t^{2} \sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+		\]
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{证明:$\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0$}
+\begin{itemize}
+	\item 上式先令 $n \rightarrow \infty$ 再令 $\tau \downarrow 0$, 由\eqref{eq:Lindebergcondi-2}式得
+	\[
+	\sum_{k=1}^{n}\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0,  t \in R
+	\]
+	\item 故
+	\begin{align*}
+		\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big|\leq  \sum_{k=1}^{n}\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0
+	\end{align*}得证.
+\end{itemize}
+	\end{frame}
+
+\begin{frame}{证明:$\big|\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)-\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\big| \rightarrow 0$}
+\vspace{-0.1cm}
+\begin{itemize}
+
+	\item 注意到当 $|z| \leq 1 / 2$ 时有
+	{\small \[
+	\left|e^{z}-1-z\right| \leq \frac{1}{2} \sum_{k=2}^{\infty}|z|^{k}=\frac{1}{2}|z|^{2} /(1-|z|) \leq z^{2}
+	\]}
+    \item 取 $z=\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}$, 可得
+    {\small \begin{align*}
+		&\big|\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)-\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\big|\\
+		&\leq \sum_{k=1}^{n}\big|\exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big|\\
+		&\leq \frac{t^4}{4}\sum_{k=1}^{n}\big(\frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\big)^2\leq \frac{t^{4}}{4}\left(\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\right) \sum_{k=1}^{n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\\
+		&\leq \frac{t^{4}}{4}\left(\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\right)
+	\end{align*}}
+	\item 若$\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\rightarrow 0$, 则定理得证.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{证明: $\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\rightarrow 0$}
+	\vspace{-0.1cm}
+\begin{itemize}
+	\item 对任何 $\tau>0$ 有
+\begin{align*}
+	\frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}=D\left(X_{n k}\right)&=\int_{-\infty}^{+\infty}x^2dF_{nk}(x)\\
+	&=\int_{|x|<\tau}x^2dF_{nk}(x)+\int_{|x|\geq\tau}x^2dF_{nk}(x)\\
+	&\leq \tau^{2}+\int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+\end{align*}
+\item 从而
+	\[
+	\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2} \leq \tau^{2}+\sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+	\]
+\item
+	再次令 $n \rightarrow \infty$ 及 $\tau \downarrow 0$, 由\eqref{eq:Lindebergcondi-2}式得
+	\[
+	\lim _{n}\left\{\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\right\}=0
+	\]
+	\item 进而, 若$z=\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}$, 当$n$充分大时$|z| \leq 1 / 2$.
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
 
 \begin{frame}
 	\frametitle{推出 Lindeberg 条件的充分条件}
 	\begin{thm}
 		设 $\{X_n\}$ 为独立随机变量序列，如果存在常数列 $\{L_n\}$ 使得
 		\begin{eqnarray*}
-			\max_{1\leq k\leq n}|X_k|\leq L_n, \mbox{ 且 } \lim_{n}\dfrac{L_n}{B_n}=0
+			\max_{1\leq k\leq n}|X_k|\leq L_n, \mbox{ 且 } \lim_{n}\dfrac{L_n}{\sigma(Y_n)}=0
 		\end{eqnarray*}
 		则 Lindeberg 条件成立，从而 $\{X_n\}$ 满足中心极限定理.
 	\end{thm}
+
+\zheng
+\begin{itemize}
+	\item 由假设知，对于 $\tau>0$ ，存在 $N$ ，使当 $n \geq N$ 时有 $2 L_{n}<$ $\tau \sigma(Y_n)$.
+	\item 因此当 $n \geq N$ 时对一切 $k=1, \cdots, n$ 有 $\Omega=\left\{\left|X_{k}-\mu_{k}\right|<\tau \sigma(Y_n)\right\}$.
+	\item 故 $n \geq N$ 时有
+	\begin{align*}
+		&\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{\left(\left|x-\mu_{k}\right|<\tau \sigma(Y_n)\right)}\left(x-\mu_{k}\right)^{2} d F_{k}(x)\\
+		&=\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{-\infty}^\infty\left(x-\mu_{k}\right)^{2} d F_{k}(x)=1 .
+	\end{align*}
+\item 这表明林德伯格条件\eqref{eq:Lindeberg} 式成立，故 $\left\{X_{n}\right\}$ 满足中心极限定理.
+\end{itemize}
+
+
+
+
 \end{frame}
+
 \begin{frame}
 	\frametitle{李雅普诺夫中心极限定理}
 	\begin{thm} 设 $\{X_n\}$ 为独立随机变量序列，若存在 $\delta>0$ 满足
 		\begin{eqnarray*}
-			\lim_{n\rightarrow\infty}\dfrac{1}{\sigma(Y_n)^{2+\delta}}\sum_{i=1}^nE(|X_i-\mu_i|^{2+\delta})=0
+			\lim_{n\rightarrow\infty}\dfrac{1}{\sigma(Y_n)^{2+\delta}}\sum_{k=1}^nE(|X_k-\mu_k|^{2+\delta})=0,
 		\end{eqnarray*}
-		则对任意的 $x$, 有
-		\begin{eqnarray*}
-			\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{i=1}^n(X_i-\mu_i)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du
-		\end{eqnarray*}
+		则 $\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{k=1}^n(X_k-\mu_k)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du$.
+		% \begin{eqnarray*}
+		% 	\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{i=1}^n(X_i-\mu_i)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du
+		% \end{eqnarray*}
 
 	\end{thm}
+
+	\zheng 只要验证林德伯格条件成立. 实际上对任何 $\tau>0$ 有
+	\begin{align*}
+		& \lim _{n} \frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{\left(\left|x-\mu_k\right| \geq \tau \sigma(Y_n)\right)}\left(x-\mu_{k}\right)^{2} d F_{k}(x) \\
+		\leq & \lim _{n} \frac{1}{\sigma(Y_n)^{2}\left(\tau \sigma(Y_n)\right)^{\delta}} \sum_{k=1}^{n} \int_{\left(\left|x-\mu_k\right| \geq \tau \sigma(Y_n)\right)}\left|x-\mu_k\right|^{2+\delta} d F_{k}(x) \\
+		\leq & \lim _{n} \frac{1}{\tau^{\delta}} \frac{1}{\sigma(Y_n)^{2+\delta}} \sum_{k=1}^{n} \int_{\Re}\left|x-\mu_{k}\right|^{2+\delta} d F_{k}(x)=0 .
+	\end{align*}
+	定理证毕.
 \end{frame}
 
 

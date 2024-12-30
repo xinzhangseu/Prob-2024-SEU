@@ -561,11 +561,15 @@ Y\sim F_2(y)=F(+\infty, y)
 		\item 根据如上定义:\vspace{-0.3cm}
 		{\small \begin{eqnarray*}
 				\hspace{-0.5cm} F(x|y)&:=&P(X\le x|Y=y)=\pause \lim_{h\rightarrow 0}\dfrac{P(X\le x, Y\in[y,y+h])}{P(Y\in[y,y+h])}\\
-				&=&\pause \lim_{h\rightarrow 0}\dfrac{\int_{-\infty}^x\int_y^{y+h}p(u,v)dvdu}{\int_y^{y+h}p_Y(v)dv}
-				=\pause \lim_{h\rightarrow 0}\dfrac{\int_{-\infty}^x\big\{\dfrac{1}{h}\int_y^{y+h}p(u,v)dv\big\}du}{\dfrac{1}{h}\int_y^{y+h}p_Y(v)dv}\\
-				&&\hspace{-0.7cm}\pause \xlongequal[\mbox{积分中值定理}]{p (x,y),p_Y (y)\mbox{在} y\mbox{连续}}\pause \int_{-\infty}^x\dfrac{p (u,y)}{p_Y (y)} du\pause
+				&=&\pause \lim_{h\rightarrow 0}\dfrac{F(x,y+h)-F(x,y)}{F_Y(y+h)-F_Y(y)}
+				=\pause \lim_{h\rightarrow 0}\dfrac{\big(F(x,y+h)-F(x,y)\big)/h}{\big(F_Y(y+h)-F_Y(y)\big)/h}\\
+				&=&\pause \dfrac{\partial F(x,y)/\partial y}{p_Y(y)}
+				%&&\hspace{-0.7cm}\pause \xlongequal[\mbox{积分中值定理}]{p (x,y),p_Y (y)\mbox{在} y\mbox{连续}}\pause \int_{-\infty}^x\dfrac{p (u,y)}{p_Y (y)} du\pause
 		\end{eqnarray*}}%
-		\item 这表明给定 $Y=y$ 时 $X$ 的条件分布仍为连续型，其密度函数为 $$p (x|y)=p (x,y)/p_Y (y).$$
+		\item 故给定 $Y=y$ 时 $X$ 的条件分布密度为
+		\begin{align*}
+		   p (x|y)=\dfrac{\partial F(x|y)}{\partial x}=\dfrac{\partial^2 F(x,y)/[\partial x\partial y]}{p_Y(y)}=p(x,y)/p_Y (y).
+		\end{align*}
 	\end{itemize}
 \end{frame}
 \begin{frame}
