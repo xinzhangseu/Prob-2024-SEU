@@ -1775,15 +1775,23 @@
 \end{frame}
 \begin{frame}%[allowframebreaks]
 	\frametitle{常用分布的特征函数  II}
-	故 \begin{eqnarray*}
+对$\varphi(t)$求导可得
+{\small \begin{eqnarray*}
 		\varphi'(t)&=&\pause -\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}x\sin(tx) e^{-\frac{x^2}{2}}dx=\pause \dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}\sin(tx) de^{-\frac{x^2}{2}}\\
-		&=&\pause -\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}t\cos(tx) e^{-\frac{x^2}{2}}dx=\pause -t\varphi(t)
-	\end{eqnarray*}
+		&=&\pause -\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}t\cos(tx) e^{-\frac{x^2}{2}}dx=\pause -t\varphi(t).
+	\end{eqnarray*}}
 	\pause 从而
-	\begin{eqnarray*}
-		\dfrac{d}{dt}[\varphi(t)e^{t^2/2}]=[\varphi'(t)+t\varphi(t)]e^{t^2/2}=0
-	\end{eqnarray*}
-	\pause 故 $\varphi (t) e^{t^2/2}=C$, 再利用 $C=\varphi (0)=1$ 得
+	\begin{align*}
+		\frac{\varphi'(t)}{\varphi(t)}=-t,\  i.e.,\  [\ln \varphi(t)]'=-t.
+	\end{align*}
+	对上式两边积分可得
+	\[\ln \varphi(t)=\ln \varphi(t)-\ln \varphi(0) = -\frac{t^2}{2}+C.\]
+	因此, $\varphi(t)=e^{-\frac{t^2}{2}+C}$.
+	% \begin{eqnarray*}
+	% 	\dfrac{d}{dt}[\varphi(t)e^{t^2/2}]=[\varphi'(t)+t\varphi(t)]e^{t^2/2}=0
+	% \end{eqnarray*}
+	\pause %故 $\varphi (t) e^{t^2/2}=C$,
+	再利用 $\varphi (0)=1$ 可得
 	\begin{eqnarray*}
 		\varphi(t)=e^{-t^2/2}.\pause
 	\end{eqnarray*}

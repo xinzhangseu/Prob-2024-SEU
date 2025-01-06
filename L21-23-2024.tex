@@ -1204,7 +1204,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 		P\left\{\max _{1 \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\}=\sum_{k=1}^{n} P\left(A_{k}\right) \leq \frac{1}{\varepsilon^{2}} \sum_{k=1}^{n} E\left(S_{k}^{2} 1_{A_k}\right).
 	\end{align}
 
-	\item 注意到 $S_{k}^{2} 1_{A_k}$ 是 $\xi_{1}, \cdots, X_{k}$ 的函数，它与 $S_{n}-S_{k}=\sum_{i=k+1}^{72} \xi_{i}$ 相互独立. 故
+	\item 注意到 $S_{k}^{2} 1_{A_k}$ 是 $\xi_{1}, \cdots, X_{k}$ 的函数，它与 $S_{n}-S_{k}=\sum_{i=k+1}^{n} \xi_{i}$ 相互独立. 故
 	\[
 	E\left[\left(S_{n}-S_{k}\right) S_{k} 1_{A_k}\right]=E\left[S_n-S_{k}\right] E\left[S_{k} 1_{A_k}\right]=0 .
 	\]
@@ -1471,7 +1471,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\zheng 要证 $Y_n^*$ 依分布收敛于标准正态分布，只需要说明其特征函数收敛于标准正态分布的特征函数即可. \pause 注意到 $Y_n^*=\sum_{i=1}^n\dfrac{X_i-\mu}{\sigma\sqrt{n}}$. 故若记 $Z_i:=X_i-\mu$ 的特征函数为 $\varphi (t)$, 则
 	\begin{eqnarray*}
 		\varphi(t)&=&\pause \varphi(0)+\varphi'(0)t+\varphi''(0)\frac{t^2}{2}+o(t^2)\\
-		&=&\pause 1+iE(Z_i)+i^2E(Z_i^2)\frac{t^2}{2}+o(t^2)\\
+		&=&\pause 1+iE(Z_i)t+i^2E(Z_i^2)\frac{t^2}{2}+o(t^2)\\
 		&=&\pause 1-\frac{\sigma^2t^2}{2}+o(t^2)\\
 		\varphi_{Y_n^*}&=&\pause \bigg[\varphi(\frac{t}{\sigma\sqrt{n}})\bigg]^n=\pause \bigg[1-\frac{t^2}{2n}+o(\frac{t^2}{n\sigma^2})\bigg]^n\rightarrow \pause e^{-t^2/2}
 	\end{eqnarray*}
@@ -1606,7 +1606,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 		\item 考虑 $Y_n$ 的标准化:$ Y_n^*:=\dfrac{Y_n-E (Y_n)}{\sigma (Y_n)}=\sum_{i=1}^n\dfrac{X_i-\mu_i}{\sigma (Y_n)}$
 		\item 要求 $Y_n^*$ 中的各项 $\dfrac{X_i-\mu_i}{\sigma (Y_n)}$ 均匀的小，即对任意的 $\tau>0$, 要求事件
 		\begin{eqnarray*}
-			A_{ni}=\left\{\dfrac{X_i-\mu_i}{\sigma(Y_n)}>\tau\right\}=\left\{|X_i-\mu_i|>\tau\sigma(Y_n)\right\}
+			A_{ni}=\left\{\big|\dfrac{X_i-\mu_i}{\sigma(Y_n)}\big|>\tau\right\}=\left\{|X_i-\mu_i|>\tau\sigma(Y_n)\right\}
 		\end{eqnarray*}
 		发生的可能性小或直接要求其概率趋于 0.
 		\item 为达目的，我们要求 $\lim_{n\rightarrow\infty} P (\max_{1\le i\le n}|X_i-\mu_i|>\tau\sigma (Y_n))=0$
@@ -1618,12 +1618,12 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\begin{eqnarray*}
 		&&P(\max_{1\le i\le n}|X_i-\mu_i|>\tau\sigma(Y_n))=\pause P(\cup_{i=1}^n|X_i-\mu_i|>\tau\sigma(Y_n))\\
 		&&\le\pause \sum_{i=1}^nP(|X_i-\mu_i|>\tau\sigma(Y_n))=\pause \sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}dF_i(x)\\
-		&&\le \pause \dfrac{1}{\tau^2\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)
+		&&\le \pause \dfrac{1}{\tau^2}\cdot\dfrac{1}{\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)
 	\end{eqnarray*}
 
 	\pause 故只要下面的 \textcolor{red}{\bf 林德伯格条件} 满足
 	\begin{eqnarray*}%\label{eq:Lindeberg}
-		\lim_{n\rightarrow\infty} \dfrac{1}{\tau^2\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
+		\lim_{n\rightarrow\infty} \dfrac{1}{\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
 	\end{eqnarray*}
 	就可保证 $Y_n^*$ 中各加项充分的小
 
@@ -1635,7 +1635,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\begin{thm}
 		设独立随机变量序列 $\{X_n\}$ 满足林德伯格条件
 		\begin{eqnarray}\label{eq:Lindeberg}
-			\lim_{n\rightarrow\infty} \dfrac{1}{\tau^2\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
+			\lim_{n\rightarrow\infty} \dfrac{1}{\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
 		\end{eqnarray} 则对任意的 $x$, 有
 		\begin{eqnarray*}
 			\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{i=1}^n(X_i-\mu_i)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du
@@ -1744,7 +1744,7 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 		\]
 		\item 注意到 $X_{nk}$ 二阶矩有限，两边对 $F_{n k}$ 取积分得
 		\[
-		\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\big)\big| \leq E\big\{\big|t X_{nk}\big|^{2} \wedge\big|t X_{nk}\big|^{3}\big\}
+		\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\big)\big| \leq \int_{-\infty}^\infty |tx|^2\wedge |tx|^3dF_{nk}(x)%E\big\{\big|t X_{nk}\big|^{2} \wedge\big|t X_{nk}\big|^{3}\big\}
 		\]
 		\item 而对任何 $\tau>0$ ，上式右方不超过
 		\begin{align*}
@@ -1797,9 +1797,8 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 \begin{itemize}
 	\item 对任何 $\tau>0$ 有
 \begin{align*}
-	\frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}=D\left(X_{n k}\right)&=\int_{-\infty}^{+\infty}x^2dF_{nk}(x)\\
-	&=\int_{|x|<\tau}x^2dF_{nk}(x)+\int_{|x|\geq\tau}x^2dF_{nk}(x)\\
-	&\leq \tau^{2}+\int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+	\hspace{-0.4cm}\frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}&=D\left(X_{n k}\right)=\int_{-\infty}^{+\infty}x^2dF_{nk}(x)=\int_{|x|<\tau}x^2dF_{nk}(x)+\int_{|x|\geq\tau}x^2dF_{nk}(x)\\
+	&\leq \tau^{2}+\int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)\leq \tau^{2}+\sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
 \end{align*}
 \item 从而
 	\[
@@ -1827,20 +1826,21 @@ E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{
 	\begin{thm}
 		设 $\{X_n\}$ 为独立随机变量序列，如果存在常数列 $\{L_n\}$ 使得
 		\begin{eqnarray*}
-			\max_{1\leq k\leq n}|X_k|\leq L_n, \mbox{ 且 } \lim_{n}\dfrac{L_n}{\sigma(Y_n)}=0
+			\max_{1\leq k\leq n}|X_k|\leq L_n, \mbox{ 且  }\  \lim_{n}\dfrac{L_n}{\sigma(Y_n)}=0
 		\end{eqnarray*}
 		则 Lindeberg 条件成立，从而 $\{X_n\}$ 满足中心极限定理.
 	\end{thm}
 
-\zheng
+%\zheng
 \begin{itemize}
 	\item 由假设知，对于 $\tau>0$ ，存在 $N$ ，使当 $n \geq N$ 时有 $2 L_{n}<$ $\tau \sigma(Y_n)$.
 	\item 因此当 $n \geq N$ 时对一切 $k=1, \cdots, n$ 有 $\Omega=\left\{\left|X_{k}-\mu_{k}\right|<\tau \sigma(Y_n)\right\}$.
 	\item 故 $n \geq N$ 时有
-	\begin{align*}
-		&\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{\left(\left|x-\mu_{k}\right|<\tau \sigma(Y_n)\right)}\left(x-\mu_{k}\right)^{2} d F_{k}(x)\\
-		&=\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{-\infty}^\infty\left(x-\mu_{k}\right)^{2} d F_{k}(x)=1 .
-	\end{align*}
+	{\small \begin{align*}
+		&\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{\left|x-\mu_{k}\right|\geq \tau \sigma(Y_n)}\left(x-\mu_{k}\right)^{2} d F_{k}(x)\\
+		&=\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{-\infty}^\infty\left(x-\mu_{k}\right)^{2}1_{\{\left|x-\mu_{k}\right|\geq \tau \sigma(Y_n)\}}(x) d F_{k}(x)\\
+		&=\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} E[(X_k-\mu_k)^21_{\{\left|x-\mu_{k}\right|\geq \tau \sigma(Y_n)\}}(X_k) ]=0 .
+	\end{align*}}
 \item 这表明林德伯格条件\eqref{eq:Lindeberg} 式成立，故 $\left\{X_{n}\right\}$ 满足中心极限定理.
 \end{itemize}
 
