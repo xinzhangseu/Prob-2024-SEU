@@ -45,30 +45,32 @@
  \setlength{\leftmargini}{18pt}
 
 
- %%%%%%%%%%%%%%%%%%% 设置字体方法一 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% 设置字体方法一 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \usepackage{xeCJK}    % CJK 包
  \usepackage{multirow}
 
 
 
- %\usepackage[cm-default]{fontspec}
- \usepackage{fontspec}
+ \usepackage[cm-default]{fontspec}
+ %\usepackage{fontspec}
  \usepackage{xunicode,xltxtra}
 
  \defaultfontfeatures{Mapping=tex-text}
 
  \XeTeXlinebreaklocale "zh"
- \setCJKmainfont[BoldFont=SimHei]{KaiTi_GB2312}
- \setCJKsansfont[BoldFont=SimHei]{KaiTi_GB2312}  % 设置中文字体
+
+ %\setCJKmainfont[Path=./fonts/, Extension=.ttf, BoldFont=SimHei]{KaiTi_GB2312}
+  \setCJKmainfont[FandolHei]{FandolKai}
+ %\setCJKsansfont[Path=./fonts/, Extension=.ttf, BoldFont=SimHei]{KaiTi_GB2312}  % 设置中文字体
+ \setCJKsansfont[FandolHei]{FandolKai}  % 设置中文字体
  \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
  \setmainfont{Times New Roman} % 设置西文字体
- %\setmainfont{Baskerville} % 设置西文字体
- % \setmainfont[BoldFont=SimHei]{Adobe Song Std}
- %\setsansfont[BoldFont=SimHei]{KaiTi_GB2312}
+%\setmonofont[Path=./fonts/, Extension=.ttf]{NSimSun}
+\setmonofont{FandolSong}
+%%%%%%%%%%%%%%%%%%%%% 设置字体方法一结束 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- % \setsansfont[BoldFont=SimHei]{Microsoft YaHei}
- \setmonofont{NSimSun}
- %%%%%%%%%%%%%%%%%%%%% 设置字体方法一结束 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
 
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 自定义定理环境  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

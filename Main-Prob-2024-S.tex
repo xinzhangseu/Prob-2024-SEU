@@ -1,4 +1,4 @@
-\documentclass[compress,table]{beamer}
+{"originatingScript":"m2","payload":{"guid":"8db16608-3c12-4923-ac20-a88f5761263e43d280","muid":"20ea20b2-dae6-42ea-8b37-2422056e7db56257e2","sid":"539e10ea-0d74-408a-8b48-cf34162eb794cbea9f"}}\documentclass[compress,table]{beamer}
 %\documentclass[compress,table,handout]{beamer}
 \usefonttheme[onlymath]{serif}
 
@@ -46,30 +46,29 @@
 
 
 %%%%%%%%%%%%%%%%%%% 设置字体方法一 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{xeCJK}    % CJK 包
-\usepackage{multirow}
+ \usepackage{xeCJK}    % CJK 包
+ \usepackage{multirow}
 
 
 
-%\usepackage[cm-default]{fontspec}
-\usepackage{fontspec}
-\usepackage{xunicode,xltxtra}
+ %\usepackage[cm-default]{fontspec}
+ \usepackage{fontspec}
+ \usepackage{xunicode,xltxtra}
 
-\defaultfontfeatures{Mapping=tex-text}
+ \defaultfontfeatures{Mapping=tex-text}
 
-\XeTeXlinebreaklocale "zh"
-\setCJKmainfont[BoldFont=SimHei]{KaiTi_GB2312}
-\setCJKsansfont[BoldFont=SimHei]{KaiTi_GB2312}  % 设置中文字体
-\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
-\setmainfont{Times New Roman} % 设置西文字体
-%\setmainfont{Baskerville} % 设置西文字体
-% \setmainfont[BoldFont=SimHei]{Adobe Song Std}
-%\setsansfont[BoldFont=SimHei]{KaiTi_GB2312}
+ \XeTeXlinebreaklocale "zh"
 
-% \setsansfont[BoldFont=SimHei]{Microsoft YaHei}
-\setmonofont{NSimSun}
-%%%%%%%%%%%%%%%%%%%%% 设置字体方法一结束 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \setCJKmainfont[Path=./fonts/, Extension=.ttf, BoldFont=SimHei]{KaiTi_GB2312}
+  %\setCJKmainfont[FandolHei]{FandolKai}
+ \setCJKsansfont[Path=./fonts/, Extension=.ttf, BoldFont=SimHei]{KaiTi_GB2312}  % 设置中文字体
+ %\setCJKsansfont[FandolHei]{FandolKai}  % 设置中文字体
+ \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+ \setmainfont{Times New Roman} % 设置西文字体
+\setmonofont[Path=./fonts/, Extension=.ttf]{NSimSun}
+%\setmonofont{FandolSong}
 
+ %%%%%%%%%%%%%%%%%%%%% 设置字体方法一结束 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 自定义定理环境  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \theoremstyle{definition}
